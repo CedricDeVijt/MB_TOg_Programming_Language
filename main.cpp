@@ -6,11 +6,11 @@
 
 
 int main(int argc, char *argv[]) {
-    if (argc!=1) {
-        throw ArgsError(1, argc);
+    if (argc!=2) {
+        throw ArgsError(2, argc);
     }
 
-    std::string filename = argv[0];
+    std::string filename = argv[1];
     std::fstream file(filename);
     if (!file.is_open()) {
         throw FileNotFoundError(filename);
