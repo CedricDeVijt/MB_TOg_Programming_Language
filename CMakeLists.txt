@@ -7,8 +7,8 @@ include_directories(src)
 
 add_executable(MB_TOg_Programming_Language
         src/Executor.cpp
-        src/Executor.h
         src/Lexer.cpp
-        src/Lexer.h
         src/Parser.cpp
-        src/Parser.h)
+        main.cpp
+
+        )
