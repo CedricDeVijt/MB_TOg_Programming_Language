@@ -1,16 +1,12 @@
 #ifndef EXECUTOR_H
 #define EXECUTOR_H
 
-#pragma once
+#include "../datatypes/AST.h"
 
 class Executor
 {
 public:
-    Executor();
-    ~Executor();
-
-private:
-
+    static void execute(const AST &ast);
 };
 
 #endif
