@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: ubuntu:22.04
     environment:
-      CMAKE_VERSION: "3.24"
+      CMAKE_VERSION: "3.24.0"
       GPP_VERSION: "11.3.0"
       CLANG_VERSION: "14.0.0"
     steps:
@@ -14,5 +14,9 @@ jobs:
       - run: apt update
       - run: mkdir -p build
       - run: DEBIAN_FRONTEND=noninteractive TZ=Europe/Brussels apt install -y gcc g++ cmake git
+      - run: |
+          wget https://cmake.org/files/v3.24/cmake-3.24.0-Linux-x86_64.tar.gz
+          tar -xzvf cmake-3.24.0-Linux-x86_64.tar.gz
+          export PATH=$(pwd)/cmake-3.24.0-Linux-x86_64/bin:$PATH
       - run: cd build && cmake ..
       - run: cd build && make
