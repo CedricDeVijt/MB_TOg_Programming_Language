@@ -15,7 +15,7 @@ jobs:
       - run: mkdir -p build
       - run: DEBIAN_FRONTEND=noninteractive TZ=Europe/Brussels apt install -y gcc g++ cmake git
       - run: |
-          wget https://cmake.org/files/v3.24/cmake-3.24.0-Linux-x86_64.tar.gz
+          curl -LO https://cmake.org/files/v3.24/cmake-3.24.0-Linux-x86_64.tar.gz
           tar -xzvf cmake-3.24.0-Linux-x86_64.tar.gz
           export PATH=$(pwd)/cmake-3.24.0-Linux-x86_64/bin:$PATH
       - run: cd build && cmake ..
