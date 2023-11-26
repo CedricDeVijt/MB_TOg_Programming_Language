@@ -5,6 +5,10 @@ jobs:
     resource_class: small
     docker:
       - image: ubuntu:22.04
+    environment:
+      CMAKE_VERSION: "3.24"
+      GPP_VERSION: "11.3.0"
+      CLANG_VERSION: "14.0.0"
     steps:
       - checkout
       - run: apt update
