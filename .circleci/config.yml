@@ -9,5 +9,6 @@ jobs:
       - checkout
       - run: apt update
       - run: mkdir -p build
+      - run: DEBIAN_FRONTEND=noninteractive TZ=Europe/Brussels apt install -y gcc g++ cmake git
       - run: cd build && cmake ..
       - run: cd build && make
