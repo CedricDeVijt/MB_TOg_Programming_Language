@@ -18,9 +18,7 @@ set(
 
 set(
         DATATYPES
-        src/datatypes/Token.cpp
         src/datatypes/CFG.cpp
-        src/datatypes/AST.cpp
 )
 
 set(
