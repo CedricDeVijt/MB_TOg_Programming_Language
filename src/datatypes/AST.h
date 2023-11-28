@@ -20,7 +20,7 @@ enum class NodeType {
 
 class Statement {
 public:
-    Statement(NodeType nodeType);
+    Statement(NodeType kind);
 private:
     NodeType kind;
 };
@@ -32,18 +32,9 @@ private:
     std::list<Statement> body;
 };
 
-class FunctionDeclaration : public Statement {
-public:
-    FunctionDeclaration(const std::string& name, const std::list<Identifier>& parameters, const std::list<Statement>& body);
-private:
-    std::string name;
-    std::list<Identifier> parameters;
-    std::list<Statement> body;
-};
-
 class Expression : public Statement {
 public:
-    Expression(NodeType nodeType);
+    Expression(NodeType kind);
 };
 
 class BinaryExpression : public Expression {
@@ -81,6 +72,15 @@ public:
     Bool(bool value);
 private:
     bool value;
+};
+
+class FunctionDeclaration : public Statement {
+public:
+    FunctionDeclaration(const std::string& name, const std::list<Identifier>& parameters, const std::list<Statement>& body);
+private:
+    std::string name;
+    std::list<Identifier> parameters;
+    std::list<Statement> body;
 };
 
 class FunctionCall : public Expression {

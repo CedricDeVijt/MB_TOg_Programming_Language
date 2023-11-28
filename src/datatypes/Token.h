@@ -18,12 +18,12 @@ enum class TokenType {
     Minus,
     Divide,
     Times,
-    EOF
+    EOFTOKEN
 };
 
 class Token {
 public:
-    Token(const std::string value = "", TokenType tokenType, int line, int column) = default;
+    Token(TokenType tokenType, int line, int column, const std::string &value = "");
 
 private:
     std::string value;
