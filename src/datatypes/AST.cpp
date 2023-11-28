@@ -20,6 +20,9 @@ String::String(const std::string &value) : Expression(NodeType::String), value(v
 
 Bool::Bool(bool value) : Expression(NodeType::Bool), value(value) {}
 
+FunctionDeclaration::FunctionDeclaration(const std::string &name, const std::list<Identifier> &parameters, const std::list<Statement> &body)
+: Statement(NodeType::FunctionDeclaration), name(name), parameters(parameters), body(body) {}
+
 FunctionCall::FunctionCall(const std::string &name, const std::list <Expression> &parameters)
 : Expression(NodeType::FunctionCall), name(name), parameters(parameters) {}
 
@@ -31,3 +34,4 @@ AssignmentStatement::AssignmentStatement(const Identifier &variable, const Expre
 
 WhileStatement::WhileStatement(const Expression &condition, const std::list <Statement> &body)
 : Statement(NodeType::WhileStatement), condition(condition), body(body) {}
+
