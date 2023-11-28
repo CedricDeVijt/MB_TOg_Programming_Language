@@ -27,7 +27,7 @@ private:
 
 class Program : public Statement {
 public:
-    Program(const std::list<Statement> body);
+    Program(const std::list<Statement> &body);
 private:
     std::list<Statement> body;
 };

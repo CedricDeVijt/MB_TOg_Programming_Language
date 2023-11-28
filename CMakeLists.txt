@@ -27,6 +27,7 @@ set(
         SRC
         ${MODULES}
         ${CONNECTORS}
+        ${DATATYPES}
         src/MyLang.cpp
 )
 

@@ -3,7 +3,7 @@
 Statement::Statement(NodeType kind)
 : kind(kind) {}
 
-Program::Program(const std::list <Statement> body)
+Program::Program(const std::list <Statement> &body)
 : Statement(NodeType::Program), body(body) {}
 
 Expression::Expression(NodeType kind)
