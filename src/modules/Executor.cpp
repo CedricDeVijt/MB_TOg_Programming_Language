@@ -1,5 +1,5 @@
 #include "Executor.h"
 
-void Executor::execute(const AST &ast) {
+void Executor::execute(const Statement &statement) {
 
 }

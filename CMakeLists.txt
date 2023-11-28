@@ -19,6 +19,8 @@ set(
 set(
         DATATYPES
         src/datatypes/CFG.cpp
+        src/datatypes/Token.cpp
+        src/datatypes/AST.cpp
 )
 
 set(
@@ -26,8 +28,6 @@ set(
         ${MODULES}
         ${CONNECTORS}
         src/MyLang.cpp
-        src/datatypes/Token.cpp
-        src/datatypes/AST.cpp
 )
 
 add_executable(myLang ${SRC} main.cpp)
