@@ -1,6 +1,9 @@
 #include "Lexer.h"
 
+
+
 Tokens Lexer::lex(const std::string &input) {
+
 
     Tokens tokenList;
     size_t pos = 0;
@@ -30,6 +33,9 @@ Tokens Lexer::lex(const std::string &input) {
 
         pos += match.position() + match.length();
     }
+
+
+
 
 
     return tokenList;

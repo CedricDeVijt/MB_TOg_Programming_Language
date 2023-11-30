@@ -22,7 +22,6 @@ enum class TokenType {
     EOFTOKEN,
     INTEGER,
     String
-
 };
 
 class Token {
