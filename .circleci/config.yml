@@ -12,6 +12,7 @@ jobs:
     steps:
       - checkout
       - run: apt update
+      - run: apt install -y cmake
       - run: mkdir -p build
       - run: cd build && cmake ..
       - run: cd build && make
