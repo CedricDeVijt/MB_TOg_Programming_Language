@@ -8,7 +8,7 @@
 class Parser
 {
 public:
-    static AST parse(const Tokens &tokens, const CFG &cfg);
+    static Statement parse(const Tokens &tokens, const CFG &cfg);
 };
 
 #endif

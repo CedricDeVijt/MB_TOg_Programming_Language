@@ -1,6 +1,6 @@
 #include "Parser.h"
 
 
-AST Parser::parse(const Tokens &tokens, const CFG &cfg) {
-    return AST();
+Statement Parser::parse(const Tokens &tokens, const CFG &cfg) {
+    return Statement(NodeType::Program);
 }

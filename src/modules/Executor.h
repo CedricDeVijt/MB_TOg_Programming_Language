@@ -6,7 +6,7 @@
 class Executor
 {
 public:
-    static void execute(const AST &ast);
+    static void execute(const Statement &statement);
 };
 
 #endif
