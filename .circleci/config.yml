@@ -7,12 +7,12 @@ jobs:
 
     environment:
       CMAKE_VERSION: "3.22.1"
-      GPP_VERSION: "11.3.0"
+      GPP_VERSION: "11.4.0"
       CLANG_VERSION: "14.0.0"
     steps:
       - checkout
       - run: apt update
-      - run: apt install -y cmake
+      - run: apt install -y cmake g++
       - run: mkdir -p build
       - run: cd build && cmake ..
       - run: cd build && make
