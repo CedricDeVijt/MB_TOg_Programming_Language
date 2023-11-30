@@ -5,20 +5,23 @@
 #include <string>
 
 enum class TokenType {
-    Identifier,
-    Var,
+    IDENTIFIER,
+    VAR,
     If,
     Else,
     Function,
     While,
     OpenParen,
     CloseParen,
-    Equals,
+    EQUALS,
+    Comma,
     Plus,
     Minus,
     Divide,
     Times,
-    EOFTOKEN
+    EOFTOKEN,
+    INTEGER,
+    String
 };
 
 class Token {

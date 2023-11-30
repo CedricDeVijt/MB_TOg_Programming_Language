@@ -1,7 +1,10 @@
 #ifndef LEXER_H
 #define LEXER_H
 
+#include<iostream>
+#include <regex>
 #include "../datatypes/Token.h"
+
 
 class Lexer
 {
