@@ -6,13 +6,13 @@ jobs:
       - image: ubuntu:22.04
 
     environment:
-      CMAKE_VERSION: "3.24.0"
-      GPP_VERSION: "11.3.0"
+      CMAKE_VERSION: "3.22.1"
+      GPP_VERSION: "11.4.0"
       CLANG_VERSION: "14.0.0"
     steps:
       - checkout
       - run: apt update
-      - run: apt-get install -y cmake=3.24.0
+      - run: apt install -y cmake g++
       - run: mkdir -p build
       - run: cd build && cmake ..
       - run: cd build && make
