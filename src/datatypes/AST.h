@@ -21,6 +21,9 @@ enum class NodeType {
 class Statement {
 public:
     Statement(NodeType kind);
+
+    NodeType getKind() const;
+
 private:
     NodeType kind;
 };
@@ -28,6 +31,9 @@ private:
 class Program : public Statement {
 public:
     Program(const std::list<Statement> &body);
+
+    const std::list<Statement> &getBody() const;
+
 private:
     std::list<Statement> body;
 };
@@ -40,6 +46,13 @@ public:
 class BinaryExpression : public Expression {
 public:
     BinaryExpression(const Statement &left, const Statement &right, const std::string &op);
+
+    const Statement &getLeft() const;
+
+    const Statement &getRight() const;
+
+    const std::string &getOp() const;
+
 private:
     Statement left;
     Statement right;
@@ -49,6 +62,9 @@ private:
 class Identifier : public Expression {
 public:
     Identifier(const std::string &symbol);
+
+    const std::string &getSymbol() const;
+
 private:
     std::string symbol;
 };
@@ -56,6 +72,9 @@ private:
 class Float : public Expression {
 public:
     Float(float value);
+
+    float getValue() const;
+
 private:
     float value;
 };
@@ -63,6 +82,9 @@ private:
 class String : public Expression {
 public:
     String(const std::string &value);
+
+    const std::string &getValue() const;
+
 private:
     std::string value;
 };
@@ -70,6 +92,9 @@ private:
 class Bool : public Expression {
 public:
     Bool(bool value);
+
+    bool isValue() const;
+
 private:
     bool value;
 };
@@ -77,6 +102,13 @@ private:
 class FunctionDeclaration : public Statement {
 public:
     FunctionDeclaration(const std::string& name, const std::list<Identifier>& parameters, const std::list<Statement>& body);
+
+    const std::string &getName() const;
+
+    const std::list<Identifier> &getParameters() const;
+
+    const std::list<Statement> &getBody() const;
+
 private:
     std::string name;
     std::list<Identifier> parameters;
@@ -84,7 +116,13 @@ private:
 };
 
 class FunctionCall : public Expression {
+public:
     FunctionCall(const std::string &name, const std::list<Expression> &parameters);
+
+    const std::string &getName() const;
+
+    const std::list<Expression> &getParameters() const;
+
 private:
     std::string name;
     std::list<Expression> parameters;
@@ -93,6 +131,13 @@ private:
 class IfStatement : public Statement {
 public:
     IfStatement(const Expression& condition, const std::list<Statement>& thenBody, const std::list<Statement>& elseBody = {});
+
+    const Expression &getCondition() const;
+
+    const std::list<Statement> &getThenBody() const;
+
+    const std::list<Statement> &getElseBody() const;
+
 private:
     Expression condition;
     std::list<Statement> thenBody;
@@ -102,6 +147,11 @@ private:
 class AssignmentStatement : public Statement {
 public:
     AssignmentStatement(const Identifier& variable, const Expression& value);
+
+    const Identifier &getVariable() const;
+
+    const Expression &getValue() const;
+
 private:
     Identifier variable;
     Expression value;
@@ -110,6 +160,11 @@ private:
 class WhileStatement : public Statement {
 public:
     WhileStatement(const Expression& condition, const std::list<Statement>& body);
+
+    const Expression &getCondition() const;
+
+    const std::list<Statement> &getBody() const;
+
 private:
     Expression condition;
     std::list<Statement> body;
