@@ -29,6 +29,7 @@ set(
         ${CONNECTORS}
         ${DATATYPES}
         src/MyLang.cpp
+        src/modules/executionEnvironment/Environment.cpp
 )
 
 add_executable(myLang ${SRC} main.cpp)
