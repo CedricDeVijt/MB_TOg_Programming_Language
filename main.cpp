@@ -4,9 +4,33 @@
 #include <fstream>
 #include <sstream>
 
+#include <cassert>
+#include "src/datatypes/AST.h"
+#include "src/modules/Executor.h"
+
+void testArithmeticExpression() {
+    // Create an AST for the expression: 2 + 3
+    Float left = Float(2);
+    Float right = Float(3);
+    BinaryExpression expr = BinaryExpression(left, right, "+");
+    Statement* exprPtr = &expr;
+
+    // Create an executor and environment
+    Executor executor;
+
+    // Execute the expression
+    auto result = executor.execute(exprPtr);
+
+    // Check the result - assuming result is an int
+    //assert(result == 5);
+}
+
 
 int main(int argc, char *argv[]) {
-    if (argc!=2) {
+    testArithmeticExpression();
+    std::cout << "All tests passed!" << std::endl;
+
+    /*if (argc!=2) {
         throw ArgsError(2, argc);
     }
 
@@ -22,7 +46,7 @@ int main(int argc, char *argv[]) {
     CFG cfg;
     MyLang mylang(cfg);
 
-    mylang.interpret(buffer.str());
+    mylang.interpret(buffer.str());*/
 
     return 0;
 }

@@ -27,7 +27,7 @@ VariableValue Executor::executeStatement(const Statement *node) {
         case NodeType::WhileStatement:
             return executeWhileStatement((WhileStatement *) node);
         default:
-            throw std::runtime_error("Unhandled statement type in executeStatement");
+            return executeExpression((Expression *) node);
     }
     return VariableValue();
 }
@@ -64,43 +64,15 @@ VariableValue Executor::executeBinaryExpression(const BinaryExpression *node) {
     auto right = execute(&node->getRight());
     auto op = node->getOp();
 
-    if (op == "+") {
-        if (left.index() == 0 && right.index() == 0) {
-            return std::get<int>(left) + std::get<int>(right);
-        } else if (left.index() == 0 && right.index() == 1) {
-            return std::get<int>(left) + std::get<double>(right);
-        } else if (left.index() == 1 && right.index() == 0) {
-            return std::get<double>(left) + std::get<int>(right);
-        } else if (left.index() == 1 && right.index() == 1) {
-            return std::get<double>(left) + std::get<double>(right);
-        } else {
-            throw std::runtime_error("Cannot add non-numeric values");
-        }
+    /*if (op == "+") {
+        return left + right;
     } else if (op == "-") {
-        if (left.index() == 0 && right.index() == 0) {
-            return std::get<int>(left) - std::get<int>(right);
-        } else if (left.index() == 0 && right.index() == 1) {
-            return std::get<int>(left) - std::get<double>(right);
-        } else if (left.index() == 1 && right.index() == 0) {
-            return std::get<double>(left) - std::get<int>(right);
-        } else if (left.index() == 1 && right.index() == 1) {
-            return std::get<double>(left) - std::get<double>(right);
-        } else {
-            throw std::runtime_error("Cannot subtract non-numeric values");
-        }
+        return left - right;
     } else if (op == "*") {
-        if (left.index() == 0 && right.index() == 0) {
-            return std::get<int>(left) * std::get<int>(right);
-        } else if (left.index() == 0 && right.index() == 1) {
-            return std::get<int>(left) * std::get<double>(right);
-        } else if (left.index() == 1 && right.index() == 0) {
-            return std::get<double>(left) * std::get<int>(right);
-        } else if (left.index() == 1 && right.index() == 1) {
-            return std::get<double>(left) * std::get<double>(right);
-        } else {
-            throw std::runtime_error("Cannot multiply non-numeric values");
-        }
-    }
+        return left * right;
+    } else if (op == "/") {
+        return left / right;
+    }*/
 
     throw std::runtime_error("Unknown operator");
 }
