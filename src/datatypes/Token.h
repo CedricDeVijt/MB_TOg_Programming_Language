@@ -3,6 +3,7 @@
 
 #include <list>
 #include <string>
+#include <ostream>
 
 enum class TokenType {
     IDENTIFIER,
@@ -27,6 +28,11 @@ enum class TokenType {
 class Token {
 public:
     Token(TokenType tokenType, int line, int column, const std::string &value = "");
+
+public:
+    bool operator==(const Token &rhs) const;
+    bool operator!=(const Token &rhs) const;
+    friend std::ostream &operator<<(std::ostream &os, const Token &token);
 
 private:
     std::string value;
