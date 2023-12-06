@@ -28,6 +28,10 @@ class Token {
 public:
     Token(TokenType tokenType, int line, int column, const std::string &value = "");
 
+public:
+    bool operator==(const Token &rhs) const;
+    bool operator!=(const Token &rhs) const;
+
 private:
     std::string value;
     TokenType tokenType;
