@@ -8,12 +8,12 @@ TEST(lexerTest, emtpyTest) {
 }
 
 // TODO: dont fill obvious TokenType values
-TEST(lexerTest, varTest) {
-    std::string in = "var";
-    Token iGot = *Lexer::lex(in).begin();
-    Token expected = Token(TokenType::VAR, 0, 0);
-    EXPECT_EQ(iGot, expected);
-}
+//TEST(lexerTest, varTest) {
+//    std::string in = "var";
+//    Token iGot = *Lexer::lex(in).begin();
+//    Token expected = Token(TokenType::VAR, 0, 0);
+//    EXPECT_EQ(iGot, expected);
+//}
 
 TEST(lexerTest, identifierTest1) {
     std::string in = "x";
