@@ -17,6 +17,7 @@ jobs:
       - run: mkdir -p build
       - run: cd build && cmake .. && make all
       # Testing
+      - run: git submodule update --init --recursive
       - run: ./tst/OurLang_tst --gtest_output="xml:./test-results/out.xml"
       - store_test_results:
           path: ./test-results/out.xml
