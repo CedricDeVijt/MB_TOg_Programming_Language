@@ -20,6 +20,6 @@ jobs:
       - run: mkdir -p build
       - run: cd build && cmake .. && make all
       # Testing
-      - run: ./tst/OurLang_tst --gtest_output="xml:testOut.xml"
+      - run: ./build/OurLang_tst --gtest_output="xml:testOut.xml"
       - store_test_results:
-          path: testOut.xml
+          path: ./tst/testOut.xml
