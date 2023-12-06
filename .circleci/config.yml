@@ -10,9 +10,13 @@ jobs:
       GPP_VERSION: "11.4.0"
       CLANG_VERSION: "14.0.0"
     steps:
+      # Building
       - checkout
       - run: apt update
       - run: apt install -y cmake g++
       - run: mkdir -p build
-      - run: cd build && cmake ..
-      - run: cd build && make
+      - run: cd build && cmake .. && make all
+      # Testing
+      - run: ./tst/OurLang_tst --gtest_output="xml:./test-results/out.xml"
+      - store_test_results:
+        path: test-results/out.xml
