@@ -19,4 +19,4 @@ jobs:
       # Testing
       - run: ./tst/OurLang_tst --gtest_output="xml:./test-results/out.xml"
       - store_test_results:
-        path: test-results/out.xml
+          path: ./test-results/out.xml
