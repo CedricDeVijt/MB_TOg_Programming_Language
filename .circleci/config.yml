@@ -23,3 +23,5 @@ jobs:
       - run: ./build/tst/ourLang_tst --gtest_output="xml:testOut.xml"
       - store_test_results:
           path: ./tst/testOut.xml
+      - run: ls -la ./build/tst/
+      - run: pwd
