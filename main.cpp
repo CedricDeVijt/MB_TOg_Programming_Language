@@ -9,10 +9,13 @@
 #include "src/modules/Executor.h"
 
 void testArithmeticExpression() {
-    // Create an AST for the expression: 2 + 3
+    // Create an AST for the expression: a = 2 + 3
+    //
+    Identifier a = Identifier("a");
     Float left = Float(2);
     Float right = Float(3);
     BinaryExpression expr = BinaryExpression(left, right, "+");
+    AssignmentStatement assignment = AssignmentStatement(a, expr);
     Statement* exprPtr = &expr;
 
     // Create an executor and environment
