@@ -1,5 +1,5 @@
 #include "Executor.h"
-
+#include <iostream>
 
 // Public methods
 VariableValue Executor::execute(const Statement *node) {
@@ -61,10 +61,14 @@ VariableValue Executor::executeExpression(const Expression *node) {
 
 VariableValue Executor::executeBinaryExpression(const BinaryExpression *node) {
     auto left = execute(&node->getLeft());
+    //    currentEnvironment->setVariable("left", left);
     auto right = execute(&node->getRight());
+    //    currentEnvironment->setVariable("right", right);
     auto op = node->getOp();
+    //    currentEnvironment->setVariable("op", op);
 
-    /*if (op == "+") {
+
+    if (op == "+") {
         return left + right;
     } else if (op == "-") {
         return left - right;
@@ -72,7 +76,7 @@ VariableValue Executor::executeBinaryExpression(const BinaryExpression *node) {
         return left * right;
     } else if (op == "/") {
         return left / right;
-    }*/
+    }
 
     throw std::runtime_error("Unknown operator");
 }
@@ -81,15 +85,15 @@ VariableValue Executor::executeIdentifier(const Identifier *node) {
     return currentEnvironment->getVariable(node->getSymbol());
 }
 
-VariableValue Executor::executeFloat(const Float *node) {
+float Executor::executeFloat(const Float *node) {
     return node->getValue();
 }
 
-VariableValue Executor::executeString(const String *node) {
+std::string Executor::executeString(const String *node) {
     return node->getValue();
 }
 
-VariableValue Executor::executeBool(const Bool *node) {
+bool Executor::executeBool(const Bool *node) {
     return node->isValue();
 }
 

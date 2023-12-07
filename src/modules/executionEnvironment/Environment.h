@@ -11,7 +11,7 @@
 #include <variant>
 
 // Define a variant type for different variable types
-using VariableValue = std::variant<int, double, std::string, bool>;
+using VariableValue = std::variant<int, float, std::string, bool>;
 
 class Environment : public std::enable_shared_from_this<Environment> {
 private:

@@ -19,9 +19,9 @@ private:
     // Expressions
     VariableValue executeBinaryExpression(const BinaryExpression* node);
     VariableValue executeIdentifier(const Identifier* node);
-    VariableValue executeFloat(const Float* node);
-    VariableValue executeString(const String* node);
-    VariableValue executeBool(const Bool* node);
+    float executeFloat(const Float* node);
+    std::string executeString(const String* node);
+    bool executeBool(const Bool* node);
 
     // Statements
     VariableValue executeFunctionCall(const FunctionCall* node);
