@@ -67,9 +67,16 @@ VariableValue Executor::executeBinaryExpression(const BinaryExpression *node) {
     auto op = node->getOp();
     //    currentEnvironment->setVariable("op", op);
 
-
+    VariableValue result;
     if (op == "+") {
-        return std::get<float>(left) + std::get<float>(right);
+        if (std::holds_alternative<std::string>(left) && std::holds_alternative<std::string>(right)) {
+            result = std::get<std::string>(left) + std::get<std::string>(right);
+        } else if (std::holds_alternative<int>(left) && std::holds_alternative<int>(right)) {
+            result = std::get<int>(left) + std::get<int>(right);
+        } else if (std::holds_alternative<float>(left) && std::holds_alternative<float>(right)) {
+            result = std::get<float>(left) + std::get<float>(right);
+        }
+        return result;
     }
     /*if (op == "+") {
         return left + right;
