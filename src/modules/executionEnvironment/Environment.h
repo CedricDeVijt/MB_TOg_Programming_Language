@@ -1,28 +1,33 @@
-//
-// Created by Siebe Mees on 03/12/2023.
-//
+//============================================================================
+// Name        : Environment.h
+// Author      : Siebe Mees
+// Version     : 2.0
+// Copyright   : Machines and Computability - BA2 Informatica - Siebe Mees - University of Antwerp
+// Description : Environment is a C++ class for managing hierarchical settings and I/O streams.
+//============================================================================
 
 #ifndef MB_TOG_PROGRAMMING_LANGUAGE_ENVIRONMENT_H
 #define MB_TOG_PROGRAMMING_LANGUAGE_ENVIRONMENT_H
 
+#include <iostream>
 #include <map>
 #include <string>
-#include <memory>
-#include <variant>
 
-// Define a variant type for different variable types
-using VariableValue = std::variant<int, float, std::string, bool>;
-
-class Environment : public std::enable_shared_from_this<Environment> {
+class Env {
 private:
-    std::map<std::string, VariableValue> items;
-    std::shared_ptr<Environment> parentScope;
-public:
-    Environment(std::shared_ptr<Environment> parent = nullptr);
+    std::istream* stdin;
+    std::ostream* stdout;
+    std::ostream* stderr;
+    Env* parent;
+    std::map<std::string, std::string> items;
 
-    void setVariable(const std::string& name, const VariableValue& value);
-    VariableValue getVariable(const std::string& name) const;
-    std::shared_ptr<Environment> createChildScope();
+public:
+    Env(Env* parent = nullptr, std::istream* in = nullptr, std::ostream* out = nullptr, std::ostream* err = nullptr);
+
+    std::string get(const std::string& name);
+    void set(const std::string& name, const std::string& value);
+    bool contains(const std::string& name) const;
+    std::string toString() const;
 };
 
 

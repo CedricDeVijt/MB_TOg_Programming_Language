@@ -9,17 +9,27 @@
 #include "src/modules/Executor.h"
 
 void testArithmeticExpression() {
-    // Create an AST for the expression: a = 2 + 3
+    // Create an AST for the expression: a = 2.5 + 3.5
     //
     Identifier a = Identifier("a");
-    Float left = Float(2);
-    Float right = Float(3);
-    BinaryExpression expr = BinaryExpression(left, right, "+");
+
+    String b = String("b");
+    Statement bPtr = b;
+    String c = String("c");
+    Statement cPtr = c;
+    BinaryExpression expr = BinaryExpression(bPtr, cPtr, "+");
+
+    /*// Create an AST for the expression: a = 2.5 + 3.5
+    Float left = Float(2.5);
+    Float right = Float(3.5);
+    BinaryExpression expr = BinaryExpression(left, right, "+");*/
+
     AssignmentStatement assignment = AssignmentStatement(a, expr);
     Statement* exprPtr = &expr;
 
     // Create an executor and environment
     Executor executor;
+    auto result1 = executor.executeBinaryExpression(&expr);
 
     // Execute the expression
     auto result = executor.execute(exprPtr);

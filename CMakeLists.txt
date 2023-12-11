@@ -5,9 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(
         MODULES
-        src/modules/Executor.cpp
         src/modules/Lexer.cpp
         src/modules/Parser.cpp
+        src/modules/executionEnvironment/Environment.cpp
 )
 
 set(
@@ -29,7 +29,6 @@ set(
         ${CONNECTORS}
         ${DATATYPES}
         src/MyLang.cpp
-        src/modules/executionEnvironment/Environment.cpp
 )
 
 add_executable(myLang ${SRC} main.cpp)
