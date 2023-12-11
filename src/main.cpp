@@ -1,6 +1,6 @@
-#include "src/MyLang.h"
-#include "src/exceptions/FileNotFoundError.h"
-#include "src/exceptions/ArgsError.h"
+#include "MyLang.h"
+#include "exceptions/FileNotFoundError.h"
+#include "exceptions/ArgsError.h"
 #include <fstream>
 #include <sstream>
 
