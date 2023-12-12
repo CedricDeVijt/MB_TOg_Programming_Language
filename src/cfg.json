@@ -38,7 +38,7 @@
     {"head": "Program", "body": ["Statement", "Program"]},
     {"head": "Program", "body": ["EOFTOKEN"]},
     {"head": "Statement", "body":  ["FunctionDeclaration"]},
-    {"head": "FunctionDeclaration", "body": ["FUNCTION", "IDENTIFIER", "OPENPARAN", "IdLoop", "CloseParen", "Statement"]}
+    {"head": "FunctionDeclaration", "body": ["FUNCTION", "IDENTIFIER", "OPENPARAN", "IdLoop", "CloseParen", "Statement"]},
     {"head": "IdLoop", "body":  ["IDENTIFIER", ",", "IdLoop"]},
     {"head": "IdLoop", "body":  ["IDENTIFIER", ""]},
     {"head": "Statement", "body": ["OPENPARAN", "Statement", "CLOSEPARAN"]},
