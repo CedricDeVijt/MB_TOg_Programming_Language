@@ -12,8 +12,7 @@
     "Assignment",
     "FunctionCall",
     "ExpressionLoop",
-    "BinaryExpression",
-
+    "BinaryExpression"
   ],
   "Terminals": [
     "EOFTOKEN",
