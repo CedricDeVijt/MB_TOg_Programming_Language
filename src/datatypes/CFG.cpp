@@ -1,28 +1,34 @@
+//============================================================================
+// Name        : CFG.cpp
+// Author      : Siebe Mees
+// Version     : 1.0
+// Copyright   : Machines and Computability - BA2 Informatica - Siebe Mees - University of Antwerp
+// Description : CFG is a C++ class for representing a context free grammar.
+//============================================================================
+
 #include "CFG.h"
 #include "json.hpp"
 #include <fstream>
-using namespace std;
-
 using json = nlohmann::json;
 
 CFG::CFG() {}
 
-CFG::CFG(const string &filename) {
+CFG::CFG(const std::string &filename) {
     // inlezen uit file
-    ifstream input(filename);
+    std::ifstream input(filename);
 
     json j;
     input >> j;
 
     // Access the elements of the "Start" array
-    string start;
+    std::string start;
     for (const auto& startvar : j["Start"]) {
         start += startvar;
     }
     S = start;
 
     // Access the elements of the "Variables" array
-    vector<string> variables;
+    std::vector<std::string> variables;
     for (const auto& var : j["Variables"]) {
         variables.push_back(var);
     }
@@ -30,7 +36,7 @@ CFG::CFG(const string &filename) {
     V = variables;
 
     // Access the elements of the "Terminals" array
-    vector<string> terminals;
+    std::vector<std::string> terminals;
     for (const auto& terminal : j["Terminals"]) {
         terminals.push_back(terminal);
     }
@@ -38,10 +44,10 @@ CFG::CFG(const string &filename) {
     T = terminals;
 
     // Access the elements of the "Productions" array
-    vector<pair<string, vector<string>>> productions;
+    std::vector<std::pair<std::string, std::vector<std::string>>> productions;
     for (const auto& rule : j["Productions"]) {
-        string head = rule["head"];
-        vector<string> body = rule["body"];
+        std::string head = rule["head"];
+        std::vector<std::string> body = rule["body"];
         productions.push_back(make_pair(head, body));
     }
     sort(productions.begin(), productions.end());

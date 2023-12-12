@@ -1,3 +1,11 @@
+//============================================================================
+// Name        : CFG.h
+// Author      : Siebe Mees
+// Version     : 1.0
+// Copyright   : Machines and Computability - BA2 Informatica - Siebe Mees - University of Antwerp
+// Description : CFG is a C++ class for representing a context free grammar.
+//============================================================================
+
 #ifndef MB_TOG_PROGRAMMING_LANGUAGE_CFG_H
 #define MB_TOG_PROGRAMMING_LANGUAGE_CFG_H
 
