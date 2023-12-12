@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     std::stringstream buffer;
     buffer << file.rdbuf();
 
-    CFG cfg;
+    CFG cfg("../../src/cfg.json");
     MyLang mylang(cfg);
 
     mylang.interpret(buffer.str());
