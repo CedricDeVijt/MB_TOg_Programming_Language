@@ -29,5 +29,5 @@ void Executor::evalAssignment(const Statement* statement) {
     auto left = assignmentStatement->getVariable();
     auto right = assignmentStatement->getValue();
     auto result = evalExpression(*right);
-    env.set(left.getSymbol(), std::to_string(std::get<float>(result)));
+    env.set(left.getSymbol(), result);
 }

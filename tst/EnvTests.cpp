@@ -9,8 +9,8 @@ TEST(EnvironmentTest, InheritFromParent) {
     parent.set("parentKey", "parentValue");
 
     Env child(&parent);
-    std::string value = child.get("parentKey");
-    ASSERT_EQ(value, "parentValue");
+    Value value = child.get("parentKey");
+    ASSERT_EQ(std::get<std::string>(value), "parentValue");
 }
 
 TEST(EnvironmentTest, OverrideParentValue) {
@@ -20,14 +20,16 @@ TEST(EnvironmentTest, OverrideParentValue) {
     Env child(&parent);
     child.set("key", "childValue");
 
-    ASSERT_EQ(child.get("key"), "childValue");
-    ASSERT_EQ(parent.get("key"), "parentValue");
+    Value childValue = child.get("key");
+    ASSERT_EQ(std::get<std::string>(childValue), "childValue");
+    Value parentValue = parent.get("key");
+    ASSERT_EQ(std::get<std::string>(parentValue), "parentValue");
 }
 
 TEST(EnvironmentTest, NonExistentKey) {
     Env env;
-    std::string value = env.get("nonExistentKey");
-    ASSERT_TRUE(value.empty());
+    Value value = env.get("nonExistentKey");
+    ASSERT_TRUE(value.index() != 0);
 }
 
 TEST(EnvironmentTest, CheckKeyExistence) {
@@ -43,7 +45,8 @@ TEST(EnvironmentTest, StringRepresentation) {
     env.set("key1", "value1");
     env.set("key2", "value2");
 
-    std::string representation = env.toString();
-    ASSERT_NE(representation.find("key1=value1"), std::string::npos);
-    ASSERT_NE(representation.find("key2=value2"), std::string::npos);
+    Value representation = env.toString();
+
+    ASSERT_NE(std::get<std::string>(representation).find("key1=value1"), std::string::npos);
+    ASSERT_NE(std::get<std::string>(representation).find("key2=value2"), std::string::npos);
 }

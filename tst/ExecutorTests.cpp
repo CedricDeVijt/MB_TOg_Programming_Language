@@ -36,5 +36,6 @@ TEST(ExecutorTest, AssignmentWithExecution) {
     executor.execute(program);
 
     // Check if the environment has the correct value for 'x'
-    EXPECT_EQ(env.get("x"), "5.000000");
+    Value x = env.get("x");
+    EXPECT_EQ(std::get<float>(x), 5.0);
 }

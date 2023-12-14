@@ -12,6 +12,10 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <variant>
+
+// Define a variant type that can hold different types of values
+using Value = std::variant<float, int, std::string, bool>; // Add other types as needed
 
 class Env {
 private:
@@ -19,13 +23,13 @@ private:
     std::ostream* stdout;
     std::ostream* stderr;
     Env* parent;
-    std::map<std::string, std::string> items; // TODO: value of map should be a variant type (see AST.h) instead of a string
+    std::map<std::string, Value> items;
 
 public:
     Env(Env* parent = nullptr, std::istream* in = nullptr, std::ostream* out = nullptr, std::ostream* err = nullptr);
 
-    std::string get(const std::string& name);
-    void set(const std::string& name, const std::string& value);
+    Value get(const std::string& name);
+    void set(const std::string& name, const Value& value);
     bool contains(const std::string& name) const;
     std::string toString() const;
 };

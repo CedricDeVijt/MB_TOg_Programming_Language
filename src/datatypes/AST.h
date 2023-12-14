@@ -4,14 +4,7 @@
 #include <list>
 #include <string>
 #include <memory>
-#include <variant>
-
-// Define a variant type that can hold different types of values
-using Value = std::variant<float, int, std::string, bool>; // Add other types as needed
-
-
-// Forward declaration
-class Env;
+#include "../modules/executionEnvironment/Environment.h"
 
 enum class NodeType {
     Program,
