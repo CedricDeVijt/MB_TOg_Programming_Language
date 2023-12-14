@@ -19,7 +19,7 @@ private:
     std::ostream* stdout;
     std::ostream* stderr;
     Env* parent;
-    std::map<std::string, std::string> items;
+    std::map<std::string, std::string> items; // TODO: value of map should be a variant type (see AST.h) instead of a string
 
 public:
     Env(Env* parent = nullptr, std::istream* in = nullptr, std::ostream* out = nullptr, std::ostream* err = nullptr);
