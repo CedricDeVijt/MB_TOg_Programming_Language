@@ -5,8 +5,24 @@
 #ifndef MB_TOG_PROGRAMMING_LANGUAGE_EXECUTOR_H
 #define MB_TOG_PROGRAMMING_LANGUAGE_EXECUTOR_H
 
+#include "executionEnvironment/Environment.h"
+#include "datatypes/AST.h"
 
 class Executor {
+private:
+    Env& env;
+
+    void evalStatement(const Statement& statement);
+    float evalExpression(const Expression& expression);
+
+    void evalAssignment(const Statement& statement);
+
+    // TODO: float evalFloat(const Float& floatValue);
+
+public:
+    explicit Executor(Env& env);
+
+    void execute(const Program& program);
 
 };
 
