@@ -6,7 +6,7 @@
 #include "../src/modules/Executor.h"
 #include "../src/datatypes/AST.h"
 
-TEST(ExecutorTest, Assignment) {
+TEST(ExecutorTest, FloatValueAssignment) {
     // Create an environment
     Env env;
 
@@ -21,7 +21,7 @@ TEST(ExecutorTest, Assignment) {
     EXPECT_EQ(std::get<float>(result), 5.0);
 }
 
-TEST(ExecutorTest, AssignmentWithExecution) {
+TEST(ExecutorTest, FloatValueAssignmentWithExecution) {
     // Create an environment
     Env env;
     // Create an executor
@@ -38,4 +38,38 @@ TEST(ExecutorTest, AssignmentWithExecution) {
     // Check if the environment has the correct value for 'x'
     Value x = env.get("x");
     EXPECT_EQ(std::get<float>(x), 5.0);
+}
+
+TEST(ExecutorTest, BooleanValueAssignment) {
+    // Create an environment
+    Env env;
+
+    // Create a boolean assignment: flag = true
+    AssignmentStatement assignmentStatement(Identifier("flag"), std::make_unique<Bool>(true));
+
+    auto left = assignmentStatement.getVariable();
+    auto right = assignmentStatement.getValue();
+    auto result = right->evaluate(env);
+
+    EXPECT_EQ(left.getSymbol(), "flag");
+    EXPECT_EQ(std::get<bool>(result), true);
+}
+
+TEST(ExecutorTest, BooleanValueAssignmentWithExecution) {
+    // Create an environment
+    Env env;
+    // Create an executor
+    Executor executor(env);
+
+    // Creating a program with a boolean assignment: flag = true
+    std::list<std::unique_ptr<Statement>> statements;
+    statements.push_back(std::make_unique<AssignmentStatement>(Identifier("flag"), std::make_unique<Bool>(true))); // std::list::push_back
+    Program program(std::move(statements));
+
+    // Execute the program
+    executor.execute(program);
+
+    // Check if the environment has the correct value for 'flag'
+    Value flag = env.get("flag");
+    EXPECT_EQ(std::get<bool>(flag), true);
 }
