@@ -13,11 +13,9 @@ private:
     Env& env;
 
     void evalStatement(const Statement& statement);
-    float evalExpression(const Expression& expression);
+    Value evalExpression(const Expression& expression);
 
     void evalAssignment(const Statement& statement);
-
-    // TODO: float evalFloat(const Float& floatValue);
 
 public:
     explicit Executor(Env& env);

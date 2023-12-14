@@ -3,6 +3,14 @@
 
 #include <list>
 #include <string>
+#include <memory>
+#include <variant>
+
+// Define a variant type that can hold different types of values
+using Value = std::variant<float, int, std::string, bool>; // Add other types as needed
+
+// Forward declaration
+class Env;
 
 enum class NodeType {
     Program,
@@ -41,27 +49,34 @@ private:
 class Expression : public Statement {
 public:
     Expression(NodeType kind);
+
+    virtual ~Expression() = default;
+    virtual Value evaluate(Env& env) const = 0; // Pure virtual function
 };
 
 class BinaryExpression : public Expression {
 public:
-    BinaryExpression(const Statement &left, const Statement &right, const std::string &op);
+    BinaryExpression(std::unique_ptr<Statement> left, std::unique_ptr<Statement> right, std::string op);
 
-    const Statement &getLeft() const;
+    Value evaluate(Env& env) const override;
 
-    const Statement &getRight() const;
+    const Statement* getLeft() const;
+
+    const Statement* getRight() const;
 
     const std::string &getOp() const;
 
 private:
-    Statement left;
-    Statement right;
+    std::unique_ptr<Statement> left;
+    std::unique_ptr<Statement> right;
     std::string op;
 };
 
 class Identifier : public Expression {
 public:
     Identifier(const std::string &symbol);
+
+    Value evaluate(Env& env) const override;
 
     const std::string &getSymbol() const;
 
@@ -73,6 +88,8 @@ class Float : public Expression {
 public:
     Float(float value);
 
+    Value evaluate(Env& env) const override;
+
     float getValue() const;
 
 private:
@@ -83,6 +100,8 @@ class String : public Expression {
 public:
     String(const std::string &value);
 
+    Value evaluate(Env& env) const override;
+
     const std::string &getValue() const;
 
 private:
@@ -92,6 +111,8 @@ private:
 class Bool : public Expression {
 public:
     Bool(bool value);
+
+    Value evaluate(Env& env) const override;
 
     bool isValue() const;
 
@@ -117,56 +138,58 @@ private:
 
 class FunctionCall : public Expression {
 public:
-    FunctionCall(const std::string &name, const std::list<Expression> &parameters);
+    FunctionCall(const std::string &name, std::list<std::unique_ptr<Expression>>&& parameters);
+
+    Value evaluate(Env& env) const override;
 
     const std::string &getName() const;
 
-    const std::list<Expression> &getParameters() const;
+    const std::list<std::unique_ptr<Expression>>& getParameters() const;
 
 private:
     std::string name;
-    std::list<Expression> parameters;
+    std::list<std::unique_ptr<Expression>> parameters;
 };
 
 class IfStatement : public Statement {
 public:
-    IfStatement(const Expression& condition, const std::list<Statement>& thenBody, const std::list<Statement>& elseBody = {});
+    IfStatement(std::unique_ptr<Expression> condition, const std::list<Statement>& thenBody, const std::list<Statement>& elseBody = {});
 
-    const Expression &getCondition() const;
+    const Expression& getCondition() const;
 
     const std::list<Statement> &getThenBody() const;
 
     const std::list<Statement> &getElseBody() const;
 
 private:
-    Expression condition;
+    std::unique_ptr<Expression> condition;
     std::list<Statement> thenBody;
     std::list<Statement> elseBody;
 };
 
 class AssignmentStatement : public Statement {
 public:
-    AssignmentStatement(const Identifier& variable, const Expression& value);
+    AssignmentStatement(const Identifier id, std::unique_ptr<Expression> expr);
 
     const Identifier &getVariable() const;
 
-    const Expression &getValue() const;
+    const Expression* getValue() const;
 
 private:
     Identifier variable;
-    Expression value;
+    std::unique_ptr<Expression> value;
 };
 
 class WhileStatement : public Statement {
 public:
-    WhileStatement(const Expression& condition, const std::list<Statement>& body);
+    WhileStatement(std::unique_ptr<Expression> condition, const std::list<Statement>& body);
 
     const Expression &getCondition() const;
 
     const std::list<Statement> &getBody() const;
 
 private:
-    Expression condition;
+    std::unique_ptr<Expression> condition;
     std::list<Statement> body;
 };
 

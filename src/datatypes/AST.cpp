@@ -17,15 +17,19 @@ const std::list<Statement> &Program::getBody() const {
 Expression::Expression(NodeType kind)
 : Statement(kind) {}
 
-BinaryExpression::BinaryExpression(const Statement &left, const Statement &right, const std::string &op)
-: Expression(NodeType::BinaryExpression), left(left), right(right), op(op) {}
+BinaryExpression::BinaryExpression(std::unique_ptr<Statement> left, std::unique_ptr<Statement> right, std::string op)
+: Expression(NodeType::BinaryExpression), left(std::move(left)), right(std::move(right)), op(std::move(op)) {}
 
-const Statement &BinaryExpression::getLeft() const {
-    return left;
+Value BinaryExpression::evaluate(Env &env) const {
+    return Value(); // TODO: Implement
 }
 
-const Statement &BinaryExpression::getRight() const {
-    return right;
+const Statement* BinaryExpression::getLeft() const {
+    return left.get();
+}
+
+const Statement* BinaryExpression::getRight() const {
+    return right.get();
 }
 
 const std::string &BinaryExpression::getOp() const {
@@ -34,11 +38,19 @@ const std::string &BinaryExpression::getOp() const {
 
 Identifier::Identifier(const std::string &symbol) : Expression(NodeType::Identifier), symbol(symbol) {}
 
+Value Identifier::evaluate(Env &env) const {
+    return getSymbol();
+}
+
 const std::string &Identifier::getSymbol() const {
     return symbol;
 }
 
 Float::Float(float value) : Expression(NodeType::Float), value(value) {}
+
+Value Float::evaluate(Env &env) const {
+    return getValue();
+}
 
 float Float::getValue() const {
     return value;
@@ -46,11 +58,19 @@ float Float::getValue() const {
 
 String::String(const std::string &value) : Expression(NodeType::String), value(value) {}
 
+Value String::evaluate(Env &env) const {
+    return getValue();
+}
+
 const std::string &String::getValue() const {
     return value;
 }
 
 Bool::Bool(bool value) : Expression(NodeType::Bool), value(value) {}
+
+Value Bool::evaluate(Env &env) const {
+    return isValue();
+}
 
 bool Bool::isValue() const {
     return value;
@@ -71,22 +91,26 @@ const std::list<Statement> &FunctionDeclaration::getBody() const {
     return body;
 }
 
-FunctionCall::FunctionCall(const std::string &name, const std::list <Expression> &parameters)
-: Expression(NodeType::FunctionCall), name(name), parameters(parameters) {}
+FunctionCall::FunctionCall(const std::string &name, std::list<std::unique_ptr<Expression>>&& parameters)
+: Expression(NodeType::FunctionCall), name(name), parameters(std::move(parameters)) {}
+
+Value FunctionCall::evaluate(Env &env) const {
+    return Value(); // TODO: Implement
+}
 
 const std::string &FunctionCall::getName() const {
     return name;
 }
 
-const std::list<Expression> &FunctionCall::getParameters() const {
+const std::list<std::unique_ptr<Expression>>& FunctionCall::getParameters() const {
     return parameters;
 }
 
-IfStatement::IfStatement(const Expression &condition, const std::list <Statement> &thenBody, const std::list <Statement> &elseBody)
-: Statement(NodeType::IfStatement), condition(condition), thenBody(thenBody), elseBody(elseBody) {}
+IfStatement::IfStatement(std::unique_ptr<Expression> condition, const std::list<Statement>& thenBody, const std::list<Statement>& elseBody)
+: Statement(NodeType::IfStatement), condition(std::move(condition)), thenBody(thenBody), elseBody(elseBody) {}
 
-const Expression &IfStatement::getCondition() const {
-    return condition;
+const Expression& IfStatement::getCondition() const {
+    return *condition;
 }
 
 const std::list<Statement> &IfStatement::getThenBody() const {
@@ -97,22 +121,23 @@ const std::list<Statement> &IfStatement::getElseBody() const {
     return elseBody;
 }
 
-AssignmentStatement::AssignmentStatement(const Identifier &variable, const Expression &value)
-: Statement(NodeType::AssignmentStatement), variable(variable), value(value) {}
+AssignmentStatement::AssignmentStatement(const Identifier id, std::unique_ptr<Expression> expr)
+: Statement(NodeType::AssignmentStatement), variable(std::move(id)), value(std::move(expr)) {}
+
 
 const Identifier &AssignmentStatement::getVariable() const {
     return variable;
 }
 
-const Expression &AssignmentStatement::getValue() const {
-    return value;
+const Expression* AssignmentStatement::getValue() const {
+    return value.get();
 }
 
-WhileStatement::WhileStatement(const Expression &condition, const std::list <Statement> &body)
-: Statement(NodeType::WhileStatement), condition(condition), body(body) {}
+WhileStatement::WhileStatement(std::unique_ptr<Expression> condition, const std::list<Statement>& body)
+: Statement(NodeType::WhileStatement), condition(std::move(condition)), body(body) {}
 
 const Expression &WhileStatement::getCondition() const {
-    return condition;
+    return *condition;
 }
 
 const std::list<Statement> &WhileStatement::getBody() const {

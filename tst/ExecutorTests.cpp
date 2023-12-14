@@ -13,10 +13,7 @@ TEST(ExecutorTest, Assignment) {
     Executor executor(env);
 
     // Creating a simple assignment: x = 5.0
-    Float rhs(5.0);  // Right-hand side
-    Identifier lhs("x");  // Left-hand side
-
-    AssignmentStatement assignmentStatement(lhs, rhs);
+    AssignmentStatement assignmentStatement(Identifier("x"), std::make_unique<Float>(5.0));
 
     // Creating a program with the assignment statement
     std::list<Statement> statements = {assignmentStatement};
