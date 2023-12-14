@@ -12,10 +12,10 @@ class Executor {
 private:
     Env& env;
 
-    void evalStatement(const Statement& statement);
+    void evalStatement(const std::unique_ptr<Statement>& statement);
     Value evalExpression(const Expression& expression);
 
-    void evalAssignment(const Statement& statement);
+    void evalAssignment(const Statement* statement);
 
 public:
     explicit Executor(Env& env);

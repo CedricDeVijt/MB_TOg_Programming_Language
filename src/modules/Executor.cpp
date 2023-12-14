@@ -12,10 +12,10 @@ void Executor::execute(const Program& program) {
     }
 }
 
-void Executor::evalStatement(const Statement& statement) {
-    switch (statement.getKind()) {
+void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
+    switch (statement->getKind()) {
         case NodeType::AssignmentStatement:
-            evalAssignment(statement);
+            evalAssignment(statement.get());
             break;
     }
 }
@@ -24,6 +24,10 @@ Value Executor::evalExpression(const Expression &expression) {
     return expression.evaluate(env);
 }
 
-void Executor::evalAssignment(const Statement& statement) {
-    // TODO: Implement
+void Executor::evalAssignment(const Statement* statement) {
+    auto assignmentStatement = dynamic_cast<const AssignmentStatement*>(statement);
+    auto left = assignmentStatement->getVariable();
+    auto right = assignmentStatement->getValue();
+    auto result = evalExpression(*right);
+    env.set(left.getSymbol(), std::to_string(std::get<float>(result)));
 }

@@ -9,6 +9,7 @@
 // Define a variant type that can hold different types of values
 using Value = std::variant<float, int, std::string, bool>; // Add other types as needed
 
+
 // Forward declaration
 class Env;
 
@@ -30,6 +31,8 @@ class Statement {
 public:
     Statement(NodeType kind);
 
+    virtual ~Statement() = default;
+
     NodeType getKind() const;
 
 private:
@@ -38,12 +41,12 @@ private:
 
 class Program : public Statement {
 public:
-    Program(const std::list<Statement> &body);
+    Program(std::list<std::unique_ptr<Statement>>&& body);
 
-    const std::list<Statement> &getBody() const;
+    const std::list<std::unique_ptr<Statement>>& getBody() const;
 
 private:
-    std::list<Statement> body;
+    std::list<std::unique_ptr<Statement>> body;
 };
 
 class Expression : public Statement {

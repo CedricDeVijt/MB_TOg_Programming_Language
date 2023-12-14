@@ -7,10 +7,10 @@ NodeType Statement::getKind() const {
     return kind;
 }
 
-Program::Program(const std::list <Statement> &body)
-: Statement(NodeType::Program), body(body) {}
+Program::Program(std::list<std::unique_ptr<Statement>>&& body)
+        : Statement(NodeType::Program), body(std::move(body)) {}
 
-const std::list<Statement> &Program::getBody() const {
+const std::list<std::unique_ptr<Statement>>& Program::getBody() const {
     return body;
 }
 
