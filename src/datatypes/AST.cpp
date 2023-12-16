@@ -21,7 +21,34 @@ BinaryExpression::BinaryExpression(std::unique_ptr<Statement> left, std::unique_
 : Expression(NodeType::BinaryExpression), left(std::move(left)), right(std::move(right)), op(std::move(op)) {}
 
 Value BinaryExpression::evaluate(Env &env) const {
-    return Value(); // TODO: Implement
+    Value leftValue = dynamic_cast<const Expression*>(left.get())->evaluate(env);
+    Value rightValue = dynamic_cast<const Expression*>(right.get())->evaluate(env);
+
+    return std::visit([this](auto&& lhs, auto&& rhs) -> Value {
+        using LHSType = std::decay_t<decltype(lhs)>;
+        using RHSType = std::decay_t<decltype(rhs)>;
+        if constexpr (std::is_same_v<LHSType, RHSType>) {
+            if constexpr (std::is_arithmetic_v<LHSType>) {
+                if (op == "+") {
+                    return lhs + rhs;
+                } else if (op == "-") {
+                    return lhs - rhs;
+                } else if (op == "*") {
+                    return lhs * rhs;
+                } else if (op == "/") {
+                    if (rhs == 0) {
+                        throw std::runtime_error("Division by zero");
+                    }
+                    return lhs / rhs;
+                }
+                // ... other operators
+            } else {
+                throw std::runtime_error("Unsupported operation for non-arithmetic types");
+            }
+        } else {
+            throw std::runtime_error("Type mismatch in binary expression");
+        }
+    }, leftValue, rightValue);
 }
 
 const Statement* BinaryExpression::getLeft() const {

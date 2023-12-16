@@ -16,6 +16,7 @@ private:
     Value evalExpression(const Expression& expression);
 
     void evalAssignment(const Statement* statement);
+    void evalBinaryExpression(const Statement* statement);
 
 public:
     explicit Executor(Env& env);
