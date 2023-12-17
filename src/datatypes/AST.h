@@ -8,6 +8,7 @@
 
 enum class NodeType {
     Program,
+    Integer,
     Float,
     String,
     Bool,
@@ -78,6 +79,18 @@ public:
 
 private:
     std::string symbol;
+};
+
+class Integer : public Expression {
+public:
+    Integer(int value);
+
+    Value evaluate(Env& env) const override;
+
+    int getValue() const;
+
+private:
+    int value;
 };
 
 class Float : public Expression {

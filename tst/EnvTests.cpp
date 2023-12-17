@@ -28,8 +28,23 @@ TEST(EnvironmentTest, OverrideParentValue) {
 
 TEST(EnvironmentTest, NonExistentKey) {
     Env env;
-    Value value = env.get("nonExistentKey");
-    ASSERT_TRUE(value.index() != 0);
+    EXPECT_THROW({Value value = env.get("nonExistentKey");}, std::runtime_error);
+}
+
+TEST(EnvironmentTest, NonExistentKeyCatchError) {
+    Env env;
+
+    try {
+        Value value = env.get("nonExistentKey");
+        // If no exception is thrown, fail the test
+        FAIL() << "Expected std::runtime_error";
+    } catch (const std::runtime_error& err) {
+        // Check that the error message is what we expect
+        EXPECT_EQ(err.what(), std::string("Variable not found: nonExistentKey"));
+    } catch (...) {
+        // If any other exception is thrown, fail the test
+        FAIL() << "Expected std::runtime_error";
+    }
 }
 
 TEST(EnvironmentTest, CheckKeyExistence) {

@@ -73,6 +73,16 @@ const std::string &Identifier::getSymbol() const {
     return symbol;
 }
 
+Integer::Integer(int value) : Expression(NodeType::Integer), value(value) {}
+
+Value Integer::evaluate(Env &env) const {
+    return getValue();
+}
+
+int Integer::getValue() const {
+    return value;
+}
+
 Float::Float(float value) : Expression(NodeType::Float), value(value) {}
 
 Value Float::evaluate(Env &env) const {
@@ -122,13 +132,11 @@ FunctionCall::FunctionCall(const std::string &name, std::list<std::unique_ptr<Ex
 : Expression(NodeType::FunctionCall), name(name), parameters(std::move(parameters)) {}
 
 Value FunctionCall::evaluate(Env &env) const {
-    return Value(); // TODO: Implement
-    /*
-     * // Step 1: Retrieve the function from the environment
+    // Step 1: Retrieve the function from the environment
     auto function = env.getFunction(name); // Assume getFunction retrieves function objects
 
-    if (!function) {
-        throw std::runtime_error("Function " + name + " not found");
+    if (std::holds_alternative<std::monostate>(function)) {
+        throw std::runtime_error("Function " + name + " not found or is undefined");
     }
 
     // Step 2: Evaluate each parameter
@@ -139,8 +147,7 @@ Value FunctionCall::evaluate(Env &env) const {
 
     // Step 3: Execute the function with evaluated parameters
     // Assuming executeFunction is a method in Env to execute functions
-    return env.executeFunction(function, evaluatedParams);
-     */
+    return env.executeFunction(name, evaluatedParams);
 }
 
 const std::string &FunctionCall::getName() const {
