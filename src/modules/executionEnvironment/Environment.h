@@ -13,6 +13,7 @@
 #include <map>
 #include <string>
 #include <variant>
+#include <vector>
 
 // Define a variant type that can hold different types of values
 using Value = std::variant<float, int, std::string, bool>; // Add other types as needed
