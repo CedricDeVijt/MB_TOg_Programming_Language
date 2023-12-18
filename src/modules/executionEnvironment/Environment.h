@@ -19,9 +19,9 @@
 using Value = std::variant<float, int, std::string, bool>; // Add other types as needed
 
 // Define a variant type that can hold different types of functions
-// TODO: Consired rather using std::variant is the most efficient way to do this
-// using Function = std::function<Value(const std::vector<Value>&)>;
-using Function = std::variant<
+// TODO: Consider rather using std::variant or std::function, which is the most efficient way to do this
+using Function = std::function<Value(const std::vector<Value>&)>;
+/*using Function = std::variant<
         std::monostate, // Represents a "null" function
         // Original types
         float (*)(float),
@@ -43,7 +43,7 @@ using Function = std::variant<
         float (*)(const std::string&),
         bool (*)(const std::string&)
         // ... add more as needed
->;
+>;*/
 
 class Env {
 private:
@@ -63,6 +63,7 @@ public:
     void setFunction(const std::string& name, const Function& function);
 
     bool contains(const std::string& name) const;
+    bool containsFunction(const std::string& name) const;
     std::string toString() const;
 
     Value executeFunction(const std::string& name, const std::vector<Value>& parameters);

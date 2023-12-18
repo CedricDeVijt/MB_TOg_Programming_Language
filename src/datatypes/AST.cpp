@@ -133,11 +133,10 @@ FunctionCall::FunctionCall(const std::string &name, std::list<std::unique_ptr<Ex
 
 Value FunctionCall::evaluate(Env &env) const {
     // Step 1: Retrieve the function from the environment
-    auto function = env.getFunction(name); // Assume getFunction retrieves function objects
-
-    if (std::holds_alternative<std::monostate>(function)) {
+    if (!env.containsFunction(name)) {
         throw std::runtime_error("Function " + name + " not found or is undefined");
     }
+    const Function& function = env.getFunction(name);
 
     // Step 2: Evaluate each parameter
     std::vector<Value> evaluatedParams;
@@ -146,9 +145,9 @@ Value FunctionCall::evaluate(Env &env) const {
     }
 
     // Step 3: Execute the function with evaluated parameters
-    // Assuming executeFunction is a method in Env to execute functions
-    return env.executeFunction(name, evaluatedParams);
+    return function(evaluatedParams);
 }
+
 
 const std::string &FunctionCall::getName() const {
     return name;

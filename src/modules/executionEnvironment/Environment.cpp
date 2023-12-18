@@ -52,6 +52,10 @@ bool Env::contains(const std::string& name) const {
     return items.find(name) != items.end();
 }
 
+bool Env::containsFunction(const std::string& name) const {
+    return functions.find(name) != functions.end();
+}
+
 // Helper function to convert a Value (variant) to a string
 std::string variantValueToString(const Value& value) {
     return std::visit([](auto&& arg) -> std::string {
@@ -84,131 +88,14 @@ std::string Env::toString() const {
 
 Value Env::executeFunction(const std::string &name, const std::vector<Value> &parameters) {
     // Retrieve the function from the environment
-    auto function = getFunction(name);
+    auto functionIter = functions.find(name);
+    if (functionIter == functions.end()) {
+        throw std::runtime_error("Function " + name + " not found");
+    }
+
+    // Assuming the function is stored as std::function<Value(const std::vector<Value>&)>
+    Function& function = functionIter->second;
 
     // Execute the function with evaluated parameters
-    return std::visit([&parameters](auto&& arg) -> Value {
-        using T = std::decay_t<decltype(arg)>;
-
-        // Original types
-        if constexpr (std::is_same_v<T, float (*)(float)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<float>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for float function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<float>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, int (*)(int)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<int>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for int function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<int>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, bool (*)(bool)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<bool>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for bool function");
-            }
-            // Convert boolean to "true" or "false"
-            return arg(std::get<bool>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, std::string (*)(std::string)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<std::string>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for string function");
-            }
-            // For string, return as is
-            return arg(std::get<std::string>(parameters[0]));
-        }
-
-        // Additional types
-        else if constexpr (std::is_same_v<T, int (*)(float)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<float>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for int function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<float>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, float (*)(int)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<int>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for float function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<int>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, bool (*)(int)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<int>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for bool function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<int>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, int (*)(bool)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<bool>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for int function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<bool>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, bool (*)(float)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<float>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for bool function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<float>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, float (*)(bool)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<bool>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for float function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<bool>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, std::string (*)(int)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<int>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for string function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<int>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, std::string (*)(float)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<float>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for string function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<float>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, std::string (*)(bool)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<bool>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for string function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<bool>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, int (*)(const std::string&)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<std::string>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for int function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<std::string>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, float (*)(const std::string&)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<std::string>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for float function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<std::string>(parameters[0]));
-        } else if constexpr (std::is_same_v<T, bool (*)(const std::string&)>) {
-            // Ensure correct parameter count and types
-            if (parameters.size() != 1 || !std::holds_alternative<std::string>(parameters[0])) {
-                throw std::runtime_error("Invalid arguments for bool function");
-            }
-            // Convert numeric types directly
-            return arg(std::get<std::string>(parameters[0]));
-        }
-        // ... add more as needed
-
-        throw std::runtime_error("Function type not supported");
-    }, function);
+    return function(parameters);
 }

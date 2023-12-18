@@ -7,7 +7,11 @@
 #include "../src/datatypes/AST.h"
 
 // Define a simple function for testing
-float add(float x) {
+Value add(const std::vector<Value>& args) {
+    if (args.size() != 1 || !std::holds_alternative<float>(args[0])) {
+        throw std::runtime_error("Invalid arguments for add function");
+    }
+    float x = std::get<float>(args[0]);
     return x + 1;
 }
 
@@ -31,7 +35,11 @@ TEST(FunctionCallTest, SimpleFunctionCall) {
 }
 
 // Define a simple function for testing
-int subtract(int x) {
+Value subtract(const std::vector<Value>& args) {
+    if (args.size() != 1 || !std::holds_alternative<int>(args[0])) {
+        throw std::runtime_error("Invalid arguments for subtract function");
+    }
+    int x = std::get<int>(args[0]);
     return x - 1;
 }
 
@@ -55,7 +63,11 @@ TEST(FunctionCallTest, IntegerFunctionCall) {
 }
 
 // Define a simple function for testing
-std::string greet(std::string name) {
+Value greet(const std::vector<Value>& args) {
+    if (args.size() != 1 || !std::holds_alternative<std::string>(args[0])) {
+        throw std::runtime_error("Invalid arguments for greet function");
+    }
+    std::string name = std::get<std::string>(args[0]);
     return "Hello, " + name;
 }
 
@@ -79,7 +91,11 @@ TEST(FunctionCallTest, StringFunctionCall) {
 }
 
 // Define a simple function for testing
-bool isPositive(int x) {
+Value isPositive(const std::vector<Value>& args) {
+    if (args.size() != 1 || !std::holds_alternative<int>(args[0])) {
+        throw std::runtime_error("Invalid arguments for isPositive function");
+    }
+    int x = std::get<int>(args[0]);
     return x > 0;
 }
 
