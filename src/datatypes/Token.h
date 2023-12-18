@@ -12,14 +12,14 @@ enum class TokenType {
     Else,
     Function,
     While,
-    OpenParen,
-    CloseParen,
+    OPENPAREN,
+    CLOSEPAREN,
     EQUALS,
-    Comma,
-    Plus,
-    Minus,
-    Divide,
-    Times,
+    COMMA,
+    PLUS,
+    MINUS,
+    DIVIDE,
+    TIMES,
     EOFTOKEN,
     INTEGER,
     String
@@ -32,6 +32,7 @@ public:
 public:
     bool operator==(const Token &rhs) const;
     bool operator!=(const Token &rhs) const;
+    static std::string tokenTypeToString(TokenType type);
     friend std::ostream &operator<<(std::ostream &os, const Token &token);
 
 private:

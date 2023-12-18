@@ -7,10 +7,6 @@
 #include "../datatypes/Token.h"
 using namespace std;
 
-
-
-
-
 class Lexer{
 
 public:
