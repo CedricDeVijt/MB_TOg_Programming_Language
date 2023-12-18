@@ -5,6 +5,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <functional>
 #include "../modules/executionEnvironment/Environment.h"
 
 enum class NodeType {
