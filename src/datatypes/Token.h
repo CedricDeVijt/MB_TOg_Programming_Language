@@ -8,10 +8,11 @@
 enum class TokenType {
     IDENTIFIER,
     VAR,
-    If,
-    Else,
-    Function,
-    While,
+    IF,
+    ELSEIF,
+    ELSE,
+    WHILE,
+    FOR,
     OPENPAREN,
     CLOSEPAREN,
     EQUALS,
@@ -22,7 +23,17 @@ enum class TokenType {
     TIMES,
     EOFTOKEN,
     INTEGER,
-    String
+    String,
+    GREATHERTHAN,
+    LESSTHAN,
+    BOOL,
+    FUNCTION,
+    FUNCTIONNAME,
+    PRINT,
+    USERINPUT,
+    INPUT,
+    COMMENT,
+    FLOAT,
 };
 
 class Token {

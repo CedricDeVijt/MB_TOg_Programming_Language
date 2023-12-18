@@ -27,6 +27,23 @@ std::string Token::tokenTypeToString(TokenType type) {
         case TokenType::PLUS: return "PLUS";
         case TokenType::TIMES: return "TIMES";
         case TokenType::DIVIDE: return "DIVIDE";
+        case TokenType::BOOL: return "BOOL";
+        case TokenType::LESSTHAN: return "LESSTHAN";
+        case TokenType::GREATHERTHAN: return "GREATHERTHAN";
+        case TokenType::IF: return "IF LOOP";
+        case TokenType::ELSEIF: return "ELSE IF LOOP";
+        case TokenType::ELSE: return "ELSE LOOP";
+        case TokenType::WHILE: return "WHILE LOOP";
+        case TokenType::FUNCTION: return "FUNCTIE";
+        case TokenType::FUNCTIONNAME: return "FUNCTIE NAAM";
+        case TokenType::FOR: return "FOR LOOP";
+        case TokenType::PRINT: return "PRINT";
+        case TokenType::USERINPUT: return "ASK FOR USER INPUT";
+        case TokenType::INPUT: return "INPUT FROM USER";
+        case TokenType::COMMENT: return "COMMENT";
+        case TokenType::FLOAT: return "FLOAT";
+
+
         default: return "UNKNOWN";
     }
 }
