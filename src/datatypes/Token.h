@@ -23,7 +23,7 @@ enum class TokenType {
     TIMES,
     EOFTOKEN,
     INTEGER,
-    String,
+    STRING,
     GREATHERTHAN,
     LESSTHAN,
     BOOL,
@@ -34,6 +34,8 @@ enum class TokenType {
     INPUT,
     COMMENT,
     FLOAT,
+    LIMIT,
+
 };
 
 class Token {

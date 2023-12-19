@@ -35,13 +35,15 @@ std::string Token::tokenTypeToString(TokenType type) {
         case TokenType::ELSE: return "ELSE LOOP";
         case TokenType::WHILE: return "WHILE LOOP";
         case TokenType::FUNCTION: return "FUNCTIE";
-        case TokenType::FUNCTIONNAME: return "FUNCTIE NAAM";
+            //case TokenType::FUNCTIONNAME: return "FUNCTIE NAAM";
         case TokenType::FOR: return "FOR LOOP";
         case TokenType::PRINT: return "PRINT";
         case TokenType::USERINPUT: return "ASK FOR USER INPUT";
         case TokenType::INPUT: return "INPUT FROM USER";
         case TokenType::COMMENT: return "COMMENT";
         case TokenType::FLOAT: return "FLOAT";
+        case TokenType::LIMIT: return "LIMIT";
+        case TokenType::STRING: return "STRING";
 
 
         default: return "UNKNOWN";
