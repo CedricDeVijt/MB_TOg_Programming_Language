@@ -49,41 +49,38 @@ void Executor::evalFunctionDeclaration(const Statement *statement) {
     }
 
     std::string functName = funcDecl->getName();
-    auto parameters = funcDecl->getParameters();
-    auto body = funcDecl->getBody();
+    const auto& parameters = funcDecl->getParameters();
+    const auto& body = funcDecl->getBody();
 
     // Create a std::function wrapper around the generic function wrapper
-    Function func = [body, parameters, this, functName](const std::vector<Value>& args) -> Value {
+    Function func = [&body, &parameters, this, &functName](const std::vector<Value>& args) -> Value {
         // Check if arguments count matches the parameters count
         if (args.size() != parameters.size()) {
             throw std::runtime_error("Invalid number of arguments passed to function " + functName);
         }
 
-        // TODO: Create a new scope in the environment for the function execution
-        // env.pushScope();
+        // Create a new scope for function execution
+        Env newEnv(env); // env is the current environment
 
-        // Set up the environment with arguments
+        // Set up arguments in the new scope
         auto paramIter = parameters.begin();
         auto argIter = args.begin();
         for (; paramIter != parameters.end(); ++paramIter, ++argIter) {
-            env.set(paramIter->getSymbol(), *argIter);
+            newEnv.set(paramIter->get()->getSymbol(), *argIter);
         }
 
-        // Execute the function body
+        // Execute each statement in the function body
         Value returnValue;
         for (const auto& stmt : body) {
-            evalStatement(std::make_unique<Statement>(stmt));
-
-            // Handle return statements or other flow controls as needed
-            // ...
+            // TODO: Implement return statement
+            evalStatement(stmt);
+            // For now, assuming that returnValue gets updated
+            // in case of a return statement or similar
         }
 
-        // TODO: Pop the function scope
-        // env.popScope();
-
-        // Return the result
         return returnValue;
     };
+
 
     env.setFunction(functName, func);
 }

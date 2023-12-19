@@ -113,18 +113,18 @@ bool Bool::isValue() const {
     return value;
 }
 
-FunctionDeclaration::FunctionDeclaration(const std::string &name, const std::list<Identifier> &parameters, const std::list<Statement> &body)
-: Statement(NodeType::FunctionDeclaration), name(name), parameters(parameters), body(body) {}
+FunctionDeclaration::FunctionDeclaration(const std::string& name, std::list<std::unique_ptr<Identifier>>&& parameters, std::list<std::unique_ptr<Statement>>&& body)
+: Statement(NodeType::FunctionDeclaration), name(name), parameters(std::move(parameters)), body(std::move(body)) {}
 
 const std::string &FunctionDeclaration::getName() const {
     return name;
 }
 
-const std::list<Identifier> &FunctionDeclaration::getParameters() const {
+const std::list<std::unique_ptr<Identifier>> &FunctionDeclaration::getParameters() const {
     return parameters;
 }
 
-const std::list<Statement> &FunctionDeclaration::getBody() const {
+const std::list<std::unique_ptr<Statement>> &FunctionDeclaration::getBody() const {
     return body;
 }
 

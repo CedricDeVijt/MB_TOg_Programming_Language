@@ -20,7 +20,8 @@ enum class NodeType {
     FunctionDeclaration,
     IfStatement,
     AssignmentStatement,
-    WhileStatement
+    WhileStatement,
+    // TODO: ReturnStatement
 };
 
 class Statement {
@@ -133,18 +134,17 @@ private:
 
 class FunctionDeclaration : public Statement {
 public:
-    FunctionDeclaration(const std::string& name, const std::list<Identifier>& parameters, const std::list<Statement>& body);
+    FunctionDeclaration(const std::string& name, std::list<std::unique_ptr<Identifier>>&& parameters, std::list<std::unique_ptr<Statement>>&& body);
 
     const std::string &getName() const;
 
-    const std::list<Identifier> &getParameters() const;
-
-    const std::list<Statement> &getBody() const;
+    const std::list<std::unique_ptr<Identifier>> &getParameters() const;
+    const std::list<std::unique_ptr<Statement>> &getBody() const;
 
 private:
     std::string name;
-    std::list<Identifier> parameters;
-    std::list<Statement> body;
+    std::list<std::unique_ptr<Identifier>> parameters;
+    std::list<std::unique_ptr<Statement>> body;
 };
 
 class FunctionCall : public Expression {
@@ -203,5 +203,16 @@ private:
     std::unique_ptr<Expression> condition;
     std::list<Statement> body;
 };
+
+/* TODO: Implement this
+ * class ReturnStatement : public Statement {
+public:
+    ReturnStatement(std::unique_ptr<Expression> expr);
+
+    const Expression* getExpression() const;
+    Value evaluate(Env& env) const;
+private:
+    std::unique_ptr<Expression> expression;
+};*/
 
 #endif //MB_TOG_PROGRAMMING_LANGUAGE_AST_H
