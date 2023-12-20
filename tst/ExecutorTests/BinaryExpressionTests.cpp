@@ -157,17 +157,11 @@ TEST(ExecutorTest, BinaryExpressionDivisionWithExecution) {
 TEST(ExecutorTest, BinaryExpressionWithPreviousAssignment) {
     // Create an environment
     Env env;
-    Executor executor(env);
 
-    // Creating a program (to add the x item to the environment) with a simple assignment: x = 8.0 and a simple binary expression: x + 3.0
-    std::list<std::unique_ptr<Statement>> statements;
     // Creating a simple assignment: x = 8.5
-    statements.push_back(std::make_unique<AssignmentStatement>(Identifier("x"), std::make_unique<Float>(8.5)));
+    float x = 8.5;
+    env.set("x", x);
     // Creating a simple binary expression: x + 3.5
-    Program program(std::move(statements));
-    // Execute the program
-    executor.execute(program);
-
     std::unique_ptr<BinaryExpression> binaryExpression = std::make_unique<BinaryExpression>(std::make_unique<Identifier>("x"), std::make_unique<Float>(3.5), "+");
     auto result = binaryExpression.get()->evaluate(env);
 
