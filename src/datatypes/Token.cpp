@@ -44,6 +44,7 @@ std::string Token::tokenTypeToString(TokenType type) {
         case TokenType::FLOAT: return "FLOAT";
         case TokenType::LIMIT: return "LIMIT";
         case TokenType::STRING: return "STRING";
+        case TokenType::EOFTOKEN: return "END OF FILE";
 
 
         default: return "UNKNOWN";

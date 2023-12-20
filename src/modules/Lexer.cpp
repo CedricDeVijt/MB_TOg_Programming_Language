@@ -11,7 +11,7 @@ Tokens Lexer::lex(const std::string &input) {
     Tokens tokenList;
     size_t pos = 0;
     int currentLine = 0;
-    int currentColumn = 1;
+    int currentColumn = 0;
 
     auto updatePosition = [&](size_t length) {
         for (size_t i = 0; i < length; ++i) {
@@ -113,19 +113,25 @@ Tokens Lexer::lex(const std::string &input) {
         } else if (std::regex_search(input.begin() + pos, input.end(), match, limit_regex,  std::regex_constants::match_continuous)) {
             tokenList.push_back({TokenType::LIMIT,currentLine,currentColumn, match[0]});
             ++currentLine;
-            currentColumn = 1;
+            currentColumn = 0;
         } else if (std::regex_search(input.begin() + pos, input.end(), match, identifier_regex,  std::regex_constants::match_continuous)) {
-            tokenList.push_back({TokenType::IDENTIFIER,currentLine,static_cast<int>(pos), match[0]});
+            tokenList.push_back({TokenType::IDENTIFIER,currentLine,currentColumn, match[0]});
         }else {
             std::cerr << "Invalid token at position " << pos << ": " << input[pos] << std::endl;
             exit(1);
         }
         updatePosition(match.length());
+        if(currentLine != 0 and currentColumn == 1){
+            currentColumn = 0;
+        }
         pos += match.position() + match.length();
         while (pos < input.length() && std::isspace(input[pos])) {
             ++pos;
+            ++currentColumn;
         }
     }
+    Token eofToken(TokenType::EOFTOKEN, 0, 0);
+    tokenList.push_back(eofToken);
     return tokenList;
 
 }
