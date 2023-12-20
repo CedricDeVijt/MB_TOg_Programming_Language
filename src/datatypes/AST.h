@@ -21,7 +21,7 @@ enum class NodeType {
     IfStatement,
     AssignmentStatement,
     WhileStatement,
-    // TODO: ReturnStatement
+    ReturnStatement
 };
 
 class Statement {
@@ -204,8 +204,7 @@ private:
     std::list<Statement> body;
 };
 
-/* TODO: Implement this
- * class ReturnStatement : public Statement {
+class ReturnStatement : public Statement {
 public:
     ReturnStatement(std::unique_ptr<Expression> expr);
 
@@ -213,6 +212,6 @@ public:
     Value evaluate(Env& env) const;
 private:
     std::unique_ptr<Expression> expression;
-};*/
+};
 
 #endif //MB_TOG_PROGRAMMING_LANGUAGE_AST_H

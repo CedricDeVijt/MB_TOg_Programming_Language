@@ -21,8 +21,29 @@ BinaryExpression::BinaryExpression(std::unique_ptr<Statement> left, std::unique_
 : Expression(NodeType::BinaryExpression), left(std::move(left)), right(std::move(right)), op(std::move(op)) {}
 
 Value BinaryExpression::evaluate(Env &env) const {
-    Value leftValue = dynamic_cast<const Expression*>(left.get())->evaluate(env);
-    Value rightValue = dynamic_cast<const Expression*>(right.get())->evaluate(env);
+    // Evaluate the left side of the expression
+    Value leftValue;
+    if (left->getKind() == NodeType::Identifier) {
+        std::string symbol = dynamic_cast<const Identifier*>(left.get())->getSymbol();
+        if (!env.contains(symbol)) {
+            throw std::runtime_error("Undefined variable: " + symbol);
+        }
+        leftValue = env.get(symbol);
+    } else {
+        leftValue = dynamic_cast<const Expression*>(left.get())->evaluate(env);
+    }
+
+    // Evaluate the right side of the expression
+    Value rightValue;
+    if (right->getKind() == NodeType::Identifier) {
+        std::string symbol = dynamic_cast<const Identifier*>(right.get())->getSymbol();
+        if (!env.contains(symbol)) {
+            throw std::runtime_error("Undefined variable: " + symbol);
+        }
+        rightValue = env.get(symbol);
+    } else {
+        rightValue = dynamic_cast<const Expression*>(right.get())->evaluate(env);
+    }
 
     return std::visit([this](auto&& lhs, auto&& rhs) -> Value {
         using LHSType = std::decay_t<decltype(lhs)>;
@@ -76,6 +97,7 @@ const std::string &Identifier::getSymbol() const {
 Integer::Integer(int value) : Expression(NodeType::Integer), value(value) {}
 
 Value Integer::evaluate(Env &env) const {
+    // TODO: Do check in the scope for existing items for everry expression exepct for the binary expression
     return getValue();
 }
 
@@ -148,7 +170,6 @@ Value FunctionCall::evaluate(Env &env) const {
     return function(evaluatedParams);
 }
 
-
 const std::string &FunctionCall::getName() const {
     return name;
 }
@@ -195,3 +216,15 @@ const std::list<Statement> &WhileStatement::getBody() const {
     return body;
 }
 
+
+ReturnStatement::ReturnStatement(std::unique_ptr<Expression> expr)
+: Statement(NodeType::ReturnStatement), expression(std::move(expr)) {}
+
+
+const Expression* ReturnStatement::getExpression() const {
+    return expression.get();
+}
+
+Value ReturnStatement::evaluate(Env& env) const {
+    return expression->evaluate(env);
+}

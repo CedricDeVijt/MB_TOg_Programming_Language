@@ -18,7 +18,12 @@ TEST(FunctionDeclarationTest, SimpleAddFunctionDeclaration) {
     parameters.push_back(std::make_unique<Identifier>("x"));
 
     std::list<std::unique_ptr<Statement>> functionBody;
-    functionBody.push_back(std::make_unique<BinaryExpression>(std::make_unique<Identifier>("x"), std::make_unique<Integer>(1), "+"));
+    // Wrap the binary expression in a return statement
+    functionBody.push_back(std::make_unique<ReturnStatement>(
+            std::make_unique<BinaryExpression>(
+                    std::make_unique<Identifier>("x"), std::make_unique<Integer>(1), "+"
+            )
+    ));
 
     auto functionDecl = std::make_unique<FunctionDeclaration>(functionName, std::move(parameters), std::move(functionBody));
 
@@ -30,7 +35,7 @@ TEST(FunctionDeclarationTest, SimpleAddFunctionDeclaration) {
     EXPECT_TRUE(env.containsFunction("add"));
 }
 
-/*// TODO: Add Test for a simple add function declaration
+
 TEST(FunctionDeclarationTest, SimpleAddFunctionDeclarationWithExecution) {
     // Create environment and executor
     Env env;
@@ -42,7 +47,12 @@ TEST(FunctionDeclarationTest, SimpleAddFunctionDeclarationWithExecution) {
     parameters.push_back(std::make_unique<Identifier>("x"));
 
     std::list<std::unique_ptr<Statement>> functionBody;
-    functionBody.push_back(std::make_unique<BinaryExpression>(std::make_unique<Identifier>("x"), std::make_unique<Integer>(1), "+"));
+    // Wrap the binary expression in a return statement
+    functionBody.push_back(std::make_unique<ReturnStatement>(
+            std::make_unique<BinaryExpression>(
+                    std::make_unique<Identifier>("x"), std::make_unique<Integer>(1), "+"
+            )
+    ));
 
     auto functionDecl = std::make_unique<FunctionDeclaration>(functionName, std::move(parameters), std::move(functionBody));
 
@@ -56,4 +66,4 @@ TEST(FunctionDeclarationTest, SimpleAddFunctionDeclarationWithExecution) {
     // Create a function call to 'add' with one integer argument
     Value result = env.executeFunction("add", std::vector<Value>{5});
     EXPECT_EQ(std::get<int>(result), 6);
-}*/
+}

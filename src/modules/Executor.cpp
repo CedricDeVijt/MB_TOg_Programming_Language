@@ -20,10 +20,12 @@ void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
         case NodeType::FunctionDeclaration:
             evalFunctionDeclaration(statement.get());
             break;
+        case NodeType::ReturnStatement:
+            evalReturnStatement(statement.get(), env);
     }
 }
 
-Value Executor::evalExpression(const Expression &expression) {
+Value Executor::evalExpression(const Expression &expression, Env& env) {
     /* TODO: Implement this
      * switch (expression.getKind()) {
         case NodeType::BinaryExpression:
@@ -38,7 +40,7 @@ void Executor::evalAssignment(const Statement* statement) {
     auto assignmentStatement = dynamic_cast<const AssignmentStatement*>(statement);
     auto left = assignmentStatement->getVariable();
     auto right = assignmentStatement->getValue();
-    auto result = evalExpression(*right);
+    auto result = evalExpression(*right, env);
     env.set(left.getSymbol(), result);
 }
 
@@ -72,10 +74,11 @@ void Executor::evalFunctionDeclaration(const Statement *statement) {
         // Execute each statement in the function body
         Value returnValue;
         for (const auto& stmt : body) {
-            // TODO: Implement return statement
+            if (stmt->getKind() == NodeType::ReturnStatement) {
+                returnValue = evalReturnStatement(stmt.get(), newEnv);
+                break;
+            }
             evalStatement(stmt);
-            // For now, assuming that returnValue gets updated
-            // in case of a return statement or similar
         }
 
         return returnValue;
@@ -87,4 +90,21 @@ void Executor::evalFunctionDeclaration(const Statement *statement) {
 
 void Executor::evalBinaryExpression(const Statement* statement) {
     // TODO: Implement this, already done in AST.cpp but wan that code in this file
+}
+
+Value Executor::evalReturnStatement(const Statement* statement, Env& newEnv) {// Dynamic cast to ensure statement is a ReturnStatement
+    auto returnStatement = dynamic_cast<const ReturnStatement*>(statement);
+    if (!returnStatement) {
+        throw std::runtime_error("Expected a ReturnStatement");
+    }
+
+    // Assuming ReturnStatement has a method to get its expression
+    const Expression* returnExpression = returnStatement->getExpression();
+    if (!returnExpression) {
+        throw std::runtime_error("ReturnStatement has no expression");
+    }
+
+    // Evaluate the expression in the context of newEnv
+    // Assuming evalExpression is a method that takes an Expression and an Env
+    return evalExpression(*returnExpression, newEnv);
 }
