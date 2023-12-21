@@ -6,10 +6,14 @@
 
 Executor::Executor(Env& env) : env(env) {}
 
-void Executor::execute(const Program& program) {
+Value Executor::execute(const Program& program) {
     for (const auto& statement : program.getBody()) {
+        if (statement->getKind() == NodeType::ReturnStatement) {
+            return evalReturnStatement(statement.get(), env);
+        }
         evalStatement(statement);
     }
+    return 0;
 }
 
 void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {

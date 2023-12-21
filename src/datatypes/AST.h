@@ -162,6 +162,8 @@ private:
     std::list<std::unique_ptr<Expression>> parameters;
 };
 
+
+// TODO: Check if the if statement is correct based on cfg
 class IfStatement : public Statement {
 public:
     IfStatement(std::unique_ptr<Expression> condition, const std::list<Statement>& thenBody, const std::list<Statement>& elseBody = {});
@@ -172,10 +174,12 @@ public:
 
     const std::list<Statement> &getElseBody() const;
 
+    bool evaluateCondition(Env& env) const; // TODO: implement this
+
 private:
     std::unique_ptr<Expression> condition;
-    std::list<Statement> thenBody;
-    std::list<Statement> elseBody;
+    std::list<std::unique_ptr<Statement>> thenBody;
+    std::unique_ptr<Statement> elseBody;
 };
 
 class AssignmentStatement : public Statement {

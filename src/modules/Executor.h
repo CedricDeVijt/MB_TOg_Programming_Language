@@ -24,7 +24,7 @@ private:
 public:
     explicit Executor(Env& env);
 
-    void execute(const Program& program);
+    Value execute(const Program& program);
 
 };
 

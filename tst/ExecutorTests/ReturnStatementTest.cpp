@@ -24,13 +24,15 @@ TEST(ExecutorTest, ReturnTest) {
     Program program(std::move(statements));
 
     // Execute the program
-    executor.execute(program);
+    Value result = executor.execute(program);
     // Check if the environment has the correct value for 'x'
     Value x = env.get("x");
     EXPECT_EQ(std::get<float>(x), 5.0);
     // Check if the environment has the correct value for 'y'
     Value y = env.get("y");
     EXPECT_EQ(std::get<float>(y), 10.0);
+    // Check if the result is correct
+    EXPECT_EQ(std::get<float>(result), 15.0);
 
 
 }

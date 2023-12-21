@@ -33,7 +33,9 @@ TEST(ExecutorTest, FloatValueAssignmentWithExecution) {
     Program program(std::move(statements));
 
     // Execute the program
-    executor.execute(program);
+    auto result = executor.execute(program);
+    // Check if the return is 0 like c++
+    EXPECT_EQ(std::get<int>(result), 0);
 
     // Check if the environment has the correct value for 'x'
     Value x = env.get("x");
