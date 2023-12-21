@@ -19,6 +19,7 @@ private:
     void evalFunctionDeclaration(const Statement* statement);
     void evalBinaryExpression(const Statement* statement);
     Value evalReturnStatement(const Statement* statement, Env& newEnv);
+    void evalIfStatement(const Statement* statement);
 
 public:
     explicit Executor(Env& env);

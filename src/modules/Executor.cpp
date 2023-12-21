@@ -20,8 +20,11 @@ void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
         case NodeType::FunctionDeclaration:
             evalFunctionDeclaration(statement.get());
             break;
+        case NodeType::IfStatement:
+            evalIfStatement(statement.get());
         case NodeType::ReturnStatement:
             evalReturnStatement(statement.get(), env);
+            break;
     }
 }
 
@@ -107,4 +110,23 @@ Value Executor::evalReturnStatement(const Statement* statement, Env& newEnv) {//
     // Evaluate the expression in the context of newEnv
     // Assuming evalExpression is a method that takes an Expression and an Env
     return evalExpression(*returnExpression, newEnv);
+}
+
+void Executor::evalIfStatement(const Statement* statement) {
+    // TODO: Implement this
+    // Assuming 'statement' is an IfStatement, and it has methods to access its condition, thenBlock, and elseBlock
+    const IfStatement* ifStatement = dynamic_cast<const IfStatement*>(statement);
+    if (!ifStatement) {
+        throw std::runtime_error("Invalid statement type for evalIfStatement");
+    }
+
+    // Evaluate the condition
+    Value conditionValue = evalExpression(ifStatement->getCondition(), env);
+
+    /*// Check the condition's truthiness and execute the corresponding block
+    if (conditionValue.isTruthy()) {
+        evalStatement(ifStatement->getThenBlock());
+    } else if (ifStatement->hasElseBlock()) {
+        evalStatement(ifStatement->getElseBlock());
+    }*/
 }
