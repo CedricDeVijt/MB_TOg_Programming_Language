@@ -49,7 +49,7 @@ public:
     static std::string tokenTypeToString(TokenType type);
     friend std::ostream &operator<<(std::ostream &os, const Token &token);
 
-private:
+public:
     std::string value;
     TokenType tokenType;
     int line;

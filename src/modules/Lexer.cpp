@@ -3,8 +3,6 @@
 
 //TODO: zin na functie als functienaam definieren
 //TODO: zin na vraag: als userinput definieren
-//TODO: string identificeren
-//TODO: FLOAT
 
 Tokens Lexer::lex(const std::string &input) {
 
@@ -130,7 +128,9 @@ Tokens Lexer::lex(const std::string &input) {
             ++currentColumn;
         }
     }
-    Token eofToken(TokenType::EOFTOKEN, 0, 0);
+
+    Token lastElement = tokenList.back();
+    Token eofToken(TokenType::EOFTOKEN, lastElement.line, lastElement.column);
     tokenList.push_back(eofToken);
     return tokenList;
 
