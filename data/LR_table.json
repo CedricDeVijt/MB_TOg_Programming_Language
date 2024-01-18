@@ -35,7 +35,7 @@
       "actionType": "SHIFT",
       "state": 7
     },
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
@@ -84,21 +84,11 @@
       "actionType": "SHIFT",
       "state": 11
     },
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "SHIFT",
       "state": 12
     },
     "IDENTIFIER": {
-      "actionType": "ERROR"
-    }
-  },
-  "8": {
-    "THEN": {
-      "actionType": "ERROR"
-    }
-  },
-  "9": {
-    "THEN": {
       "actionType": "ERROR"
     }
   },
@@ -116,12 +106,7 @@
       "actionType": "SHIFT",
       "state": 7
     },
-    "CLOSEPARAN": {
-      "actionType": "ERROR"
-    }
-  },
-  "12": {
-    "THEN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
@@ -146,7 +131,7 @@
       "actionType": "SHIFT",
       "state": 18
     },
-    "OPENPARAN": {
+    "OPENPAREN": {
       "actionType": "SHIFT",
       "state": 19
     },
@@ -179,27 +164,27 @@
     }
   },
   "14": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
   "15": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
   "16": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
   "17": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
   "18": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
@@ -267,37 +252,37 @@
     }
   },
   "26": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
   "27": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
   "28": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
   "29": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
   "30": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
   "31": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   },
   "32": {
-    "CLOSEPARAN": {
+    "CLOSEPAREN": {
       "actionType": "ERROR"
     }
   }

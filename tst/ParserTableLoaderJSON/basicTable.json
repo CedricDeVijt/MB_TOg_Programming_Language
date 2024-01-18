@@ -1,0 +1,22 @@
+{
+  "0": {
+    "EOFTOKEN": {
+      "actionType": "ERROR"
+    }
+  },
+  "1": {
+    "EOFTOKEN": {
+      "actionType": "ACCEPT"
+    }
+  },
+  "2": {
+    "FUNCTION": {
+      "actionType": "SHIFT",
+      "state": 3
+    },
+    "IF": {
+      "actionType": "SHIFT",
+      "state": 4
+    }
+  }
+}
