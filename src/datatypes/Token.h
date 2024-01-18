@@ -34,14 +34,15 @@ enum class TokenType {
     INPUT,
     COMMENT,
     FLOAT,
-    LIMIT,
-
-
+    LIMIT
 };
+
 
 class Token {
 public:
     Token(TokenType tokenType, int line, int column, const std::string &value = "");
+
+    [[nodiscard]] TokenType getTokenType() const;
 
 public:
     bool operator==(const Token &rhs) const;

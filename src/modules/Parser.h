@@ -18,17 +18,11 @@ struct TableEntry {
     StackElement state;
 };
 
-using ParsingTable = std::map<std::pair<int, char>, TableEntry>;
+using ParsingTable = std::map<std::pair<int, TokenType>, TableEntry>;
 
 class Parser {
-private:
-    ParsingTable parsingTable;
-    std::stack<StackElement> parsingStack;
 public:
-    static Program parse(const Tokens &tokens, const CFG &cfg);
-
-private:
-    void initializeParsingTable();
+    static Program parse(const Tokens &tokens, const std::string& parserTablePath);
 };
 
 #endif
