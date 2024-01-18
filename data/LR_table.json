@@ -1,0 +1,304 @@
+{
+  "0": {
+    "EOFTOKEN": {
+      "actionType": "ERROR"
+    }
+  },
+  "1": {
+    "EOFTOKEN": {
+      "actionType": "ACCEPT"
+    }
+  },
+  "2": {
+    "FUNCTION": {
+      "actionType": "SHIFT",
+      "state": 3
+    },
+    "IF": {
+      "actionType": "SHIFT",
+      "state": 4
+    },
+    "WHILE": {
+      "actionType": "SHIFT",
+      "state": 5
+    },
+    "VAR": {
+      "actionType": "SHIFT",
+      "state": 6
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "3": {
+    "IDENTIFIER": {
+      "actionType": "SHIFT",
+      "state": 7
+    },
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "4": {
+    "Expression": {
+      "actionType": "SHIFT",
+      "state": 8
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "5": {
+    "Expression": {
+      "actionType": "SHIFT",
+      "state": 9
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "6": {
+    "IDENTIFIER": {
+      "actionType": "SHIFT",
+      "state": 10
+    },
+    "VAR": {
+      "actionType": "SHIFT",
+      "state": 6
+    },
+    "FUNCTION": {
+      "actionType": "SHIFT",
+      "state": 3
+    },
+    "IF": {
+      "actionType": "SHIFT",
+      "state": 4
+    },
+    "WHILE": {
+      "actionType": "SHIFT",
+      "state": 5
+    }
+  },
+  "7": {
+    "COMMA": {
+      "actionType": "SHIFT",
+      "state": 11
+    },
+    "CLOSEPARAN": {
+      "actionType": "SHIFT",
+      "state": 12
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "8": {
+    "THEN": {
+      "actionType": "ERROR"
+    }
+  },
+  "9": {
+    "THEN": {
+      "actionType": "ERROR"
+    }
+  },
+  "10": {
+    "EQUALS": {
+      "actionType": "SHIFT",
+      "state": 13
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "11": {
+    "IDENTIFIER": {
+      "actionType": "SHIFT",
+      "state": 7
+    },
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "12": {
+    "THEN": {
+      "actionType": "ERROR"
+    }
+  },
+  "13": {
+    "Expression": {
+      "actionType": "SHIFT",
+      "state": 14
+    },
+    "FLOAT": {
+      "actionType": "SHIFT",
+      "state": 15
+    },
+    "STRING": {
+      "actionType": "SHIFT",
+      "state": 16
+    },
+    "IDENTIFIER": {
+      "actionType": "SHIFT",
+      "state": 17
+    },
+    "BOOL": {
+      "actionType": "SHIFT",
+      "state": 18
+    },
+    "OPENPARAN": {
+      "actionType": "SHIFT",
+      "state": 19
+    },
+    "PLUS": {
+      "actionType": "SHIFT",
+      "state": 20
+    },
+    "MINUS": {
+      "actionType": "SHIFT",
+      "state": 21
+    },
+    "DIVIDE": {
+      "actionType": "SHIFT",
+      "state": 22
+    },
+    "TIMES": {
+      "actionType": "SHIFT",
+      "state": 23
+    },
+    "ISEQUAL": {
+      "actionType": "SHIFT",
+      "state": 24
+    },
+    "ISNOTEQUAL": {
+      "actionType": "SHIFT",
+      "state": 25
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "14": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "15": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "16": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "17": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "18": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "19": {
+    "Expression": {
+      "actionType": "SHIFT",
+      "state": 26
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "20": {
+    "Expression": {
+      "actionType": "SHIFT",
+      "state": 27
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "21": {
+    "Expression": {
+      "actionType": "SHIFT",
+      "state": 28
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "22": {
+    "Expression": {
+      "actionType": "SHIFT",
+      "state": 29
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "23": {
+    "Expression": {
+      "actionType": "SHIFT",
+      "state": 30
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "24": {
+    "Expression": {
+      "actionType": "SHIFT",
+      "state": 31
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "25": {
+    "Expression": {
+      "actionType": "SHIFT",
+      "state": 32
+    },
+    "IDENTIFIER": {
+      "actionType": "ERROR"
+    }
+  },
+  "26": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "27": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "28": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "29": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "30": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "31": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  },
+  "32": {
+    "CLOSEPARAN": {
+      "actionType": "ERROR"
+    }
+  }
+}
