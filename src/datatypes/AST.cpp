@@ -14,6 +14,10 @@ const std::list<Statement> &Program::getBody() const {
     return body;
 }
 
+void Program::push_back(const Statement &statement) {
+    body.push_back(statement);
+}
+
 Expression::Expression(NodeType kind)
 : Statement(kind) {}
 

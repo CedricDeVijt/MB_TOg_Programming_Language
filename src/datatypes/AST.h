@@ -32,6 +32,8 @@ class Program : public Statement {
 public:
     Program(const std::list<Statement> &body);
 
+    void push_back(const Statement& statement);
+
     const std::list<Statement> &getBody() const;
 
 private:
