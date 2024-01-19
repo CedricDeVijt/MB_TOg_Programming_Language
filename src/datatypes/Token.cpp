@@ -55,3 +55,11 @@ std::ostream &operator<<(std::ostream &os, const Token &token) {
     os << "value: " << token.value << std::endl << "tokenType: " << Token::tokenTypeToString(token.tokenType) <<std::endl<< "line: " << token.line << ", column: " << token.column << std::endl;
     return os;
 }
+
+const std::string &Token::getValue() const {
+    return value;
+}
+
+TokenType Token::getTokenType() const {
+    return tokenType;
+}

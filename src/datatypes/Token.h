@@ -42,6 +42,8 @@ class Token {
 public:
     Token(TokenType tokenType, int line, int column, const std::string &value = "");
 
+    [[nodiscard]] const std::string &getValue() const;
+
     [[nodiscard]] TokenType getTokenType() const;
 
 public:
