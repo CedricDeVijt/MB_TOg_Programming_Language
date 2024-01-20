@@ -63,6 +63,13 @@ Value BinaryExpression::evaluate(Env &env) const {
                         throw std::runtime_error("Division by zero");
                     }
                     return lhs / rhs;
+                } else if (op == "%") {
+                    // Ensure lhs and rhs are integers for modulo operation
+                    if constexpr (std::is_integral_v<LHSType>) {
+                        return lhs % rhs;
+                    } else {
+                        throw std::runtime_error("Modulo operation is not supported for non-integer types");
+                    }
                 } else if (op == "<") {
                     return lhs < rhs;
                 } else if (op == ">") {

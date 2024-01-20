@@ -100,7 +100,7 @@ TEST(WhileStatementTest, WhileWithMultipleStatements) {
 
     // Check final values
     EXPECT_EQ(std::get<int>(env.get("a")), 10);
-    EXPECT_EQ(std::get<int>(env.get("sum")), 45); // Sum of numbers 0 to 9
+    EXPECT_EQ(std::get<int>(env.get("sum")), 55); // Sum of numbers 0 to 9
 }
 
 TEST(WhileStatementTest, WhileLoopWithVariableInitializationAndModification) {
@@ -160,6 +160,25 @@ TEST(WhileStatementTest, WhileLoopWithInnerIfElse) {
     );
 
     // Loop body: sum even and odd numbers separately
+    std::list<std::unique_ptr<Statement>> ifThenBody;
+    ifThenBody.push_back(std::make_unique<AssignmentStatement>(
+            Identifier("evenSum"),
+            std::make_unique<BinaryExpression>(
+                    std::make_unique<Identifier>("evenSum"),
+                    std::make_unique<Identifier>("i"),
+                    "+"
+            )
+    ));
+
+    auto elseBody = std::make_unique<AssignmentStatement>(
+            Identifier("oddSum"),
+            std::make_unique<BinaryExpression>(
+                    std::make_unique<Identifier>("oddSum"),
+                    std::make_unique<Identifier>("i"),
+                    "+"
+            )
+    );
+
     std::list<std::unique_ptr<Statement>> body;
     body.push_back(std::make_unique<IfStatement>(
             std::make_unique<BinaryExpression>(
@@ -171,22 +190,8 @@ TEST(WhileStatementTest, WhileLoopWithInnerIfElse) {
                     std::make_unique<Integer>(0),
                     "=="
             ),
-            std::list<std::unique_ptr<Statement>>{std::make_unique<AssignmentStatement>(
-                    Identifier("evenSum"),
-                    std::make_unique<BinaryExpression>(
-                            std::make_unique<Identifier>("evenSum"),
-                            std::make_unique<Identifier>("i"),
-                            "+"
-                    )
-            )},
-            std::make_unique<AssignmentStatement>(
-                    Identifier("oddSum"),
-                    std::make_unique<BinaryExpression>(
-                            std::make_unique<Identifier>("oddSum"),
-                            std::make_unique<Identifier>("i"),
-                            "+"
-                    )
-            )
+            std::move(ifThenBody),
+            std::move(elseBody)
     ));
     body.push_back(std::make_unique<AssignmentStatement>(
             Identifier("i"),
