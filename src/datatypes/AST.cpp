@@ -7,7 +7,7 @@ NodeType Statement::getKind() const {
     return kind;
 }
 
-Program::Program(std::list<std::unique_ptr<Statement>>&& body)
+Program::Program(std::list<std::unique_ptr<Statement>> body)
         : Statement(NodeType::Program), body(std::move(body)) {}
 
 const std::list<std::unique_ptr<Statement>>& Program::getBody() const {
@@ -180,18 +180,18 @@ const std::list<std::unique_ptr<Expression>>& FunctionCall::getParameters() cons
     return parameters;
 }
 
-IfStatement::IfStatement(std::unique_ptr<Expression> condition, const std::list<Statement>& thenBody, const std::list<Statement>& elseBody)
-: Statement(NodeType::IfStatement), condition(std::move(condition)), thenBody(thenBody), elseBody(elseBody) {}
+IfStatement::IfStatement(std::unique_ptr<Expression> condition, std::list<std::unique_ptr<Statement>> thenBody, std::unique_ptr<Statement> elseBody)
+: Statement(NodeType::IfStatement), condition(std::move(condition)), thenBody(std::move(thenBody)), elseBody(std::move(elseBody)) {}
 
-const Expression& IfStatement::getCondition() const {
-    return *condition;
+const std::unique_ptr<Expression>& IfStatement::getCondition() const {
+    return condition;
 }
 
-const std::list<Statement> &IfStatement::getThenBody() const {
+const std::list<std::unique_ptr<Statement>> &IfStatement::getThenBody() const {
     return thenBody;
 }
 
-const std::list<Statement> &IfStatement::getElseBody() const {
+const std::unique_ptr<Statement>& IfStatement::getElseBody() const {
     return elseBody;
 }
 
@@ -217,7 +217,6 @@ const Expression &WhileStatement::getCondition() const {
 const std::list<Statement> &WhileStatement::getBody() const {
     return body;
 }
-
 
 ReturnStatement::ReturnStatement(std::unique_ptr<Expression> expr)
 : Statement(NodeType::ReturnStatement), expression(std::move(expr)) {}

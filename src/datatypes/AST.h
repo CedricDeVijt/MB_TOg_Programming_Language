@@ -38,7 +38,7 @@ private:
 
 class Program : public Statement {
 public:
-    Program(std::list<std::unique_ptr<Statement>>&& body);
+    Program(std::list<std::unique_ptr<Statement>> body);
 
     const std::list<std::unique_ptr<Statement>>& getBody() const;
 
@@ -166,15 +166,13 @@ private:
 // TODO: Check if the if statement is correct based on cfg
 class IfStatement : public Statement {
 public:
-    IfStatement(std::unique_ptr<Expression> condition, const std::list<Statement>& thenBody, const std::list<Statement>& elseBody = {});
+    IfStatement(std::unique_ptr<Expression> condition, std::list<std::unique_ptr<Statement>> thenBody, std::unique_ptr<Statement> elseBody = {});
 
-    const Expression& getCondition() const;
+    const std::unique_ptr<Expression>& getCondition() const;
 
-    const std::list<Statement> &getThenBody() const;
+    const std::list<std::unique_ptr<Statement>>& getThenBody() const;
 
-    const std::list<Statement> &getElseBody() const;
-
-    bool evaluateCondition(Env& env) const; // TODO: implement this
+    const std::unique_ptr<Statement>& getElseBody() const;
 
 private:
     std::unique_ptr<Expression> condition;

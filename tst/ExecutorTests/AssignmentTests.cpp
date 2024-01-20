@@ -6,7 +6,7 @@
 #include "../src/modules/Executor.h"
 #include "../src/datatypes/AST.h"
 
-TEST(ExecutorTest, FloatValueAssignment) {
+TEST(AssignmentTest, FloatValueAssignment) {
     // Create an environment
     Env env;
 
@@ -21,7 +21,7 @@ TEST(ExecutorTest, FloatValueAssignment) {
     EXPECT_EQ(std::get<float>(result), 5.0);
 }
 
-TEST(ExecutorTest, FloatValueAssignmentWithExecution) {
+TEST(AssignmentTest, FloatValueAssignmentWithExecution) {
     // Create an environment
     Env env;
     // Create an executor
@@ -42,7 +42,7 @@ TEST(ExecutorTest, FloatValueAssignmentWithExecution) {
     EXPECT_EQ(std::get<float>(x), 5.0);
 }
 
-TEST(ExecutorTest, BooleanValueAssignment) {
+TEST(AssignmentTest, BooleanValueAssignment) {
     // Create an environment
     Env env;
 
@@ -57,7 +57,7 @@ TEST(ExecutorTest, BooleanValueAssignment) {
     EXPECT_EQ(std::get<bool>(result), true);
 }
 
-TEST(ExecutorTest, BooleanValueAssignmentWithExecution) {
+TEST(AssignmentTest, BooleanValueAssignmentWithExecution) {
     // Create an environment
     Env env;
     // Create an executor

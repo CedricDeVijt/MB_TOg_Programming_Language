@@ -26,6 +26,7 @@ void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
             break;
         case NodeType::IfStatement:
             evalIfStatement(statement.get());
+            break;
         case NodeType::ReturnStatement:
             evalReturnStatement(statement.get(), env);
             break;
@@ -116,21 +117,38 @@ Value Executor::evalReturnStatement(const Statement* statement, Env& newEnv) {//
     return evalExpression(*returnExpression, newEnv);
 }
 
+bool isTruthy(const Value& value) {
+    return std::visit([](const auto& v) -> bool {
+        using T = std::decay_t<decltype(v)>;
+        if constexpr (std::is_same_v<T, bool>) {
+            return v; // For bool, return its value
+        } else if constexpr (std::is_same_v<T, int> || std::is_same_v<T, float>) {
+            return v != 0; // For int and float, true if not zero
+        } else if constexpr (std::is_same_v<T, std::string>) {
+            return !v.empty(); // For std::string, true if not empty
+        } else {
+            return true; // Default case, can be adjusted as needed
+        }
+    }, value);
+}
+
 void Executor::evalIfStatement(const Statement* statement) {
-    // TODO: Implement this
     // Assuming 'statement' is an IfStatement, and it has methods to access its condition, thenBlock, and elseBlock
-    const IfStatement* ifStatement = dynamic_cast<const IfStatement*>(statement);
+    const IfStatement *ifStatement = dynamic_cast<const IfStatement *>(statement);
     if (!ifStatement) {
         throw std::runtime_error("Invalid statement type for evalIfStatement");
     }
 
     // Evaluate the condition
-    Value conditionValue = evalExpression(ifStatement->getCondition(), env);
+    Value conditionValue = evalExpression(*ifStatement->getCondition(), env);
 
-    /*// Check the condition's truthiness and execute the corresponding block
-    if (conditionValue.isTruthy()) {
-        evalStatement(ifStatement->getThenBlock());
-    } else if (ifStatement->hasElseBlock()) {
-        evalStatement(ifStatement->getElseBlock());
-    }*/
+    // Check the condition's truthiness and execute the corresponding block
+    if (isTruthy(conditionValue)) {
+        for (const auto &stmt: ifStatement->getThenBody()) {
+            evalStatement(stmt);
+        }
+    } else if (ifStatement->getElseBody()) {
+        evalStatement(ifStatement->getElseBody());
+    }
 }
+

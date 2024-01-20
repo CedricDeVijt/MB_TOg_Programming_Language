@@ -31,7 +31,8 @@ TEST(FunctionDeclarationTest, SimpleAddFunctionDeclaration) {
     std::list<std::unique_ptr<Statement>> programBody;
     programBody.push_back(std::move(functionDecl));
     Program program(std::move(programBody));
-    executor.execute(program);
+    Value result = executor.execute(program);
+    EXPECT_EQ(std::get<int>(result), 0);
     EXPECT_TRUE(env.containsFunction("add"));
 }
 

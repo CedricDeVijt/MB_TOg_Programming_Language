@@ -7,7 +7,7 @@
 #include "../src/datatypes/AST.h"
 
 // Test for addition in BinaryExpression
-TEST(ExecutorTest, BinaryExpressionAddition) {
+TEST(BinaryExpressionTest, Addition) {
     // Create an environment
     Env env;
 
@@ -22,7 +22,7 @@ TEST(ExecutorTest, BinaryExpressionAddition) {
     EXPECT_EQ(std::get<float>(result), 10.0);
 }
 
-TEST(ExecutorTest, BinaryExpressionAdditionWithExecution) {
+TEST(BinaryExpressionTest, AdditionWithExecution) {
     // Create an environment
     Env env;
     // Create an executor
@@ -43,7 +43,7 @@ TEST(ExecutorTest, BinaryExpressionAdditionWithExecution) {
 }
 
 // Test for subtraction in BinaryExpression
-TEST(ExecutorTest, BinaryExpressionSubtraction) {
+TEST(BinaryExpressionTest, Subtraction) {
     // Create an environment
     Env env;
 
@@ -59,7 +59,7 @@ TEST(ExecutorTest, BinaryExpressionSubtraction) {
 }
 
 // Test for subtraction in BinaryExpression with Executor
-TEST(ExecutorTest, BinaryExpressionSubtractionWithExecution) {
+TEST(BinaryExpressionTest, SubtractionWithExecution) {
     // Create an environment
     Env env;
     // Create an executor
@@ -80,7 +80,7 @@ TEST(ExecutorTest, BinaryExpressionSubtractionWithExecution) {
 }
 
 // Test for multiplication in BinaryExpression
-TEST(ExecutorTest, BinaryExpressionMultiplication) {
+TEST(BinaryExpressionTest, Multiplication) {
     // Create an environment
     Env env;
 
@@ -96,7 +96,7 @@ TEST(ExecutorTest, BinaryExpressionMultiplication) {
 }
 
 // Test for multiplication in BinaryExpression with Executor
-TEST(ExecutorTest, BinaryExpressionMultiplicationWithExecution) {
+TEST(BinaryExpressionTest, MultiplicationWithExecution) {
     // Create an environment
     Env env;
     // Create an executor
@@ -117,7 +117,7 @@ TEST(ExecutorTest, BinaryExpressionMultiplicationWithExecution) {
 }
 
 // Test for division in BinaryExpression
-TEST(ExecutorTest, BinaryExpressionDivision) {
+TEST(BinaryExpressionTest, Division) {
     // Create an environment
     Env env;
 
@@ -133,7 +133,7 @@ TEST(ExecutorTest, BinaryExpressionDivision) {
 }
 
 // Test for division in BinaryExpression with Executor
-TEST(ExecutorTest, BinaryExpressionDivisionWithExecution) {
+TEST(BinaryExpressionTest, DivisionWithExecution) {
     // Create an environment
     Env env;
     // Create an executor
@@ -154,7 +154,7 @@ TEST(ExecutorTest, BinaryExpressionDivisionWithExecution) {
 }
 
 // Test for modulo in BinaryExpression with previvious assignment
-TEST(ExecutorTest, BinaryExpressionWithPreviousAssignment) {
+TEST(BinaryExpressionTest, WithPreviousAssignment) {
     // Create an environment
     Env env;
 

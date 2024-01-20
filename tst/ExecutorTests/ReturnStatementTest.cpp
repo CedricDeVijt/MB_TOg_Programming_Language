@@ -6,7 +6,6 @@
 #include "../src/modules/Executor.h"
 #include "../src/datatypes/AST.h"
 
-
 TEST(ExecutorTest, ReturnTest) {
     // Create an environment
     Env env;
@@ -33,6 +32,4 @@ TEST(ExecutorTest, ReturnTest) {
     EXPECT_EQ(std::get<float>(y), 10.0);
     // Check if the result is correct
     EXPECT_EQ(std::get<float>(result), 15.0);
-
-
 }
