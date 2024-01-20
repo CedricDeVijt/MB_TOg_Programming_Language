@@ -47,6 +47,10 @@ Value Executor::evalExpression(const Expression &expression, Env& env) {
         default:
             return expression.evaluate(env);
     }*/
+    if (expression.getKind() == NodeType::Identifier) {
+        auto identifier = expression.evaluate(env);
+        return env.get(get<std::string>(identifier));
+    }
     return expression.evaluate(env);
 }
 

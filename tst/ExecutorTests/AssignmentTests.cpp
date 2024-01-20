@@ -75,3 +75,42 @@ TEST(AssignmentTest, BooleanValueAssignmentWithExecution) {
     Value flag = env.get("flag");
     EXPECT_EQ(std::get<bool>(flag), true);
 }
+
+TEST(AssignmentTest, IntegerValueAssignment) {
+    Env env;
+    AssignmentStatement assignmentStatement(Identifier("y"), std::make_unique<Integer>(10));
+
+    auto left = assignmentStatement.getVariable();
+    auto right = assignmentStatement.getValue();
+    auto result = right->evaluate(env);
+
+    EXPECT_EQ(left.getSymbol(), "y");
+    EXPECT_EQ(std::get<int>(result), 10);
+}
+
+TEST(AssignmentTest, StringValueAssignment) {
+    Env env;
+    AssignmentStatement assignmentStatement(Identifier("name"), std::make_unique<String>("Alice"));
+
+    auto left = assignmentStatement.getVariable();
+    auto right = assignmentStatement.getValue();
+    auto result = right->evaluate(env);
+
+    EXPECT_EQ(left.getSymbol(), "name");
+    EXPECT_EQ(std::get<std::string>(result), "Alice");
+}
+
+TEST(AssignmentTest, CombinedAssignmentAndReturn) {
+    Env env;
+    Executor executor(env);
+
+    // Assign a value and then return it
+    std::list<std::unique_ptr<Statement>> statements;
+    statements.push_back(std::make_unique<AssignmentStatement>(Identifier("z"), std::make_unique<Integer>(42)));
+    statements.push_back(std::make_unique<ReturnStatement>(std::make_unique<Identifier>("z")));
+
+    Program program(std::move(statements));
+    auto result = executor.execute(program);
+
+    EXPECT_EQ(std::get<int>(result), 42);
+}

@@ -21,7 +21,9 @@ enum class NodeType {
     IfStatement,
     AssignmentStatement,
     WhileStatement,
-    ReturnStatement
+    ReturnStatement,
+    PrintStatement,
+    InputStatement
 };
 
 class Statement {
@@ -214,5 +216,46 @@ public:
 private:
     std::unique_ptr<Expression> expression;
 };
+
+
+/* TODO: Implement these
+ * Suggestions for AST.cpp
+PrintStatement::PrintStatement(std::unique_ptr<Statement> expression)
+: Statement(NodeType::PrintStatement), expression(std::move(expression)) {}
+
+void PrintStatement::execute(Env &env) const {
+    Value val = dynamic_cast<Expression*>(expression.get())->evaluate(env);
+    std::cout << val.toString() << std::endl;
+}
+
+InputStatement::InputStatement(const std::string& variableName)
+: Statement(NodeType::InputStatement), variableName(variableName) {}
+
+void InputStatement::execute(Env &env) const {
+    std::string input;
+    std::cin >> input;
+    env.set(variableName, Value(input));  // Assuming Value can store strings
+}
+ */
+class PrintStatement : public Statement {
+public:
+    explicit PrintStatement(std::unique_ptr<Statement> expression);
+    virtual ~PrintStatement() = default;
+
+    void execute(Env &env) const;
+private:
+    std::unique_ptr<Statement> expression;
+};
+
+class InputStatement : public Statement {
+public:
+    explicit InputStatement(const std::string& variableName);
+    virtual ~InputStatement() = default;
+
+    void execute(Env &env) const;
+private:
+    std::string variableName;
+};
+
 
 #endif //MB_TOG_PROGRAMMING_LANGUAGE_AST_H
