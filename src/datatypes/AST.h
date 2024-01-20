@@ -163,7 +163,6 @@ private:
 };
 
 
-// TODO: Check if the if statement is correct based on cfg
 class IfStatement : public Statement {
 public:
     IfStatement(std::unique_ptr<Expression> condition, std::list<std::unique_ptr<Statement>> thenBody, std::unique_ptr<Statement> elseBody = {});
@@ -195,15 +194,15 @@ private:
 
 class WhileStatement : public Statement {
 public:
-    WhileStatement(std::unique_ptr<Expression> condition, const std::list<Statement>& body);
+    WhileStatement(std::unique_ptr<Expression> condition, std::list<std::unique_ptr<Statement>> body);
 
-    const Expression &getCondition() const;
+    const std::unique_ptr<Expression> &getCondition() const;
 
-    const std::list<Statement> &getBody() const;
+    const std::list<std::unique_ptr<Statement>> &getBody() const;
 
 private:
     std::unique_ptr<Expression> condition;
-    std::list<Statement> body;
+    std::list<std::unique_ptr<Statement>> body;
 };
 
 class ReturnStatement : public Statement {

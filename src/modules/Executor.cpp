@@ -30,6 +30,9 @@ void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
         case NodeType::IfStatement:
             evalIfStatement(statement.get());
             break;
+        case NodeType::WhileStatement:
+            evalWhileStatement(statement.get());
+            break;
         case NodeType::ReturnStatement:
             lastEvaluatedValue = evalReturnStatement(statement.get(), env);
             break;
@@ -155,3 +158,21 @@ void Executor::evalIfStatement(const Statement* statement) {
     }
 }
 
+void Executor::evalWhileStatement(const Statement* statement) {
+    // Assuming 'statement' is a WhileStatement, and it has methods to access its condition and body
+    const WhileStatement *whileStatement = dynamic_cast<const WhileStatement *>(statement);
+    if (!whileStatement) {
+        throw std::runtime_error("Invalid statement type for evalWhileStatement");
+    }
+
+    // Evaluate the condition
+    Value conditionValue = evalExpression(*whileStatement->getCondition(), env);
+
+    // Check the condition's truthiness and execute the body
+    while (isTruthy(conditionValue)) {
+        for (const auto &stmt: whileStatement->getBody()) {
+            evalStatement(stmt);
+        }
+        conditionValue = evalExpression(*whileStatement->getCondition(), env);
+    }
+}

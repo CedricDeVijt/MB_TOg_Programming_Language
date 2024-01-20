@@ -238,14 +238,14 @@ const Expression* AssignmentStatement::getValue() const {
     return value.get();
 }
 
-WhileStatement::WhileStatement(std::unique_ptr<Expression> condition, const std::list<Statement>& body)
-: Statement(NodeType::WhileStatement), condition(std::move(condition)), body(body) {}
+WhileStatement::WhileStatement(std::unique_ptr<Expression> condition, std::list<std::unique_ptr<Statement>> body)
+: Statement(NodeType::WhileStatement), condition(std::move(condition)), body(std::move(body)) {}
 
-const Expression &WhileStatement::getCondition() const {
-    return *condition;
+const std::unique_ptr<Expression> &WhileStatement::getCondition() const {
+    return condition;
 }
 
-const std::list<Statement> &WhileStatement::getBody() const {
+const std::list<std::unique_ptr<Statement>> &WhileStatement::getBody() const {
     return body;
 }
 

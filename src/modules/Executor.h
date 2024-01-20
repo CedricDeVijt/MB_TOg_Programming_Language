@@ -21,6 +21,7 @@ private:
     void evalBinaryExpression(const Statement* statement);
     Value evalReturnStatement(const Statement* statement, Env& newEnv);
     void evalIfStatement(const Statement* statement);
+    void evalWhileStatement(const Statement* statement);
 
 public:
     explicit Executor(Env& env);
