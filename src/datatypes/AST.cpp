@@ -48,7 +48,9 @@ Value BinaryExpression::evaluate(Env &env) const {
     return std::visit([this](auto&& lhs, auto&& rhs) -> Value {
         using LHSType = std::decay_t<decltype(lhs)>;
         using RHSType = std::decay_t<decltype(rhs)>;
+        // Check if both types are the same
         if constexpr (std::is_same_v<LHSType, RHSType>) {
+            // Arithmetic operations
             if constexpr (std::is_arithmetic_v<LHSType>) {
                 if (op == "+") {
                     return lhs + rhs;
@@ -76,8 +78,25 @@ Value BinaryExpression::evaluate(Env &env) const {
                 } else {
                     throw std::runtime_error("Unsupported operation");
                 }
-                // ... other operators
-            } else {
+            // String operations
+            } else if constexpr (std::is_same_v<LHSType, std::string>) {
+                if (op == "+") {
+                    return lhs + rhs;
+                } else {
+                    throw std::runtime_error("Unsupported operation for strings");
+                }
+            // Boolean operations
+            } else if constexpr (std::is_same_v<LHSType, bool>) {
+                if (op == "&&") {
+                    return lhs && rhs;
+                } else if (op == "||") {
+                    return lhs || rhs;
+                } else {
+                    throw std::runtime_error("Unsupported operation for booleans");
+                }
+            }
+            // Default case
+            else {
                 throw std::runtime_error("Unsupported operation for non-arithmetic types");
             }
         } else {
