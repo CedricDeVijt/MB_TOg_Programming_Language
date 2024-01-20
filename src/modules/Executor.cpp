@@ -13,6 +13,9 @@ Value Executor::execute(const Program& program) {
         }
         evalStatement(statement);
     }
+    if (lastEvaluatedValue.index() != 0) {
+        return lastEvaluatedValue;
+    }
     return 0;
 }
 
@@ -28,7 +31,7 @@ void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
             evalIfStatement(statement.get());
             break;
         case NodeType::ReturnStatement:
-            evalReturnStatement(statement.get(), env);
+            lastEvaluatedValue = evalReturnStatement(statement.get(), env);
             break;
     }
 }

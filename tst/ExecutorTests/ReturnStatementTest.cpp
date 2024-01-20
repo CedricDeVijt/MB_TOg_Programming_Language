@@ -6,7 +6,7 @@
 #include "../src/modules/Executor.h"
 #include "../src/datatypes/AST.h"
 
-TEST(ExecutorTest, ReturnTest) {
+TEST(ReturnTest, BasicReturnTest) {
     // Create an environment
     Env env;
     // Create an executor

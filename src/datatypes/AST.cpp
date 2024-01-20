@@ -61,6 +61,18 @@ Value BinaryExpression::evaluate(Env &env) const {
                         throw std::runtime_error("Division by zero");
                     }
                     return lhs / rhs;
+                } else if (op == "<") {
+                    return lhs < rhs;
+                } else if (op == ">") {
+                    return lhs > rhs;
+                } else if (op == "<=") {
+                    return lhs <= rhs;
+                } else if (op == ">=") {
+                    return lhs >= rhs;
+                } else if (op == "==") {
+                    return lhs == rhs;
+                } else if (op == "!=") {
+                    return lhs != rhs;
                 } else {
                     throw std::runtime_error("Unsupported operation");
                 }
