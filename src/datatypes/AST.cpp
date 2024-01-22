@@ -1,4 +1,6 @@
 #include "AST.h"
+#include <sstream>
+#include <variant>
 
 Statement::Statement(NodeType kind)
 : kind(kind) {}
@@ -266,4 +268,29 @@ const Expression* ReturnStatement::getExpression() const {
 
 Value ReturnStatement::evaluate(Env& env) const {
     return expression->evaluate(env);
+}
+
+PrintStatement::PrintStatement(std::unique_ptr<Statement> expression)
+: Statement(NodeType::PrintStatement), expression(std::move(expression)) {}
+
+std::string variantToString(const std::variant<float, int, std::string, bool>& var) {
+    std::ostringstream ss;
+    std::visit([&ss](auto&& arg) {
+        ss << arg;
+    }, var);
+    return ss.str();
+}
+
+void PrintStatement::execute(Env &env) const {
+    Value val = dynamic_cast<Expression*>(expression.get())->evaluate(env);
+    std::cout << variantToString(val) << std::endl;
+}
+
+InputStatement::InputStatement(const std::string& variableName)
+: Statement(NodeType::InputStatement), variableName(variableName) {}
+
+void InputStatement::execute(Env &env) const {
+    std::string input;
+    std::cin >> input;
+    env.set(variableName, Value(input));  // Assuming Value can store strings
 }

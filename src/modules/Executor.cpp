@@ -36,6 +36,9 @@ void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
         case NodeType::ReturnStatement:
             lastEvaluatedValue = evalReturnStatement(statement.get(), env);
             break;
+        case NodeType::PrintStatement:
+            evalPrintStatement(statement.get());
+            break;
     }
 }
 
@@ -179,4 +182,14 @@ void Executor::evalWhileStatement(const Statement* statement) {
         }
         conditionValue = evalExpression(*whileStatement->getCondition(), env);
     }
+}
+
+void Executor::evalPrintStatement(const Statement* statement) {
+    // Assuming 'statement' is a PrintStatement, and it has a method to access its expression
+    const PrintStatement *printStatement = dynamic_cast<const PrintStatement *>(statement);
+    if (!printStatement) {
+        throw std::runtime_error("Invalid statement type for evalPrintStatement");
+    }
+
+    printStatement->execute(env);
 }
