@@ -193,3 +193,13 @@ void Executor::evalPrintStatement(const Statement* statement) {
 
     printStatement->execute(env);
 }
+
+void Executor::evalInputStatement(const Statement* statement) {
+    // Assuming 'statement' is an InputStatement, and it has a method to access its expression
+    const InputStatement *inputStatement = dynamic_cast<const InputStatement *>(statement);
+    if (!inputStatement) {
+        throw std::runtime_error("Invalid statement type for evalInputStatement");
+    }
+
+    inputStatement->execute(env);
+}

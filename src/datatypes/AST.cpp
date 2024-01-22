@@ -276,7 +276,12 @@ PrintStatement::PrintStatement(std::unique_ptr<Statement> expression)
 std::string variantToString(const std::variant<float, int, std::string, bool>& var) {
     std::ostringstream ss;
     std::visit([&ss](auto&& arg) {
-        ss << arg;
+        using T = std::decay_t<decltype(arg)>; // This extracts the type of arg
+        if constexpr (std::is_same_v<T, bool>) {
+            ss << std::boolalpha << arg; // Use boolalpha for boolean values
+        } else {
+            ss << arg; // Use regular output for other types
+        }
     }, var);
     return ss.str();
 }
@@ -290,7 +295,7 @@ InputStatement::InputStatement(const std::string& variableName)
 : Statement(NodeType::InputStatement), variableName(variableName) {}
 
 void InputStatement::execute(Env &env) const {
-    std::string input;
-    std::cin >> input;
-    env.set(variableName, Value(input));  // Assuming Value can store strings
+    std::string inputLine;
+    std::getline(std::cin, inputLine); // This reads the entire line until a newline character is encountered
+    env.set(variableName, Value(inputLine));  // Assuming Value can store strings
 }

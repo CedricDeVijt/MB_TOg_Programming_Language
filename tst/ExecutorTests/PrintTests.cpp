@@ -44,3 +44,52 @@ TEST_F(PrintTest, BasicPrintTest) {
     // Check the captured output
     EXPECT_EQ(capturedCout.str(), "5.8\n");
 }
+
+TEST_F(PrintTest, StringPrintTest) {
+    Env env;
+    Executor executor(env);
+
+    std::list<std::unique_ptr<Statement>> statements;
+    statements.push_back(std::make_unique<PrintStatement>(std::make_unique<String>("Hello, world!")));
+    Program program(std::move(statements));
+
+    executor.execute(program);
+    EXPECT_EQ(capturedCout.str(), "Hello, world!\n");
+}
+
+TEST_F(PrintTest, IntegerPrintTest) {
+    Env env;
+    Executor executor(env);
+
+    std::list<std::unique_ptr<Statement>> statements;
+    statements.push_back(std::make_unique<PrintStatement>(std::make_unique<Integer>(42)));
+    Program program(std::move(statements));
+
+    executor.execute(program);
+    EXPECT_EQ(capturedCout.str(), "42\n");
+}
+
+TEST_F(PrintTest, BooleanPrintTest) {
+    Env env;
+    Executor executor(env);
+
+    std::list<std::unique_ptr<Statement>> statements;
+    statements.push_back(std::make_unique<PrintStatement>(std::make_unique<Bool>(true)));
+    Program program(std::move(statements));
+
+    executor.execute(program);
+    EXPECT_EQ(capturedCout.str(), "true\n");
+}
+
+TEST_F(PrintTest, MultipleStatementsPrintTest) {
+    Env env;
+    Executor executor(env);
+
+    std::list<std::unique_ptr<Statement>> statements;
+    statements.push_back(std::make_unique<PrintStatement>(std::make_unique<String>("First line")));
+    statements.push_back(std::make_unique<PrintStatement>(std::make_unique<String>("Second line")));
+    Program program(std::move(statements));
+
+    executor.execute(program);
+    EXPECT_EQ(capturedCout.str(), "First line\nSecond line\n");
+}
