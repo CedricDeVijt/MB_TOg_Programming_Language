@@ -34,7 +34,7 @@ public:
     [[nodiscard]] const std::map<std::pair<TokenVariant, int>, std::pair<ActionType, int>> &getTable() const;
 
 private:
-    static static ActionType getActionType(const std::string &actionType);
+    static ActionType getActionType(const std::string &actionType);
     static NodeType getNodeType(const std::string &nodeType);
 };
 
