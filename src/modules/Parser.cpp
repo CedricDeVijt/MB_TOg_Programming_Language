@@ -1,7 +1,7 @@
 #include "Parser.h"
 #include <iostream>
 #include <fstream>
-#include "../datatypes/parsingTable.h"
+#include "../datatypes/ParsingTable.h"
 
 using StackElement = std::variant<TokenVariant, int>;
 
