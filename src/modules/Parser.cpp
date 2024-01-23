@@ -1,25 +1,25 @@
 #include "Parser.h"
 #include <iostream>
 #include <fstream>
-#include "../utilities/ParserTableLoader.h"
+#include "../datatypes/parsingTable.h"
 
-Program Parser::parse(const Tokens &tokens, const std::string& parserTablePath) {
+using StackElement = std::variant<TokenVariant, int>;
+
+Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) {
     Program program({});
 
-    // get paring table from json file
-    ParsingTable parsingTable = ParserTableLoader::getParserTable(parserTablePath);
+    // Load parsing table
+    auto parsingTable = ParsingTable(parserTablePath);
+    const auto& reductions = parsingTable.getReductions();
+    const auto& table = parsingTable.getTable();
 
-//    // Initialize parsing stack
-//    std::stack<StackElement> parsingStack;
-//
-//    // Push initial state to parsing stack
-//    parsingStack.push(0);
-//
-//    // Token iterator
-//    auto tokenIter = tokens.begin();
-//
+    // Initialize parsing stack
+    std::stack<StackElement > parsingStack;
+
+    // Push initial state to parsing stack
+    parsingStack.emplace(0);
+
     // Parser loop
-
 //    // While parsing stack is not empty
 //    while (!parsingStack.empty()){
 //        // Get top of parsing stack

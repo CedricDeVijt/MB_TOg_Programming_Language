@@ -6,9 +6,4 @@ set(SOURCES ${SOURCES})
 
 add_executable(${BINARY}_run ${SOURCES})
 
-add_library(${BINARY}_lib STATIC ${SOURCES}
-        utilities/ParserTableLoader.cpp
-        utilities/ParserTableLoader.h
-        datatypes/ParsingTable.cpp
-        datatypes/ParsingTable.h
-)
+add_library(${BINARY}_lib STATIC ${SOURCES})

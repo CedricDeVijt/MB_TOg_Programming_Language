@@ -3,6 +3,8 @@
 
 #include <string>
 #include <map>
+#include <variant>
+#include <vector>
 
 #include "../datatypes/Token.h"
 #include "../datatypes/AST.h"

@@ -1,8 +1,7 @@
 #include "ParsingTable.h"
-
+#include <fstream>
 
 #include "../datatypes/json.hpp"
-#include <fstream>
 
 using json = nlohmann::json;
 
