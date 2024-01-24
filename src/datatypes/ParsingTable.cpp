@@ -24,9 +24,15 @@ ParsingTable::ParsingTable(const std::string &path) {
 
     // Reduction rules
     for (const auto &rule: tableJson["Reductions"]) {
-        // split string into vector of strings with delimiter "->"
+        auto left = rule["left"].get<std::string>();
+        auto right = rule["right"].get<std::vector<std::string>>();
 
+        TypeVariants rightVariants;
+        for (const auto &token: right) {
+            rightVariants.emplace_back(getNodeType(token));
+        }
 
+        reductions[getNodeType(left)] = rightVariants;
     }
 
     // Table
@@ -86,10 +92,10 @@ NodeType ParsingTable::getNodeType(const std::string &nodeType) {
 }
 
 
-const std::map<TokenVariant, TokenVariants> &ParsingTable::getReductions() const {
+const std::map<TypeVariant, TypeVariants> &ParsingTable::getReductions() const {
     return reductions;
 }
 
-const std::map<std::pair<TokenVariant, int>, std::pair<ActionType, int>> &ParsingTable::getTable() const {
+const std::map<std::pair<TypeVariant, int>, std::pair<ActionType, int>> &ParsingTable::getTable() const {
     return table;
 }

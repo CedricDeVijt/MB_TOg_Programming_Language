@@ -1,42 +1,45 @@
 #include "Parser.h"
 #include <iostream>
-#include <fstream>
 #include "../datatypes/ParsingTable.h"
 
-using StackElement = std::variant<TokenVariant, int>;
+using StackElement = std::variant<TypeVariant, int>;
 
 Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) {
     Program program({});
 
     // Load parsing table
     auto parsingTable = ParsingTable(parserTablePath);
-    const auto& reductions = parsingTable.getReductions();
-    const auto& table = parsingTable.getTable();
+    const auto &reductions = parsingTable.getReductions();
+    const auto &table = parsingTable.getTable();
 
     // Initialize parsing stack
-    std::stack<StackElement > parsingStack;
+    std::stack<StackElement> parsingStack;
+    parsingStack.emplace(0); // initial state
 
-    // Push initial state to parsing stack
-    parsingStack.emplace(0);
+    // Initialize Remaining Tokens
+    Tokens remainingTokens = tokens;
 
     // Parser loop
-//    // While parsing stack is not empty
-//    while (!parsingStack.empty()){
-//        // Get top of parsing stack
-//        auto stackTop = parsingStack.top();
+    while (!parsingStack.empty()) {
+        // Get top of parsing stack
+//        int stackTop = std::stoi(get<std::string>(parsingStack.top()));
+        TypeVariant TokenType = remainingTokens.front().getTokenType();
+
+        // Get action from parsing table
+//        auto action = *table.find(std::make_pair(TokenType, stackTop));
+
 //
-//        // Get next token from input
-//        auto token = *tokenIter;
+//        switch (action.second.first) {
+//            case ActionType::SHIFT:
+//                // Push token from remaining output to parsing stack
+//                parsingStack.emplace(remainingTokens.front());
+//                remainingTokens.pop_front();
 //
-//        // Get action from parsing table
-//        auto action = parsingTable[std::make_pair(stackTop, token.getTokenType())];
+//                // Push state from parsing table to parsing stack
+//                parsingStack.emplace(action.second.second);
 //
-//        switch (action) {
-//            case SHIFT:
-//                // Push token to AST stack
-//                // Push state to parsing stack
 //                break;
-//            case REDUCE:
+//            case ActionType::REDUCE:
 //                // Get production from parsing table
 //                // Pop from AST stack as many elements as the size of the right hand side of the production
 //                // Push a new AST node to AST stack with the left hand side of the production as the label and the popped elements as the children
@@ -44,17 +47,16 @@ Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) 
 //                // Get goto from parsing table
 //                // Push goto to parsing stack
 //                break;
-//            case GOTO:
+//            case ActionType::GOTO:
 //                // Push goto to parsing stack
 //                break;
-//            case ACCEPT:
-//                // Break
-//                break;
-//            case ERROR:
+//            case ActionType::ACCEPT:
+//                return program;
+//            case ActionType::ERROR:
 //                // Throw error
-//                break;
+//                throw std::runtime_error("Error: Parsing error");
 //        }
-//    }
+    }
 
 
     return program;

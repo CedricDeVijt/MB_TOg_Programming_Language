@@ -9,8 +9,9 @@
 #include "../datatypes/Token.h"
 #include "../datatypes/AST.h"
 
-using TokenVariant = std::variant<TokenType, NodeType>;
-using TokenVariants = std::vector<TokenVariant>;
+using TypeVariant = std::variant<TokenType, NodeType>;
+using TypeVariants = std::vector<TypeVariant>;
+
 
 enum class ActionType {
     SHIFT,
@@ -25,13 +26,13 @@ public:
     explicit ParsingTable(const std::string &path);
 
 private:
-    std::map<TokenVariant, TokenVariants> reductions;
-    std::map<std::pair<TokenVariant, int>, std::pair<ActionType, int>> table;
+    std::map<TypeVariant, TypeVariants> reductions;
+    std::map<std::pair<TypeVariant, int>, std::pair<ActionType, int>> table;
 
 public:
-    [[nodiscard]] const std::map<TokenVariant, TokenVariants> &getReductions() const;
+    [[nodiscard]] const std::map<TypeVariant, TypeVariants> &getReductions() const;
 
-    [[nodiscard]] const std::map<std::pair<TokenVariant, int>, std::pair<ActionType, int>> &getTable() const;
+    [[nodiscard]] const std::map<std::pair<TypeVariant, int>, std::pair<ActionType, int>> &getTable() const;
 
 private:
     static ActionType getActionType(const std::string &actionType);
