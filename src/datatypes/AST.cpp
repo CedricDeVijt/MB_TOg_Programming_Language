@@ -270,7 +270,7 @@ Value ReturnStatement::evaluate(Env& env) const {
     return expression->evaluate(env);
 }
 
-PrintStatement::PrintStatement(std::unique_ptr<Statement> expression)
+/*PrintStatement::PrintStatement(std::unique_ptr<Statement> expression)
 : Statement(NodeType::PrintStatement), expression(std::move(expression)) {}
 
 std::string variantToString(const std::variant<float, int, std::string, bool>& var) {
@@ -298,4 +298,4 @@ void InputStatement::execute(Env &env) const {
     std::string inputLine;
     std::getline(std::cin, inputLine); // This reads the entire line until a newline character is encountered
     env.set(variableName, Value(inputLine));  // Assuming Value can store strings
-}
+}*/
