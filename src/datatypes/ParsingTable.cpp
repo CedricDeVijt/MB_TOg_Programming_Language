@@ -24,15 +24,11 @@ ParsingTable::ParsingTable(const std::string &path) {
 
     // Reduction rules
     for (const auto &rule: tableJson["Reductions"]) {
+        auto nr = rule["nr"].get<int>();
         auto left = rule["left"].get<std::string>();
         auto right = rule["right"].get<std::vector<std::string>>();
 
-        TypeVariants rightVariants;
-        for (const auto &token: right) {
-            rightVariants.emplace_back(getNodeType(token));
-        }
-
-        reductions[getNodeType(left)] = rightVariants;
+        reductions[nr] = std::make_pair(left, right);
     }
 
     // Table
@@ -42,7 +38,7 @@ ParsingTable::ParsingTable(const std::string &path) {
         auto type = entry["type"].get<std::string>();
         auto value = entry["value"].get<int>();
 
-        table[std::make_pair(getNodeType(col), row)] = std::make_pair(getActionType(type), value);
+        table[std::make_pair(col, row)] = std::make_pair(getActionType(type), value);
     }
 
 }
@@ -63,39 +59,10 @@ ActionType ParsingTable::getActionType(const std::string &actionType) {
     }
 }
 
-NodeType ParsingTable::getNodeType(const std::string &nodeType) {
-    if (nodeType == "Program") {
-        return NodeType::Program;
-    } else if (nodeType == "Float") {
-        return NodeType::Float;
-    } else if (nodeType == "String") {
-        return NodeType::String;
-    } else if (nodeType == "Bool") {
-        return NodeType::Bool;
-    } else if (nodeType == "Identifier") {
-        return NodeType::Identifier;
-    } else if (nodeType == "BinaryExpression") {
-        return NodeType::BinaryExpression;
-    } else if (nodeType == "FunctionCall") {
-        return NodeType::FunctionCall;
-    } else if (nodeType == "FunctionDeclaration") {
-        return NodeType::FunctionDeclaration;
-    } else if (nodeType == "IfStatement") {
-        return NodeType::IfStatement;
-    } else if (nodeType == "AssignmentStatement") {
-        return NodeType::AssignmentStatement;
-    } else if (nodeType == "WhileStatement") {
-        return NodeType::WhileStatement;
-    } else {
-        throw std::runtime_error("Error: Invalid node type.");
-    }
-}
-
-
-const std::map<TypeVariant, TypeVariants> &ParsingTable::getReductions() const {
+ std::map<int, std::pair<std::string, std::vector<std::string>>> ParsingTable::getReductions()  {
     return reductions;
 }
 
-const std::map<std::pair<TypeVariant, int>, std::pair<ActionType, int>> &ParsingTable::getTable() const {
+ std::map<std::pair<std::string, int>, std::pair<ActionType, int>> ParsingTable::getTable()  {
     return table;
 }
