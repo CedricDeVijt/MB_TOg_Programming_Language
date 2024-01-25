@@ -4,8 +4,10 @@
 //TODO: zin na functie als functienaam definieren
 //TODO: zin na vraag: als userinput definieren
 
-
+/*
 Tokens Lexer::lex(const std::string &input) {
+
+
     Tokens tokens;
     int line = 1, column = 1;
 
@@ -131,8 +133,9 @@ Tokens Lexer::lex(const std::string &input) {
 
     return tokens;
 }
+     */
 
-/*Tokens Lexer::lex(const std::string &input) {
+Tokens Lexer::lex(const std::string &input) {
 
     Tokens tokenList;
     size_t pos = 0;
@@ -268,4 +271,4 @@ Tokens Lexer::lex(const std::string &input) {
     tokenList.push_back(eofToken);
     return tokenList;
 
-}*/
+}
