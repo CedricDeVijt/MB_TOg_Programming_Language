@@ -22,8 +22,8 @@ enum class NodeType {
     AssignmentStatement,
     WhileStatement,
     ReturnStatement,
-    PrintStatement,
-    InputStatement
+    /*PrintStatement,
+    InputStatement*/
 };
 
 class Statement {
