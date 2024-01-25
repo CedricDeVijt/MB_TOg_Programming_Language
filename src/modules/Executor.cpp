@@ -48,6 +48,8 @@ void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
         case NodeType::ReturnStatement:
             returnValue = evalReturnStatement(statement.get(), env);
             break;
+        default:
+            throw std::runtime_error("Invalid statement type");
     }
 }
 
