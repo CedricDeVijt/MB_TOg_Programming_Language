@@ -10,14 +10,14 @@
 #include "../datatypes/AST.h"
 #include "../datatypes/Token.h"
 
-using StackElement = std::variant<Token, std::unique_ptr<Statement>, std::unique_ptr<Program>, int>;
+using StackElement = std::variant<Token, std::shared_ptr<Statement>, std::shared_ptr<Program>, int>;
 
 class Parser {
 public:
     Program parse(const Tokens &tokens, const std::string &parserTablePath);
 
 private:
-    std::unique_ptr<Statement> reduce (const std::pair<std::string, std::vector<std::string>> &rule, std::stack<StackElement> &parsingStack);
+    std::shared_ptr<Statement> reduce (const std::pair<std::string, std::vector<std::string>> &rule, std::stack<StackElement> &parsingStack);
 
     int getStackTop(std::stack<StackElement> &parsingStack);
 
