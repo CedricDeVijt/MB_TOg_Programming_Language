@@ -19,16 +19,9 @@ enum class ActionType {
 
 class ParsingTable {
 public:
-    explicit ParsingTable(const std::string &path);
+    static std::map<int, std::pair<std::string, std::vector<std::string>>> getReductions(const std::string &path);
 
-private:
-    std::map<int, std::pair<std::string, std::vector<std::string>>> reductions;
-    std::map<std::pair<std::string, int>, std::pair<ActionType, int>> table;
-
-public:
-    [[nodiscard]]  std::map<int, std::pair<std::string, std::vector<std::string>>> getReductions();
-
-    [[nodiscard]]  std::map<std::pair<std::string, int>, std::pair<ActionType, int>> getTable();
+    static std::map<std::pair<std::string, int>, std::pair<ActionType, int>> getTable(const std::string &path);
 
 private:
     static ActionType getActionType(const std::string &actionType);
