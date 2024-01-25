@@ -36,13 +36,6 @@ void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
 }
 
 Value Executor::evalExpression(const Expression &expression, Env& env) {
-    /* TODO: Implement this
-     * switch (expression.getKind()) {
-        case NodeType::BinaryExpression:
-            return evalBinaryExpression();
-        default:
-            return expression.evaluate(env);
-    }*/
     if (expression.getKind() == NodeType::Identifier) {
         auto identifier = expression.evaluate(env);
         return env.get(std::get<std::string>(identifier));
