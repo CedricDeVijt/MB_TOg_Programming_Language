@@ -1,6 +1,6 @@
-[submodule "lib/googletest"]
-	path = lib/googletest
+[submodule "submodules/googletest"]
+	path = submodules/googletest
 	url = https://github.com/google/googletest/
-[submodule "parsing"]
-	path = parsing
+[submodule "submodules/parsing"]
+	path = submodules/parsing
 	url = https://github.com/ArneDePeuter/parsing.git
