@@ -85,67 +85,67 @@ Parser::reduce(const std::pair<std::string, std::vector<std::string>> &rule, std
     std::vector<StackElement> poppedElements;
     for (int i = 0; i < rule.second.size() * 2; i++) {
         auto top = parsingStack.top();
-        if (std::holds_alternative<Token>(top)) {
+        if (std::holds_alternative<Token>(top) or std::holds_alternative<Statement>(top)) {
             poppedElements.emplace_back(std::get<Token>(top));
-        }
-        parsingStack.pop();
-    }
 
-    if (rule.first == "PROGRAM") {
-        auto program = std::make_unique<Program>(Program({}));
-        for (auto &element: poppedElements) {
-            if (std::holds_alternative<Statement>(element)) {
-                auto statement = std::get<Statement>(element);
-                program->push_back(statement);
-            } else {
-                throw std::runtime_error("Error: Parsing error: element in stack is not a statement");
+            parsingStack.pop();
+        }
+
+        if (rule.first == "PROGRAM") {
+            auto program = std::make_unique<Program>(Program({}));
+            for (auto &element: poppedElements) {
+                if (std::holds_alternative<Statement>(element)) {
+                    auto statement = std::get<Statement>(element);
+                    program->push_back(statement);
+                } else {
+                    throw std::runtime_error("Error: Parsing error: element in stack is not a statement");
+                }
             }
+            return program;
+
+        } else if (rule.first == "BINARY_EXPRESSION") {
+            auto left = std::get<Statement>(poppedElements[0]);
+            auto right = std::get<Statement>(poppedElements[2]);
+            auto op = std::get<Token>(poppedElements[1]).getValue();
+            auto expression = std::make_unique<BinaryExpression>(BinaryExpression(left, right, op));
+            return expression;
+
+//    } else if (rule.first == "BODY") {
+//    } else if (rule.first == "EXPRESSION") {
+            // TODO what to do with an expression?
+//        if (poppedElements.size() == 1){
+//            return std::make_unique<Expression>(std::get<Statement>(poppedElements[0]));
+//        } else {
+//            throw std::runtime_error("Error: Parsing error");
+//        }
+//    } else if (rule.first == "EXPRESSION_LOOP") {
+//    } else if (rule.first == "FUNCTION_CALL") {
+        } else if (rule.first == "FUNCTION_DECLARATION") {
+            auto name = std::get<Token>(poppedElements[0]).getValue();
+            auto id = std::get<Token>(poppedElements[1]).getValue(); // TODO check if correct
+            auto id_loop = std::get<Statement>(poppedElements[3]);
+            auto body = std::get<Statement>(poppedElements[5]);
+            auto functionDeclaration = std::make_unique<FunctionDeclaration>(FunctionDeclaration(name, {}, {body}));
+            return functionDeclaration;
+
+
+//    } else if (rule.first == "ID_LOOP") {
+//    } else if (rule.first == "IF_STATEMENT") {
+        } else if (rule.first == "OP") {
+            return std::make_unique<Identifier>(Identifier(rule.second[0]));
+
+//    } else if (rule.first == "PROGRAM") {
+//    } else if (rule.first == "RET_STATEMENT") {
+        } else if (rule.first == "STATEMENT") {
+
+
+//    } else if (rule.first == "STATEMENTS") {
+//    } else if (rule.first == "VAR_ASSIGN_STATEMENT") {
+//    } else if (rule.first == "VAR_DECLARATION_STATEMENT") {
+//    } else if (rule.first == "WHILE_STATEMENT") {
+        } else {
+            throw std::runtime_error("Error: Parsing error");
         }
-        return program;
-//    } else if (rule.first == "BINARY_EXPRESSION") {
-
-
-//        auto expression = std::make_unique<BinaryExpression>(BinaryExpression(std::get<Statement>(poppedElements.front()), ));
-//        return expression;
-//    } else if (rule.first == "Factor") {
-//        return Statement(NodeType::Factor);
-//    } else if (rule.first == "IfLoop") {
-//        return Statement(NodeType::IfLoop);
-//    } else if (rule.first == "ElseIfLoop") {
-//        return Statement(NodeType::ElseIfLoop);
-//    } else if (rule.first == "ElseLoop") {
-//        return Statement(NodeType::ElseLoop);
-//    } else if (rule.first == "WhileLoop") {
-//        return Statement(NodeType::WhileLoop);
-//    } else if (rule.first == "ForLoop") {
-//        return Statement(NodeType::ForLoop);
-//    } else if (rule.first == "Print") {
-//        return Statement(NodeType::Print);
-//    } else if (rule.first == "Input") {
-//        return Statement(NodeType::Input);
-//    } else if (rule.first == "Function") {
-//        return Statement(NodeType::Function);
-//    } else if (rule.first == "FunctionCall") {
-//        return Statement(NodeType::FunctionCall);
-//    } else if (rule.first == "Identifier") {
-//        return Statement(NodeType::Identifier);
-//    } else if (rule.first == "Integer") {
-//        return Statement(NodeType::Integer);
-//    } else if (rule.first == "Float") {
-//        return Statement(NodeType::Float);
-//    } else if (rule.first == "String") {
-//        return Statement(NodeType::String);
-//    } else if (rule.first == "Operator") {
-//        return Statement(NodeType::Operator);
-//    } else if (rule.first == "Comparison") {
-//        return Statement(NodeType::Comparison);
-//    } else if (rule.first == "FunctionName") {
-//        return Statement(NodeType::FunctionName);
-//    } else if (rule.first == "FunctionParameters") {
-//        return Statement(NodeType::FunctionParameters);
-//    } else if (rule.first == "Function){
-//        return Statement(NodeType::Function);
-    } else {
-        throw std::runtime_error("Error: Parsing error");
     }
+    throw std::runtime_error("Error: Parsing error");
 }
