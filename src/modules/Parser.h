@@ -10,7 +10,7 @@
 #include "../datatypes/AST.h"
 #include "../datatypes/Token.h"
 
-using StackElement = std::variant<Token, std::shared_ptr<Statement>, std::shared_ptr<Program>, int>;
+using StackElement = std::variant<Token, std::shared_ptr<Statement>, std::shared_ptr<Program>, std::list<std::shared_ptr<Statement>>, int>;
 
 class Parser {
 public:
