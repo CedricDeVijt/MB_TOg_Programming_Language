@@ -6,6 +6,7 @@
 
 
 int main(int argc, char *argv[]) {
+
     std::string filename;
     if (argc!=2) {
         std::cout << "Didn't get correct run arguments...\n Input a filename to interpret: ";
@@ -27,12 +28,14 @@ int main(int argc, char *argv[]) {
 
     mylang.interpret(buffer.str());
 
+
     std::string input = "var x = (5 + 2)";
     Tokens tokens = Lexer::lex(input);
     for(const Token& t: tokens){
         std::cout << t << std::endl;
 
     }
+
 
     return 0;
 }

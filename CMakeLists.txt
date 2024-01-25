@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(ourLang)
+project(MB_TOg_Programming_Language)
 
 set(CMAKE_CXX_STANDARD 17)
 
