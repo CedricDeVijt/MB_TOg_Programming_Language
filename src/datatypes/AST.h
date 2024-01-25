@@ -167,7 +167,6 @@ private:
     std::list<std::unique_ptr<Expression>> parameters;
 };
 
-
 class IfStatement : public Statement {
 public:
     IfStatement(std::unique_ptr<Expression> condition, std::list<std::unique_ptr<Statement>> thenBody, std::unique_ptr<Statement> elseBody = {});

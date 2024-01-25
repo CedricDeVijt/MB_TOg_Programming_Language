@@ -45,7 +45,7 @@ Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) 
                 rule = reductions.find(action.second.second)->second;
 
                 // Reduce stack and push new statement on stack
-                parsingStack.emplace(reduce(rule, parsingStack));
+                reduceStack(rule, parsingStack);
 
                 // Push goto to parsing stack
                 parsingStack.emplace(table.find(std::make_pair(rule.first, stackTop))->second.second);
@@ -64,70 +64,54 @@ Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) 
     throw std::runtime_error("Error: Parsing error");
 }
 
-std::unique_ptr<Statement>
-Parser::reduce(const std::pair<std::string, std::vector<std::string>> &rule, std::stack<StackElement> &parsingStack) {
+void Parser::reduceStack(const std::pair<std::string, std::vector<std::string>> &rule,
+                         std::stack<StackElement> &parsingStack) {
     // Pop from AST stack as many elements as the two time the size of the right hand side of the production
     std::vector<StackElement> poppedElements;
     for (int i = 0; i < rule.second.size() * 2; i++) {
         if (std::holds_alternative<Token>(parsingStack.top()) or
             std::holds_alternative<std::unique_ptr<Statement>>(parsingStack.top())) {
             poppedElements.emplace_back(std::get<Token>(parsingStack.top()));
-
             parsingStack.pop();
         }
 
         if (rule.first == "PROGRAM") {
             auto program = std::make_unique<Program>(Program({}));
-            for (auto &element: poppedElements) {
-                if (std::holds_alternative<std::unique_ptr<Statement>>(element)) {
-                    auto statement = *std::get<std::unique_ptr<Statement>>(element);
-                    auto statement_ptr = std::make_unique<Statement>(statement);
-                    program->push_back(std::move(statement_ptr));
-                } else {
-                    throw std::runtime_error("Error: Parsing error: element in stack is not a statement");
-                }
+            if (std::holds_alternative<std::list<std::unique_ptr<Statement>>>(poppedElements[0])) {
+                parsingStack.emplace(std::move(std::get<std::list<std::unique_ptr<Statement>>>(poppedElements[0])));
+            } else {
+                throw std::runtime_error("Error: Parsing error: element in stack is not a statement");
             }
-            return program;
 
-        } else if (rule.first == "BINARY_EXPRESSION") {
-            auto left = *std::get<std::unique_ptr<Statement>>(poppedElements[0]);
-            auto left_ptr = std::make_unique<Statement>(left);
-            auto right = *std::get<std::unique_ptr<Statement>>(poppedElements[2]);
-            auto right_ptr = std::make_unique<Statement>(right);
-            auto op = std::get<Token>(poppedElements[1]).getValue();
-            auto expression = std::make_unique<BinaryExpression>(BinaryExpression(std::move(left_ptr), std::move(left_ptr), op));
-            return expression;
-
-//    } else if (rule.first == "BODY") {
         } else if (rule.first == "EXPRESSION") {
             if (poppedElements.size() == 1) {
                 if (std::holds_alternative<std::unique_ptr<Statement>>(poppedElements[0])) {
-                    return std::move(std::get<std::unique_ptr<Statement>>(poppedElements[0]));
+                    parsingStack.emplace(std::move(std::get<std::unique_ptr<Statement>>(poppedElements[0])));
                 } else {
                     throw std::runtime_error("Error: Parsing error: element in stack is not a type of expression");
                 }
             }
-//    } else if (rule.first == "EXPRESSION_LOOP") {
-//    } else if (rule.first == "FUNCTION_CALL") {
-//        } else if (rule.first == "FUNCTION_DECLARATION") {
-//            auto name = std::get<Token>(poppedElements[0]).getValue();
-//            auto id = std::get<Token>(poppedElements[1]).getValue(); // TODO check if correct
-//            auto id_loop = *std::get<std::shared_ptr<Statement>>(
-//                    poppedElements[3]); // TODO moet list van statements zijn
-//            auto body = *std::get<std::shared_ptr<Statement>>(
-//                    poppedElements[5]); // TODO body moet list van statements zijn
-//            auto functionDeclaration = std::make_shared<FunctionDeclaration>(FunctionDeclaration(name, {}, {body}));
-//            return functionDeclaration;
 
+        } else if (rule.first == "FUNCTION_DECLARATION") {
+            auto identifier = std::get<Token>(poppedElements[1]).getValue();
+            auto IDLoop = std::move(std::get<std::list<std::unique_ptr<Identifier>>>(poppedElements[2]));
+            auto body = std::move(std::get<std::list<std::unique_ptr<Statement>>>(poppedElements[4]));
+            parsingStack.emplace(std::make_unique<FunctionDeclaration>(FunctionDeclaration(identifier, std::move(IDLoop), std::move(body))));
 
-//    } else if (rule.first == "ID_LOOP") {
-//    } else if (rule.first == "IF_STATEMENT") {
-        } else if (rule.first == "OP") {
-            return std::make_unique<Identifier>(Identifier(rule.second[0]));
-
-//    } else if (rule.first == "RET_STATEMENT") {
 //    } else if (rule.first == "STATEMENT") {
-//    } else if (rule.first == "STATEMENTS") {
+        } else if (rule.first == "STATEMENTS") {
+            std::list<std::unique_ptr<Statement>> statements;
+            for (auto &element: poppedElements) {
+                if (std::holds_alternative<std::unique_ptr<Statement>>(element)) {
+                    statements.push_back(std::move(std::get<std::unique_ptr<Statement>>(element)));
+                } else if (std::holds_alternative<std::list<std::unique_ptr<Statement>>>(element)) {
+                    statements.splice(statements.end(),
+                                      std::move(std::get<std::list<std::unique_ptr<Statement>>>(element)));
+                } else {
+                    throw std::runtime_error("Error: Parsing error: element in stack is not a statement");
+                }
+            }
+//            return std::move(statements);
 //    } else if (rule.first == "VAR_ASSIGN_STATEMENT") {
 //    } else if (rule.first == "VAR_DECLARATION_STATEMENT") {
 //    } else if (rule.first == "WHILE_STATEMENT") {

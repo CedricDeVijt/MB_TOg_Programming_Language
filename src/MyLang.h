@@ -7,14 +7,7 @@
 
 class MyLang {
 public:
-    explicit MyLang(const CFG &cfg);
-
-public:
-    void interpret(const std::string &input);
-
-private:
-    CFG cfg;
-
+    static void interpret(const std::string &input, const std::string &parserTablePath);
 };
 
 

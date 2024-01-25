@@ -21,15 +21,12 @@ functie delen(a, b) {
     }
 }
 
-functie modulus(a, b) {
-    geef terug a % b
-}
 
 # Hoofdprogramma
 print("Welkom bij de Eenvoudige Rekenmachine")
 getal1 = input("Voer het eerste getal in: ")
 getal2 = input("Voer het tweede getal in: ")
-operatie = input("Kies een operatie (optellen, aftrekken, vermenigvuldigen, delen, modulus): ")
+operatie = input("Kies een operatie (optellen, aftrekken, vermenigvuldigen, delen): ")
 
 getal1 = convert_naar_getal(getal1)
 getal2 = convert_naar_getal(getal2)
@@ -44,8 +41,6 @@ als operatie = "optellen" {
     resultaat = vermenigvuldigen(getal1, getal2)
 } anders als operatie = "delen" {
     resultaat = delen(getal1, getal2)
-} anders als operatie = "modulus" {
-    resultaat = modulus(getal1, getal2)
 } anders {
     print("Fout: ongeldige operatie")
     geef terug 0

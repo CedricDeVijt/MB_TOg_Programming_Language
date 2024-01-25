@@ -183,8 +183,8 @@ Tokens Lexer::lex(const std::string &input) {
     std::regex float_regex("([+-]?[0-9]+\\.[0-9]+)");
     std::regex limit_regex(";");
     std::regex string_regex("\"([^\"]*)\"|'([^']*)'");
-    std::regex open_body("{");
-    std::regex close_body("}");
+    std::regex open_body("\\{");
+    std::regex close_body("\\}");
     std::regex Return("geef terug");
 
 
@@ -236,7 +236,7 @@ Tokens Lexer::lex(const std::string &input) {
         }else if (std::regex_search(input.begin() + pos, input.end(), match, Uinput_regex,  std::regex_constants::match_continuous)) {
             tokenList.push_back({TokenType::USERINPUT, currentLine, currentColumn, match[0]});
         }else if (std::regex_search(input.begin() + pos, input.end(), match, comment_regex,  std::regex_constants::match_continuous)) {
-            tokenList.push_back({TokenType::COMMENT, currentLine, currentColumn, match[0]});
+//            tokenList.push_back({TokenType::COMMENT, currentLine, currentColumn, match[0]});
         }else if (std::regex_search(input.begin() + pos, input.end(), match, greaterThan_regex,  std::regex_constants::match_continuous)) {
             tokenList.push_back({TokenType::GREATHERTHAN, currentLine, currentColumn, match[0]});
         }else if (std::regex_search(input.begin() + pos, input.end(), match, LessThan_regex,  std::regex_constants::match_continuous)) {
