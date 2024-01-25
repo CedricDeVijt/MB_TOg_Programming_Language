@@ -22,8 +22,8 @@ private:
     Value evalReturnStatement(const Statement* statement, Env& newEnv);
     void evalIfStatement(const Statement* statement);
     void evalWhileStatement(const Statement* statement);
-    void evalPrintStatement(const Statement* statement);
-    void evalInputStatement(const Statement* statement);
+    /*void evalPrintStatement(const Statement* statement);
+    void evalInputStatement(const Statement* statement);*/
 
 public:
     explicit Executor(Env& env);

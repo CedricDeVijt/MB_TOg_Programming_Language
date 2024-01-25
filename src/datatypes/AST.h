@@ -217,7 +217,7 @@ private:
     std::unique_ptr<Expression> expression;
 };
 
-class PrintStatement : public Statement {
+/*class PrintStatement : public Statement {
 public:
     explicit PrintStatement(std::unique_ptr<Statement> expression);
     virtual ~PrintStatement() = default;
@@ -235,7 +235,7 @@ public:
     void execute(Env &env) const;
 private:
     std::string variableName;
-};
+};*/
 
 
 #endif //MB_TOG_PROGRAMMING_LANGUAGE_AST_H

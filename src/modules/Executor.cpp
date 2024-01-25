@@ -36,9 +36,9 @@ void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
         case NodeType::ReturnStatement:
             lastEvaluatedValue = evalReturnStatement(statement.get(), env);
             break;
-        case NodeType::PrintStatement:
+        /*case NodeType::PrintStatement:
             evalPrintStatement(statement.get());
-            break;
+            break;*/
     }
 }
 
@@ -184,7 +184,7 @@ void Executor::evalWhileStatement(const Statement* statement) {
     }
 }
 
-void Executor::evalPrintStatement(const Statement* statement) {
+/*void Executor::evalPrintStatement(const Statement* statement) {
     // Assuming 'statement' is a PrintStatement, and it has a method to access its expression
     const PrintStatement *printStatement = dynamic_cast<const PrintStatement *>(statement);
     if (!printStatement) {
@@ -202,4 +202,4 @@ void Executor::evalInputStatement(const Statement* statement) {
     }
 
     inputStatement->execute(env);
-}
+}*/

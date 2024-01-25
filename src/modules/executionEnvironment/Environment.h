@@ -15,6 +15,7 @@
 #include <variant>
 #include <vector>
 #include <functional>
+#include <memory>
 
 // Define a variant type that can hold different types of values
 using Value = std::variant<float, int, std::string, bool>; // Add other types as needed
@@ -48,15 +49,15 @@ using Function = std::function<Value(const std::vector<Value>&)>;
 
 class Env {
 private:
-    std::istream* stdin;
-    std::ostream* stdout;
-    std::ostream* stderr;
-    Env* parent;
+    std::shared_ptr<std::istream> stdin;
+    std::shared_ptr<std::ostream> stdout;
+    std::shared_ptr<std::ostream> stderr;
+    std::shared_ptr<Env> parent;
     std::map<std::string, Value> items;
     std::map<std::string, Function> functions;
 
 public:
-    Env(Env* parent = nullptr, std::istream* in = nullptr, std::ostream* out = nullptr, std::ostream* err = nullptr);
+    Env(std::shared_ptr<Env> parent = nullptr, std::shared_ptr<std::istream> in = nullptr, std::shared_ptr<std::ostream> out = nullptr, std::shared_ptr<std::ostream> err = nullptr);
 
     Value get(const std::string& name);
     Function getFunction(const std::string& name);
@@ -68,6 +69,9 @@ public:
     std::string toString() const;
 
     Value executeFunction(const std::string& name, const std::vector<Value>& parameters);
+
+    Value print(const std::vector<Value>& args);
+    Value input();
 };
 
 
