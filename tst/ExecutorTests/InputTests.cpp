@@ -33,11 +33,8 @@ protected:
 TEST_F(InputTest, BasicInputTest) {
     setTestInput("Test input string\n");
 
-    // Create shared pointers for the stream
-    auto sharedCin = std::make_shared<std::istream>(testInput.rdbuf());
-
-    // Create an environment with the modified cin
-    Env env(nullptr, sharedCin, nullptr, nullptr);  // nullptrs are for stdout and stderr
+    // Create a new Env object with references to the appropriate streams
+    Env env(nullptr, testInput, std::cout, std::cerr);
 
     Value value = env.input();  // Assuming input() returns a Value
     ASSERT_EQ(std::get<std::string>(value), "Test input string");
@@ -46,8 +43,7 @@ TEST_F(InputTest, BasicInputTest) {
 TEST_F(InputTest, NumericInput) {
     setTestInput("12345\n");
 
-    auto sharedCin = std::make_shared<std::istream>(testInput.rdbuf());
-    Env env(nullptr, sharedCin, nullptr, nullptr);
+    Env env(nullptr, testInput, std::cout, std::cerr);
 
     Value value = env.input();
     ASSERT_EQ(std::get<std::string>(value), "12345");
@@ -56,8 +52,7 @@ TEST_F(InputTest, NumericInput) {
 TEST_F(InputTest, EmptyInput) {
     setTestInput("\n");
 
-    auto sharedCin = std::make_shared<std::istream>(testInput.rdbuf());
-    Env env(nullptr, sharedCin, nullptr, nullptr);
+    Env env(nullptr, testInput, std::cout, std::cerr);
 
     Value value = env.input();
     ASSERT_TRUE(std::get<std::string>(value).empty());
@@ -66,8 +61,7 @@ TEST_F(InputTest, EmptyInput) {
 TEST_F(InputTest, MultipleLinesInput) {
     setTestInput("First line\nSecond line\n");
 
-    auto sharedCin = std::make_shared<std::istream>(testInput.rdbuf());
-    Env env(nullptr, sharedCin, nullptr, nullptr);
+    Env env(nullptr, testInput, std::cout, std::cerr);
 
     Value firstValue = env.input();
     Value secondValue = env.input();
@@ -79,8 +73,7 @@ TEST_F(InputTest, MultipleLinesInput) {
 TEST_F(InputTest, InputWithLeadingAndTrailingSpaces) {
     setTestInput("  Hello World  \n");
 
-    auto sharedCin = std::make_shared<std::istream>(testInput.rdbuf());
-    Env env(nullptr, sharedCin, nullptr, nullptr);
+    Env env(nullptr, testInput, std::cout, std::cerr);
 
     Value value = env.input();
     ASSERT_EQ(std::get<std::string>(value), "  Hello World  ");
@@ -89,8 +82,7 @@ TEST_F(InputTest, InputWithLeadingAndTrailingSpaces) {
 TEST_F(InputTest, InputWithSpecialCharacters) {
     setTestInput("!@# $%^ &*()\n");
 
-    auto sharedCin = std::make_shared<std::istream>(testInput.rdbuf());
-    Env env(nullptr, sharedCin, nullptr, nullptr);
+    Env env(nullptr, testInput, std::cout, std::cerr);
 
     Value value = env.input();
     ASSERT_EQ(std::get<std::string>(value), "!@# $%^ &*()");
@@ -99,8 +91,7 @@ TEST_F(InputTest, InputWithSpecialCharacters) {
 TEST_F(InputTest, MultipleConsecutiveInputs) {
     setTestInput("First\nSecond\nThird\n");
 
-    auto sharedCin = std::make_shared<std::istream>(testInput.rdbuf());
-    Env env(nullptr, sharedCin, nullptr, nullptr);
+    Env env(nullptr, testInput, std::cout, std::cerr);
 
     ASSERT_EQ(std::get<std::string>(env.input()), "First");
     ASSERT_EQ(std::get<std::string>(env.input()), "Second");
@@ -111,8 +102,7 @@ TEST_F(InputTest, InputLargeText) {
     std::string largeText(1000, 'a');  // String of 1000 'a' characters
     setTestInput(largeText + "\n");
 
-    auto sharedCin = std::make_shared<std::istream>(testInput.rdbuf());
-    Env env(nullptr, sharedCin, nullptr, nullptr);
+    Env env(nullptr, testInput, std::cout, std::cerr);
 
     Value value = env.input();
     ASSERT_EQ(std::get<std::string>(value), largeText);
@@ -121,8 +111,7 @@ TEST_F(InputTest, InputLargeText) {
 TEST_F(InputTest, InputNumericString) {
     setTestInput("1234567890\n");
 
-    auto sharedCin = std::make_shared<std::istream>(testInput.rdbuf());
-    Env env(nullptr, sharedCin, nullptr, nullptr);
+    Env env(nullptr, testInput, std::cout, std::cerr);
 
     Value value = env.input();
     ASSERT_EQ(std::get<std::string>(value), "1234567890");
