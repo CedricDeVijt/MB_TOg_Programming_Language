@@ -11,18 +11,21 @@
 #include "../datatypes/Token.h"
 
 using StackElement = std::variant<Token,
-                                  std::unique_ptr<Statement>,
-                                  std::unique_ptr<Program>,
-                                  std::list<std::unique_ptr<Statement>>,
-                                  std::list<std::unique_ptr<Identifier>>,
-                                  int>;
+        std::unique_ptr<Statement>,
+        std::unique_ptr<Program>,
+        std::unique_ptr<Expression>,
+        std::unique_ptr<Float>,
+        std::list<std::unique_ptr<Statement>>,
+        std::list<std::unique_ptr<Identifier>>,
+        int>;
 
 class Parser {
 public:
     Program parse(const Tokens &tokens, const std::string &parserTablePath);
 
 private:
-    int reduceStack (const std::pair<std::string, std::vector<std::string>> &rule, std::stack<StackElement> &parsingStack);
+    int
+    reduceStack(const std::pair<std::string, std::vector<std::string>> &rule, std::stack<StackElement> &parsingStack);
 
     int getStackTop(std::stack<StackElement> &parsingStack);
 
