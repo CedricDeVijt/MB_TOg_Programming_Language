@@ -114,12 +114,12 @@ Value BinaryExpression::evaluate(Env &env) const {
     }, leftValue, rightValue);
 }
 
-const Statement* BinaryExpression::getLeft() const {
-    return left.get();
+const std::unique_ptr<Statement>& BinaryExpression::getLeft() const {
+    return left;
 }
 
-const Statement* BinaryExpression::getRight() const {
-    return right.get();
+const std::unique_ptr<Statement>& BinaryExpression::getRight() const {
+    return right;
 }
 
 const std::string &BinaryExpression::getOp() const {

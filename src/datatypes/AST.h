@@ -62,9 +62,9 @@ public:
 
     Value evaluate(Env& env) const override;
 
-    const Statement* getLeft() const;
+    const std::unique_ptr<Statement>& getLeft() const;
 
-    const Statement* getRight() const;
+    const std::unique_ptr<Statement>& getRight() const;
 
     const std::string &getOp() const;
 
