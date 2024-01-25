@@ -3,9 +3,12 @@
 
 #include <map>
 #include <stack>
+#include <variant>
 #include "../datatypes/CFG.h"
 #include "../datatypes/AST.h"
 #include "../datatypes/Token.h"
+
+using StackElement =  std::variant<Token, Statement,int>;
 
 class Parser {
 public:

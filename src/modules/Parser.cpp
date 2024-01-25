@@ -2,8 +2,6 @@
 #include <iostream>
 #include "../datatypes/ParsingTable.h"
 
-using StackElement = std::variant<std::string, int>;
-
 Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) {
     Program program({});
 
@@ -46,7 +44,7 @@ Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) 
         auto action = *table.find(std::make_pair(token, stackTop));
 
         std::pair<std::string, std::vector<std::string>> rule;
-        std::vector<std::string> poppedElements;
+        std::vector<Token> poppedElements;
         std::pair<ActionType, int> gotoAction;
 
 
@@ -56,21 +54,21 @@ Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) 
                 parsingStack.emplace(action.second.second);
                 remainingTokens.pop_front();
                 break;
-
+//
             case ActionType::REDUCE:
                 // Get production from parsing table
                 rule = reductions.find(action.second.second)->second;
                 // Pop from AST stack as many elements as the size of the right hand side of the production
                 for (int i = 0; i < rule.second.size() * 2; i++) {
                     auto top = parsingStack.top();
-                    if (std::holds_alternative<std::string>(parsingStack.top())) {
-                        poppedElements.push_back(std::get<std::string>(parsingStack.top()));
+                    if (std::holds_alternative<Token>(top)) {
+                        poppedElements.emplace_back(std::get<Token>(top));
                     }
                     parsingStack.pop();
                 }
 
                 // Push non-terminal from production to parsing stack
-                parsingStack.emplace(rule.first);
+                // TODO add info to nonterminal in AST
 
                 // Get goto from parsing table
                 gotoAction = table.find(std::make_pair(rule.first, stackTop))->second;
@@ -80,13 +78,16 @@ Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) 
                 // Add rule to AST
                 // TODO: Add rule to AST
 
+
                 break;
             case ActionType::ACCEPT:
                 return program;
+//                return std::get<Program>parsingStack.top();
             default:
                 // Throw error
                 throw std::runtime_error("Error: Parsing error");
         }
     }
     throw std::runtime_error("Error: Parsing error");
+    return {{}};
 }
