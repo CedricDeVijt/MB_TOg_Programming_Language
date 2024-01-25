@@ -42,7 +42,10 @@ class Program : public Statement {
 public:
     Program(std::list<std::unique_ptr<Statement>> body);
 
-    const std::list<std::unique_ptr<Statement>>& getBody() const;
+    void push_back(const Statement& statement);
+
+    const std::list<Statement> &getBody() const;
+
 
 private:
     std::list<std::unique_ptr<Statement>> body;
