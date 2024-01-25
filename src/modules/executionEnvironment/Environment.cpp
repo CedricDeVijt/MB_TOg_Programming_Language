@@ -10,15 +10,8 @@
 #include <cassert>
 #include <sstream>
 
-Env::Env(std::shared_ptr<Env> parent, std::shared_ptr<std::istream> in, std::shared_ptr<std::ostream> out, std::shared_ptr<std::ostream> err)
-    : parent(parent), stdin(in), stdout(out), stderr(err) {
-    if (parent != nullptr) {
-        assert(stdin == nullptr && stdout == nullptr && stderr == nullptr);
-        stdin = parent->stdin;
-        stdout = parent->stdout;
-        stderr = parent->stderr;
-    }
-
+Env::Env(std::shared_ptr<Env> parent, std::istream& in, std::ostream& out, std::ostream& err)
+        : parent(parent), stdin(parent ? parent->stdin : in), stdout(parent ? parent->stdout : out), stderr(parent ? parent->stderr : err) {
     // Add built-in functions
     setFunction("print", [this](const std::vector<Value>& args) { return this->print(args); });
     setFunction("input", [this](const std::vector<Value>&) { return this->input(); });
@@ -106,24 +99,24 @@ Value Env::executeFunction(const std::string &name, const std::vector<Value> &pa
 
 Value Env::print(const std::vector<Value>& args) {
     // Check if the output stream pointer is valid and the stream is in a good state
-    if (!stdout || !stdout->good()) {
+    if (!stdout || !stdout.good()) {
         throw std::runtime_error("Output stream not available or in a bad state.");
     }
 
     // Clear any error flags that might be set on the stream
-    stdout->clear();
+    stdout.clear();
 
     for (const auto& arg : args) {
-        *stdout << variantValueToString(arg);
+        stdout << variantValueToString(arg);
         // Check if the stream is in a bad state after the write operation
-        if (stdout->fail()) {
+        if (stdout.fail()) {
             throw std::runtime_error("Failed to write to output stream.");
         }
     }
 
     // Write a newline and check the stream state again
-    *stdout << std::endl;
-    if (stdout->fail()) {
+    stdout << std::endl;
+    if (stdout.fail()) {
         throw std::runtime_error("Failed to write newline to output stream.");
     }
 
@@ -136,7 +129,7 @@ Value Env::input() {
     }
 
     std::string line;
-    if (std::getline(*stdin, line)) {
+    if (std::getline(stdin, line)) {
         return line;  // Successfully read a line
     } else {
         // Handle input error

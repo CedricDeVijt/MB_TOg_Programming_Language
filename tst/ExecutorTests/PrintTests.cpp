@@ -22,8 +22,7 @@ protected:
 
 TEST_F(PrintTest, BasicPrintTest) {
     // Create an environment with capturedCout as stdout
-    Env env(nullptr, nullptr, sharedCout, nullptr);  // nullptrs for stdin and stderr
-
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     // Simulate calling the print function with a string argument
     std::vector<Value> args = {"Hello, World!"};
 
@@ -32,7 +31,7 @@ TEST_F(PrintTest, BasicPrintTest) {
 }
 
 TEST_F(PrintTest, PrintMultipleDataTypes) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::vector<Value> args = {Value(42), Value(" and "), Value(3.14f)};
 
     env.print(args);
@@ -40,7 +39,7 @@ TEST_F(PrintTest, PrintMultipleDataTypes) {
 }
 
 TEST_F(PrintTest, PrintWithNoArguments) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::vector<Value> args;  // Empty arguments
 
     env.print(args);
@@ -48,7 +47,7 @@ TEST_F(PrintTest, PrintWithNoArguments) {
 }
 
 TEST_F(PrintTest, PrintBooleanValues) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::vector<Value> args = {Value(true), Value(" is not "), Value(false)};
 
     env.print(args);
@@ -56,7 +55,7 @@ TEST_F(PrintTest, PrintBooleanValues) {
 }
 
 TEST_F(PrintTest, PrintSpecialCharacters) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::vector<Value> args = {Value("Special characters: "), Value("@#$%^&*")};
 
     env.print(args);
@@ -64,7 +63,7 @@ TEST_F(PrintTest, PrintSpecialCharacters) {
 }
 
 TEST_F(PrintTest, PrintConcatenatedStrings) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::vector<Value> args = {Value("Hello"), Value(", "), Value("World"), Value("!")};
 
     env.print(args);
@@ -72,7 +71,7 @@ TEST_F(PrintTest, PrintConcatenatedStrings) {
 }
 
 TEST_F(PrintTest, PrintComplexNestedExpressions) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::vector<Value> args = {
             Value("Result: "), Value(42), Value(" - "), Value(3.14f), Value(" = "), Value(42 - 3.14f)
     };
@@ -82,7 +81,7 @@ TEST_F(PrintTest, PrintComplexNestedExpressions) {
 }
 
 TEST_F(PrintTest, PrintLongString) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::string longString(1000, 'x');  // String with 1000 'x' characters
     std::vector<Value> args = {Value(longString)};
 
@@ -91,7 +90,7 @@ TEST_F(PrintTest, PrintLongString) {
 }
 
 TEST_F(PrintTest, PrintLineBreaks) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::vector<Value> args = {Value("First Line\nSecond Line\nThird Line")};
 
     env.print(args);
@@ -99,7 +98,7 @@ TEST_F(PrintTest, PrintLineBreaks) {
 }
 
 TEST_F(PrintTest, PrintMixedNumericalTypes) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::vector<Value> args = {Value(123), Value(" + "), Value(4.56f), Value(" = "), Value(123 + 4.56f)};
 
     env.print(args);
@@ -107,7 +106,7 @@ TEST_F(PrintTest, PrintMixedNumericalTypes) {
 }
 
 TEST_F(PrintTest, PrintEmptyString) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::vector<Value> args = {Value("")};
 
     env.print(args);
@@ -115,7 +114,7 @@ TEST_F(PrintTest, PrintEmptyString) {
 }
 
 TEST_F(PrintTest, RepeatedPrintCalls) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     env.print({Value("First Call")});
     env.print({Value("Second Call")});
 
@@ -123,7 +122,7 @@ TEST_F(PrintTest, RepeatedPrintCalls) {
 }
 
 TEST_F(PrintTest, PrintEscapedCharacters) {
-    Env env(nullptr, nullptr, sharedCout, nullptr);
+    Env env(nullptr, std::cin, capturedCout, std::cerr);  // Use global objects for stdin and stderr
     std::vector<Value> args = {Value("Tab:\t"), Value("Newline:\n"), Value("Backslash:\\")};
 
     env.print(args);
