@@ -6,15 +6,27 @@
 
 Executor::Executor(Env& env) : env(env) {}
 
+bool isNotZeroOrEmpty(const Value& val) {
+    return std::visit([](auto&& arg) -> bool {
+        using T = std::decay_t<decltype(arg)>;
+        if constexpr (std::is_same_v<T, float> || std::is_same_v<T, int>) {
+            return arg != 0; // For numerical types, check if not equal to 0
+        } else if constexpr (std::is_same_v<T, std::string>) {
+            return !arg.empty(); // For string, check if not empty
+        } else if constexpr (std::is_same_v<T, bool>) {
+            return arg; // For bool, true is "not empty", false is "empty"
+        } else {
+            return true; // You can decide how to treat other types
+        }
+    }, val);
+}
+
 Value Executor::execute(const Program& program) {
     for (const auto& statement : program.getBody()) {
-        if (statement->getKind() == NodeType::ReturnStatement) {
-            return evalReturnStatement(statement.get(), env);
-        }
         evalStatement(statement);
     }
-    if (lastEvaluatedValue.index() != 0) {
-        return lastEvaluatedValue;
+    if (isNotZeroOrEmpty(returnValue)) {
+        return returnValue;
     }
     return 0;
 }
@@ -34,11 +46,8 @@ void Executor::evalStatement(const std::unique_ptr<Statement>& statement) {
             evalWhileStatement(statement.get());
             break;
         case NodeType::ReturnStatement:
-            lastEvaluatedValue = evalReturnStatement(statement.get(), env);
+            returnValue = evalReturnStatement(statement.get(), env);
             break;
-        /*case NodeType::PrintStatement:
-            evalPrintStatement(statement.get());
-            break;*/
     }
 }
 

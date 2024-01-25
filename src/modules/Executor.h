@@ -11,7 +11,7 @@
 class Executor {
 private:
     Env& env;
-    Value lastEvaluatedValue; // Because an statement is not an expression, we need to store the last evaluated value, so when we have e.g. an if statement, we can return the last evaluated valueant our thenbody is an resturnstatement we do'nt reutrn the value of the statement
+    Value returnValue; // Because an statement is not an expression, we need to store the last evaluated value, so when we have e.g. an if statement, we can return the last evaluated valueant our thenbody is an resturnstatement we don't reutrn the value of the statement
 
     void evalStatement(const std::unique_ptr<Statement>& statement);
     Value evalExpression(const Expression& expression, Env& env);
