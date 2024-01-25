@@ -1,6 +1,6 @@
-[submodule "submodules/googletest"]
-	path = submodules/googletest
+[submodule "googletest"]
+	path = googletest
 	url = https://github.com/google/googletest/
-[submodule "submodules/parsing"]
-	path = submodules/parsing
+[submodule "parsing"]
+	path = parsing
 	url = https://github.com/ArneDePeuter/parsing.git
