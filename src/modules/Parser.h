@@ -22,7 +22,7 @@ public:
     Program parse(const Tokens &tokens, const std::string &parserTablePath);
 
 private:
-    void reduceStack (const std::pair<std::string, std::vector<std::string>> &rule, std::stack<StackElement> &parsingStack);
+    int reduceStack (const std::pair<std::string, std::vector<std::string>> &rule, std::stack<StackElement> &parsingStack);
 
     int getStackTop(std::stack<StackElement> &parsingStack);
 

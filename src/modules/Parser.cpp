@@ -44,11 +44,8 @@ Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) 
                 // Get production from parsing table
                 rule = reductions.find(action.second.second)->second;
 
-                // Reduce stack and push new statement on stack
-                reduceStack(rule, parsingStack);
-
                 // Push goto to parsing stack
-                parsingStack.emplace(table.find(std::make_pair(rule.first, stackTop))->second.second);
+                parsingStack.emplace(table.find(std::make_pair(rule.first, reduceStack(rule, parsingStack)))->second.second);
                 break;
 
             case ActionType::ACCEPT:
@@ -64,8 +61,9 @@ Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) 
     throw std::runtime_error("Error: Parsing error");
 }
 
-void Parser::reduceStack(const std::pair<std::string, std::vector<std::string>> &rule,
+int Parser::reduceStack(const std::pair<std::string, std::vector<std::string>> &rule,
                          std::stack<StackElement> &parsingStack) {
+    int top;
     // Pop from AST stack as many elements as the two time the size of the right hand side of the production
     std::vector<StackElement> poppedElements;
     for (int i = 0; i < rule.second.size() * 2; i++) {
@@ -74,52 +72,53 @@ void Parser::reduceStack(const std::pair<std::string, std::vector<std::string>> 
             poppedElements.emplace_back(std::get<Token>(parsingStack.top()));
             parsingStack.pop();
         }
+    }
+    top = std::holds_alternative<int>(parsingStack.top());
 
-        if (rule.first == "PROGRAM") {
-            auto program = std::make_unique<Program>(Program({}));
-            if (std::holds_alternative<std::list<std::unique_ptr<Statement>>>(poppedElements[0])) {
-                parsingStack.emplace(std::move(std::get<std::list<std::unique_ptr<Statement>>>(poppedElements[0])));
+    if (rule.first == "PROGRAM") {
+        auto program = std::make_unique<Program>(Program({}));
+        if (std::holds_alternative<std::list<std::unique_ptr<Statement>>>(poppedElements[0])) {
+            parsingStack.emplace(std::move(std::get<std::list<std::unique_ptr<Statement>>>(poppedElements[0])));
+        } else {
+            throw std::runtime_error("Error: Parsing error: element in stack is not a statement");
+        }
+
+    } else if (rule.first == "EXPRESSION") {
+        if (poppedElements.size() == 1) {
+            if (std::holds_alternative<std::unique_ptr<Statement>>(poppedElements[0])) {
+                parsingStack.emplace(std::move(std::get<std::unique_ptr<Statement>>(poppedElements[0])));
+            } else {
+                throw std::runtime_error("Error: Parsing error: element in stack is not a type of expression");
+            }
+        }
+
+    } else if (rule.first == "FUNCTION_DECLARATION") {
+        auto identifier = std::get<Token>(poppedElements[1]).getValue();
+        auto IDLoop = std::move(std::get<std::list<std::unique_ptr<Identifier>>>(poppedElements[2]));
+        auto body = std::move(std::get<std::list<std::unique_ptr<Statement>>>(poppedElements[4]));
+        parsingStack.emplace(std::make_unique<FunctionDeclaration>(FunctionDeclaration(identifier, std::move(IDLoop), std::move(body))));
+
+//    } else if (rule.first == "STATEMENT") {
+    } else if (rule.first == "STATEMENTS") {
+        std::list<std::unique_ptr<Statement>> statements;
+        for (auto &element: poppedElements) {
+            if (std::holds_alternative<std::unique_ptr<Statement>>(element)) {
+                statements.push_back(std::move(std::get<std::unique_ptr<Statement>>(element)));
+            } else if (std::holds_alternative<std::list<std::unique_ptr<Statement>>>(element)) {
+                statements.splice(statements.end(),
+                                  std::move(std::get<std::list<std::unique_ptr<Statement>>>(element)));
             } else {
                 throw std::runtime_error("Error: Parsing error: element in stack is not a statement");
             }
-
-        } else if (rule.first == "EXPRESSION") {
-            if (poppedElements.size() == 1) {
-                if (std::holds_alternative<std::unique_ptr<Statement>>(poppedElements[0])) {
-                    parsingStack.emplace(std::move(std::get<std::unique_ptr<Statement>>(poppedElements[0])));
-                } else {
-                    throw std::runtime_error("Error: Parsing error: element in stack is not a type of expression");
-                }
-            }
-
-        } else if (rule.first == "FUNCTION_DECLARATION") {
-            auto identifier = std::get<Token>(poppedElements[1]).getValue();
-            auto IDLoop = std::move(std::get<std::list<std::unique_ptr<Identifier>>>(poppedElements[2]));
-            auto body = std::move(std::get<std::list<std::unique_ptr<Statement>>>(poppedElements[4]));
-            parsingStack.emplace(std::make_unique<FunctionDeclaration>(FunctionDeclaration(identifier, std::move(IDLoop), std::move(body))));
-
-//    } else if (rule.first == "STATEMENT") {
-        } else if (rule.first == "STATEMENTS") {
-            std::list<std::unique_ptr<Statement>> statements;
-            for (auto &element: poppedElements) {
-                if (std::holds_alternative<std::unique_ptr<Statement>>(element)) {
-                    statements.push_back(std::move(std::get<std::unique_ptr<Statement>>(element)));
-                } else if (std::holds_alternative<std::list<std::unique_ptr<Statement>>>(element)) {
-                    statements.splice(statements.end(),
-                                      std::move(std::get<std::list<std::unique_ptr<Statement>>>(element)));
-                } else {
-                    throw std::runtime_error("Error: Parsing error: element in stack is not a statement");
-                }
-            }
+        }
 //            return std::move(statements);
 //    } else if (rule.first == "VAR_ASSIGN_STATEMENT") {
 //    } else if (rule.first == "VAR_DECLARATION_STATEMENT") {
 //    } else if (rule.first == "WHILE_STATEMENT") {
-        } else {
-            throw std::runtime_error("Error: Parsing error");
-        }
+    } else {
+        throw std::runtime_error("Error: Parsing error");
     }
-    throw std::runtime_error("Error: Parsing error");
+    return top;
 }
 
 int Parser::getStackTop(std::stack<StackElement> &parsingStack) {
