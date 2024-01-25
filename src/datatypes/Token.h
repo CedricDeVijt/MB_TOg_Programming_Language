@@ -34,7 +34,10 @@ enum class TokenType {
     INPUT,
     COMMENT,
     FLOAT,
-    LIMIT
+    LIMIT,
+    OPENBODY,
+    CLOSEBODY,
+    RETURN
 };
 
 

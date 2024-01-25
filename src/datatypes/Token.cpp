@@ -45,6 +45,9 @@ std::string Token::tokenTypeToString(TokenType type) {
         case TokenType::LIMIT: return "LIMIT";
         case TokenType::STRING: return "STRING";
         case TokenType::EOFTOKEN: return "END OF FILE";
+        case TokenType::OPENBODY: return "START OF STATEMENT";
+        case TokenType::CLOSEBODY: return "END OF STATEMENT";
+        case TokenType::RETURN: return "RETURN";
 
 
         default: return "UNKNOWN";

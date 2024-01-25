@@ -51,6 +51,9 @@ Tokens Lexer::lex(const std::string &input) {
     std::regex float_regex("([+-]?[0-9]+\\.[0-9]+)");
     std::regex limit_regex(";");
     std::regex string_regex("\"([^\"]*)\"|'([^']*)'");
+    std::regex open_body("{");
+    std::regex close_body("}");
+    std::regex Return("geef terug");
 
 
     while (pos < input.size()) {
@@ -84,8 +87,8 @@ Tokens Lexer::lex(const std::string &input) {
             tokenList.push_back({TokenType::FUNCTION, currentLine, currentColumn, match[0]});
         }else if (std::regex_search(input.begin() + pos, input.end(), match, ifLoop_regex,  std::regex_constants::match_continuous)) {
             tokenList.push_back({TokenType::IF, currentLine, currentColumn, match[0]});
-            // }else if (std::regex_search(input.begin() + pos, input.end(), match, functieNaam_regex,  std::regex_constants::match_continuous)) {
-            // tokenList.push_back({TokenType::FUNCTIONNAME, 0, 0, match[0]});
+        }else if (std::regex_search(input.begin() + pos, input.end(), match, open_body,  std::regex_constants::match_continuous)) {
+             tokenList.push_back({TokenType::OPENBODY, currentLine, currentColumn, match[0]});
         }else if (std::regex_search(input.begin() + pos, input.end(), match, elseIfLoop_regex,  std::regex_constants::match_continuous)) {
             tokenList.push_back({TokenType::ELSEIF, currentLine, currentColumn, match[0]});
         }else if (std::regex_search(input.begin() + pos, input.end(), match, else_regex,  std::regex_constants::match_continuous)) {
@@ -96,8 +99,8 @@ Tokens Lexer::lex(const std::string &input) {
             tokenList.push_back({TokenType::FOR, currentLine, currentColumn, match[0]});
         }else if (std::regex_search(input.begin() + pos, input.end(), match, print_regex,  std::regex_constants::match_continuous)) {
             tokenList.push_back({TokenType::PRINT, currentLine, currentColumn, match[0]});
-            // }else if (std::regex_search(input.begin() + pos, input.end(), match, input_regex,  std::regex_constants::match_continuous)) {
-            // tokenList.push_back({TokenType::INPUT, 0, 0,match[0]});
+        }else if (std::regex_search(input.begin() + pos, input.end(), match, close_body,  std::regex_constants::match_continuous)) {
+            tokenList.push_back({TokenType::CLOSEBODY, currentLine, currentColumn,match[0]});
         }else if (std::regex_search(input.begin() + pos, input.end(), match, Uinput_regex,  std::regex_constants::match_continuous)) {
             tokenList.push_back({TokenType::USERINPUT, currentLine, currentColumn, match[0]});
         }else if (std::regex_search(input.begin() + pos, input.end(), match, comment_regex,  std::regex_constants::match_continuous)) {
@@ -108,6 +111,8 @@ Tokens Lexer::lex(const std::string &input) {
             tokenList.push_back({TokenType::LESSTHAN, currentLine, currentColumn, match[0]});
         }else if (std::regex_search(input.begin() + pos, input.end(), match, bool_regex,  std::regex_constants::match_continuous)) {
             tokenList.push_back({TokenType::BOOL, currentLine, currentColumn, match[0]});
+        }else if (std::regex_search(input.begin() + pos, input.end(), match, Return,  std::regex_constants::match_continuous)) {
+            tokenList.push_back({TokenType::RETURN, currentLine, currentColumn, match[0]});
         } else if (std::regex_search(input.begin() + pos, input.end(), match, limit_regex,  std::regex_constants::match_continuous)) {
             tokenList.push_back({TokenType::LIMIT,currentLine,currentColumn, match[0]});
             ++currentLine;

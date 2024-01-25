@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
     if (!file.is_open()) {
         throw FileNotFoundError(filename);
     }
+     */
 
     std::stringstream buffer;
     buffer << file.rdbuf();
@@ -28,7 +29,7 @@ int main(int argc, char *argv[]) {
 
     mylang.interpret(buffer.str());
 
-
+    /*
     /*std::string input = "var x = (5 + 2)";
     Tokens tokens = Lexer::lex(input);
     for(const Token& t: tokens){
