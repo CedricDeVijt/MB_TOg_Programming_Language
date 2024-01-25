@@ -15,7 +15,8 @@ Tokens Lexer::lex(const std::string &input) {
         for (size_t i = 0; i < length; ++i) {
             if (input[pos + i] == '\n') {
                 ++currentLine;
-                currentColumn = 1;
+                currentColumn = 0;
+                tokenList.pop_back();
             } else {
                 ++currentColumn;
             }
