@@ -40,11 +40,11 @@ private:
 
 class Program : public Statement {
 public:
-    Program(std::list<std::unique_ptr<Statement>> body);
+    explicit Program(std::list<std::unique_ptr<Statement>> body);
 
-    void push_back(const Statement& statement);
+    void push_back(std::unique_ptr<Statement> statement);
 
-    const std::list<Statement> &getBody() const;
+    [[nodiscard]] const std::list<std::unique_ptr<Statement>>&getBody() const;
 
 
 private:

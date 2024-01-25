@@ -16,8 +16,8 @@ const std::list<std::unique_ptr<Statement>>& Program::getBody() const {
     return body;
 }
 
-void Program::push_back(const Statement &statement) {
-    body.push_back(statement);
+void Program::push_back(std::unique_ptr<Statement> statement) {
+    body.push_back(std::move(statement));
 }
 
 Expression::Expression(NodeType kind)
