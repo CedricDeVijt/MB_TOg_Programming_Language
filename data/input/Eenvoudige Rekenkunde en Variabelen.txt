@@ -1,4 +1,4 @@
 # Eenvoudig rekenkundig programma
 var getal = 15
-var resultaat = getal + 5 * 2
-print("Het resultaat is: " + resultaat)
+#var resultaat = getal + 5 * 2
+#print("Het resultaat is: " + resultaat)

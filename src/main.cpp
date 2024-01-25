@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[]) {
 
-    std::string filename = "../../data/input/Rekenmachine.txt";
+    std::string filename = "../../data/input/Eenvoudige Rekenkunde en Variabelen.txt";
     /*if (argc!=2) {
         std::cout << "Didn't get correct run arguments...\n Input a filename to interpret: ";
         std::cin >> filename; // example: "../../data/input/Rekenmachine.txt"
@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     std::stringstream buffer;
     buffer << file.rdbuf();
 
-    MyLang::interpret(buffer.str(), "../../data/LRParsingTable.json");
+    MyLang::interpret(buffer.str(), "../../data/LRParserTable.json");
 
     /*
     /*std::string input = "var x = (5 + 2)";

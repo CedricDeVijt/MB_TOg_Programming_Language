@@ -11,7 +11,7 @@ Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) 
 
     // Initialize parsing stack
     std::stack<StackElement> parsingStack;
-    parsingStack.emplace(0); // initial state
+    parsingStack.emplace(1); // initial state
 
     // Initialize Remaining Tokens
     Tokens remainingTokens = tokens;
@@ -132,7 +132,7 @@ int Parser::getStackTop(std::stack<StackElement> &parsingStack) {
 
 std::string Parser::getNextToken(const Tokens &remainingTokens) {
     if (remainingTokens.empty()) {
-        return "eof";
+        return "$";
     } else {
         TokenType tok = remainingTokens.front().getTokenType();
         return Token::tokenTypeToString(tok);

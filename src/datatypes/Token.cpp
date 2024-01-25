@@ -16,38 +16,38 @@ bool Token::operator!=(const Token &rhs) const {
 
 std::string Token::tokenTypeToString(TokenType type) {
     switch (type) {
-        case TokenType::VAR: return "VAR";
-        case TokenType::IDENTIFIER: return "IDENTIFIER";
-        case TokenType::EQUALS: return "EQUALS";
-        case TokenType::MINUS: return "MINUS";
-        case TokenType::COMMA: return "COMMA";
-        case TokenType::OPENPAREN: return "OPENPAREN";
-        case TokenType::CLOSEPAREN: return "CLOSEPAREN";
-        case TokenType::INTEGER: return "INTEGER";
-        case TokenType::PLUS: return "PLUS";
-        case TokenType::TIMES: return "TIMES";
-        case TokenType::DIVIDE: return "DIVIDE";
-        case TokenType::BOOL: return "BOOL";
-        case TokenType::LESSTHAN: return "LESSTHAN";
-        case TokenType::GREATHERTHAN: return "GREATHERTHAN";
-        case TokenType::IF: return "IF LOOP";
-        case TokenType::ELSEIF: return "ELSE IF LOOP";
-        case TokenType::ELSE: return "ELSE LOOP";
-        case TokenType::WHILE: return "WHILE LOOP";
-        case TokenType::FUNCTION: return "FUNCTIE";
-            //case TokenType::FUNCTIONNAME: return "FUNCTIE NAAM";
-        case TokenType::FOR: return "FOR LOOP";
-        case TokenType::PRINT: return "PRINT";
-        case TokenType::USERINPUT: return "ASK FOR USER INPUT";
-        case TokenType::INPUT: return "INPUT FROM USER";
-        case TokenType::COMMENT: return "COMMENT";
-        case TokenType::FLOAT: return "FLOAT";
-        case TokenType::LIMIT: return "LIMIT";
-        case TokenType::STRING: return "STRING";
-        case TokenType::EOFTOKEN: return "END OF FILE";
-        case TokenType::OPENBODY: return "START OF STATEMENT";
-        case TokenType::CLOSEBODY: return "END OF STATEMENT";
-        case TokenType::RETURN: return "RETURN";
+        case TokenType::VAR: return "var";
+        case TokenType::IDENTIFIER: return "identifier";
+        case TokenType::EQUALS: return "equals";
+        case TokenType::MINUS: return "-";
+        case TokenType::COMMA: return "comma";
+        case TokenType::OPENPAREN: return "openparan";
+        case TokenType::CLOSEPAREN: return "closeparan";
+        case TokenType::INTEGER: return "float";
+        case TokenType::PLUS: return "+";
+        case TokenType::TIMES: return "*";
+        case TokenType::DIVIDE: return "/";
+        case TokenType::BOOL: return "bool";
+        /*case TokenType::LESSTHAN: return "<";
+        case TokenType::GREATHERTHAN: return ">";*/
+        case TokenType::IF: return "if";
+        //case TokenType::ELSEIF: return "elseif";
+        case TokenType::ELSE: return "else";
+        case TokenType::WHILE: return "while";
+        case TokenType::FUNCTION: return "function";
+        //case TokenType::FUNCTIONNAME: return "FUNCTIE NAAM";
+        //case TokenType::FOR: return "FOR LOOP";
+        //case TokenType::PRINT: return "PRINT";
+        //case TokenType::USERINPUT: return "ASK FOR USER INPUT";
+        //case TokenType::INPUT: return "INPUT FROM USER";
+        //case TokenType::COMMENT: return "comment";
+        case TokenType::FLOAT: return "float";
+        //case TokenType::LIMIT: return "LIMIT";
+        case TokenType::STRING: return "string";
+        case TokenType::EOFTOKEN: return "eof";
+        case TokenType::OPENBODY: return "bodyopen";
+        case TokenType::CLOSEBODY: return "bodyclose";
+        case TokenType::RETURN: return "return";
 
 
         default: return "UNKNOWN";

@@ -171,7 +171,7 @@ Tokens Lexer::lex(const std::string &input) {
     std::regex ifLoop_regex("als");
     std::regex elseIfLoop_regex("anders als");
     std::regex else_regex("anders");
-    std::regex functie_regex("functie\\s+([a-zA-Z_][a-zA-Z0-9_]*)");
+    std::regex functie_regex("functie");
     //std::regex functieNaam_regex("functie\\s+([a-zA-Z_][a-zA-Z0-9_]*)");
     std::regex While_regex("terwijl");
     std::regex for_regex("voor");
