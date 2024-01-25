@@ -19,7 +19,6 @@ int main(int argc, char *argv[]) {
     if (!file.is_open()) {
         throw FileNotFoundError(filename);
     }
-     */
 
     std::stringstream buffer;
     buffer << file.rdbuf();

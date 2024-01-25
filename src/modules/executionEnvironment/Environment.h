@@ -49,15 +49,15 @@ using Function = std::function<Value(const std::vector<Value>&)>;
 
 class Env {
 private:
-    std::shared_ptr<std::istream> stdin;
-    std::shared_ptr<std::ostream> stdout;
-    std::shared_ptr<std::ostream> stderr;
+    std::istream& stdin;
+    std::ostream& stdout;
+    std::ostream& stderr;
     std::shared_ptr<Env> parent;
     std::map<std::string, Value> items;
     std::map<std::string, Function> functions;
 
 public:
-    Env(std::shared_ptr<Env> parent = nullptr, std::shared_ptr<std::istream> in = nullptr, std::shared_ptr<std::ostream> out = nullptr, std::shared_ptr<std::ostream> err = nullptr);
+    Env(std::shared_ptr<Env> parent = nullptr, std::istream& in = std::cin, std::ostream& out = std::cout, std::ostream& err = std::cerr);
 
     Value get(const std::string& name);
     Function getFunction(const std::string& name);

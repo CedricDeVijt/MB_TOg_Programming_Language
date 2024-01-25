@@ -4,7 +4,135 @@
 //TODO: zin na functie als functienaam definieren
 //TODO: zin na vraag: als userinput definieren
 
+
 Tokens Lexer::lex(const std::string &input) {
+    Tokens tokens;
+    int line = 1, column = 1;
+
+    for (size_t i = 0; i < input.length(); i++) {
+        char currentChar = input[i];
+
+        // Newline handling
+        if (currentChar == '\n') {
+            line++;
+            column = 1;
+            continue;
+        }
+
+        // Skip whitespace but count columns
+        if (isspace(currentChar)) {
+            column++;
+            continue;
+        }
+
+        // Skip comments
+        if (currentChar == '#' && column == 1) {
+            while (i < input.length() && input[i] != '\n') {
+                i++;
+            }
+            continue;
+        }
+
+        // Handling string literals
+        if (currentChar == '"') {
+            std::string value;
+            size_t startColumn = column;
+            i++; // Skip the opening quotation mark
+            while (i < input.length() && input[i] != '"') {
+                // Handle escape sequences if your language supports them
+                if (input[i] == '\\' && i + 1 < input.length()) {
+                    // Example: Handle escaped quotation mark
+                    if (input[i + 1] == '"') {
+                        i++; // Skip the escape character
+                    }
+                }
+                value += input[i];
+                i++;
+            }
+
+            if (i < input.length() && input[i] == '"') {
+                // Successfully found the closing quotation mark
+                tokens.push_back(Token(TokenType::STRING, line, startColumn, value));
+                column = startColumn + value.length() + 2; // +2 for the opening and closing quotes
+            } else {
+                // Handle error: string not closed
+                // You might want to add error handling logic here
+            }
+            continue;
+        }
+
+        // Tokenize keywords and identifiers
+        // (For simplicity, only handling 'functie' and 'geef terug' and defaulting others to IDENTIFIER)
+        if (isalpha(currentChar)) {
+            std::string value;
+            int startColumn = column;
+            do {
+                value += currentChar;
+                currentChar = input[++i];
+            } while (isalpha(currentChar) || isdigit(currentChar) || currentChar == '_');
+            i--; // Adjust for the extra increment
+
+            if (value == "functie") {
+                tokens.push_back(Token(TokenType::FUNCTION, line, column, value));
+            } else if (value == "geef") {
+                // Peek ahead to check if the next word is 'terug'
+                std::string nextWord;
+                size_t j = i + 1;
+                while (j < input.length() && isspace(input[j])) j++; // Skip spaces
+
+                while (j < input.length() && isalpha(input[j])) {
+                    nextWord += input[j];
+                    j++;
+                }
+
+                if (nextWord == "terug") {
+                    i = j - 1; // Update the main loop index
+                    column += (j - startColumn);
+                    tokens.push_back(Token(TokenType::RETURN, line, startColumn, "geef terug"));
+                    continue;
+                }
+            } else {
+                // Handle other keywords and identifiers here
+                tokens.push_back(Token(TokenType::IDENTIFIER, line, column, value));
+            }
+
+
+            column += value.length();
+            continue;
+        }
+
+        // Tokenize operators and symbols
+        // (For simplicity, only handling a few)
+        switch (currentChar) {
+            case '+':
+                tokens.push_back(Token(TokenType::PLUS, line, column, "+"));
+                break;
+            case '(':
+                tokens.push_back(Token(TokenType::OPENPAREN, line, column, "("));
+                break;
+            case ')':
+                tokens.push_back(Token(TokenType::CLOSEPAREN, line, column, ")"));
+                break;
+            case '{':
+                tokens.push_back(Token(TokenType::OPENBODY, line, column, "{"));
+                break;
+            case '}':
+                tokens.push_back(Token(TokenType::CLOSEBODY, line, column, "}"));
+                break;
+            default:
+                // Unrecognized character handling
+                break;
+        }
+        column++;
+    }
+
+    // Add an EOF token at the end
+    tokens.push_back(Token(TokenType::EOFTOKEN, line, column));
+
+    return tokens;
+}
+
+/*Tokens Lexer::lex(const std::string &input) {
 
     Tokens tokenList;
     size_t pos = 0;
@@ -139,4 +267,4 @@ Tokens Lexer::lex(const std::string &input) {
     tokenList.push_back(eofToken);
     return tokenList;
 
-}
+}*/
