@@ -1,0 +1,11 @@
+# Voorbeeld van verschillende gegevenstypen
+var nummer = 42
+var decimaal = 3.14
+var tekst = "Hallo Wereld"
+var waarheidswaarde = waar
+
+print("Verschillende gegevenstypen: ")
+print("Nummer: " + nummer)
+print("Decimaal: " + decimaal)
+print("Tekst: " + tekst)
+print("Waarheidswaarde: " + waarheidswaarde)

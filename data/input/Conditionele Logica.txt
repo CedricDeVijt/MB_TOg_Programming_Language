@@ -1,0 +1,10 @@
+# Controleren of een getal positief, negatief of nul is
+var x = -5
+
+als x > 0 {
+    print("x is positief")
+} anders als x = 0 {
+    print(schrijf "x is 0")
+} anders {
+    print("x is negatief")
+}

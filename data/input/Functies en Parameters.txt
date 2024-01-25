@@ -1,0 +1,7 @@
+# Functie om twee getallen op te tellen
+functie optellen(a, b) {
+    geef terug a + b
+}
+
+var resultaat = optellen(3, 7)
+print("3 plus 7 is " + resultaat)

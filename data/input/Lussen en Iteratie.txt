@@ -1,0 +1,6 @@
+# Een eenvoudige 'terwijl' lus
+var teller = 0
+terwijl teller < 5 {
+    print("teller is " + teller)
+    teller = teller + 1
+}

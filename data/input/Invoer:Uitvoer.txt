@@ -1,0 +1,3 @@
+# Gebruikersnaam vragen en groeten
+naam = input("Voer uw naam in: ")
+print("Hallo, " + naam + "!")

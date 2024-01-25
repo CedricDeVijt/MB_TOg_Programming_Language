@@ -1,0 +1,54 @@
+# Eenvoudige Rekenmachine
+
+functie optellen(a, b) {
+    geef terug a + b
+}
+
+functie aftrekken(a, b) {
+    geef terug a - b
+}
+
+functie vermenigvuldigen(a, b) {
+    geef terug a * b
+}
+
+functie delen(a, b) {
+    als b = 0 {
+        print("Fout: delen door nul is niet toegestaan")
+        geef terug 0
+    } anders {
+        geef terug a / b
+    }
+}
+
+functie modulus(a, b) {
+    geef terug a % b
+}
+
+# Hoofdprogramma
+print("Welkom bij de Eenvoudige Rekenmachine")
+getal1 = input("Voer het eerste getal in: ")
+getal2 = input("Voer het tweede getal in: ")
+operatie = input("Kies een operatie (optellen, aftrekken, vermenigvuldigen, delen, modulus): ")
+
+getal1 = convert_naar_getal(getal1)
+getal2 = convert_naar_getal(getal2)
+
+# Uitvoeren van de berekening
+resultaat = 0
+als operatie = "optellen" {
+    resultaat = optellen(getal1, getal2)
+} anders als operatie = "aftrekken" {
+    resultaat = aftrekken(getal1, getal2)
+} anders als operatie = "vermenigvuldigen" {
+    resultaat = vermenigvuldigen(getal1, getal2)
+} anders als operatie = "delen" {
+    resultaat = delen(getal1, getal2)
+} anders als operatie = "modulus" {
+    resultaat = modulus(getal1, getal2)
+} anders {
+    print("Fout: ongeldige operatie")
+    geef terug 0
+}
+
+print("Het resultaat is: " + resultaat)
