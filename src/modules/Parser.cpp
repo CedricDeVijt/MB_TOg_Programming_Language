@@ -11,7 +11,7 @@ Program Parser::parse(const Tokens &tokens, const std::string &parserTablePath) 
 
     // Initialize parsing stack
     std::stack<StackElement> parsingStack;
-    parsingStack.emplace(1); // initial state
+    parsingStack.emplace(0); // initial state
 
     // Initialize Remaining Tokens
     Tokens remainingTokens = tokens;
@@ -72,8 +72,14 @@ int Parser::reduceStack(const std::pair<std::string, std::vector<std::string>> &
     for (int i = 0; i < rule.second.size() * 2; i++) {
         if (std::holds_alternative<Token>(parsingStack.top())) {
             poppedElements.emplace_back(std::get<Token>(parsingStack.top()));
-        } else if (std::holds_alternative<std::unique_ptr<Statement>>(parsingStack.top())){
+        } else if (std::holds_alternative<std::unique_ptr<Statement>>(parsingStack.top())) {
             poppedElements.emplace_back(std::move(std::get<std::unique_ptr<Statement>>(parsingStack.top())));
+        } else if (std::holds_alternative<std::unique_ptr<Expression>>(parsingStack.top())) {
+            poppedElements.emplace_back(std::move(std::get<std::unique_ptr<Expression>>(parsingStack.top())));
+        } else if (std::holds_alternative<std::unique_ptr<Float>>(parsingStack.top())) {
+            poppedElements.emplace_back(std::move(std::get<std::unique_ptr<Float>>(parsingStack.top())));
+        } else if (std::holds_alternative<std::list<std::unique_ptr<Statement>>>(parsingStack.top())) {
+            poppedElements.emplace_back(std::move(std::get<std::list<std::unique_ptr<Statement>>>(parsingStack.top())));
         }
         parsingStack.pop();
     }
@@ -103,20 +109,34 @@ int Parser::reduceStack(const std::pair<std::string, std::vector<std::string>> &
         parsingStack.emplace(std::make_unique<FunctionDeclaration>(
                 FunctionDeclaration(identifier, std::move(IDLoop), std::move(body))));
 
-//    } else if (rule.first == "STATEMENT") {
-    } else if (rule.first == "STATEMENTS") {
-        std::list<std::unique_ptr<Statement>> statements;
-        for (auto &element: poppedElements) {
-            if (std::holds_alternative<std::unique_ptr<Statement>>(element)) {
-                statements.push_back(std::move(std::get<std::unique_ptr<Statement>>(element)));
-            } else if (std::holds_alternative<std::list<std::unique_ptr<Statement>>>(element)) {
-                statements.splice(statements.end(),
-                                  std::move(std::get<std::list<std::unique_ptr<Statement>>>(element)));
-            } else {
-                throw std::runtime_error("Error: Parsing error: element in stack is not a statement");
+    } else if (rule.first == "STATEMENT") {
+        if (rule.second[0] == "VAR_DECLARATION_STATEMENT") {
+            if (std::holds_alternative<std::unique_ptr<Statement>>(poppedElements[0])) {
+                parsingStack.emplace(std::move(std::get<std::unique_ptr<Statement>>(poppedElements[0])));
             }
         }
-//        parsingStack.emplace(std::move(statements));
+
+    } else if (rule.first == "STATEMENTS") {
+        if (poppedElements.empty()) {
+            parsingStack.emplace(std::list<std::unique_ptr<Statement>>());
+        } else {
+            std::list<std::unique_ptr<Statement>> statements;
+            for (auto &element: poppedElements) {
+                if (std::holds_alternative<std::unique_ptr<Statement>>(element)) {
+                    statements.emplace_back(std::move(std::get<std::unique_ptr<Statement>>(element)));
+                } else if (std::holds_alternative<std::list<std::unique_ptr<Statement>>>(element)) {
+                    statements.splice(statements.end(),
+                                      std::move(std::get<std::list<std::unique_ptr<Statement>>>(element)));
+                }
+            }
+            parsingStack.push(std::move(statements));
+
+//            parsingStack.emplace(std::move(std::get<std::list<std::unique_ptr<Statement>>>(poppedElements[1])));
+//            auto a =std::move(std::get<std::unique_ptr<Statement>>(poppedElements[0]));
+//            Statement *b = a.get();
+//
+//            std::get<std::list<std::unique_ptr<Statement>>>(parsingStack.top()).emplace_back(std::make_unique<std::unique_ptr<Statement>>(b));
+        }
 
     } else if (rule.first == "FACTOR") {
         if (rule.second[0] == "float") {
@@ -125,8 +145,11 @@ int Parser::reduceStack(const std::pair<std::string, std::vector<std::string>> &
             parsingStack.emplace(std::make_unique<Float>((std::stof(value))));
         }
     } else if (rule.first == "VAR_DECLARATION_STATEMENT") {
-        auto a = std::get<std::unique_ptr<Expression>>(std::move(poppedElements[0]));
-        auto id = std::get<Token>(poppedElements[2]).getValue();
+        std::unique_ptr<Expression> a;
+        if (std::holds_alternative<std::unique_ptr<Float>>(poppedElements[0])) {
+            a = std::get<std::unique_ptr<Float>>(std::move(poppedElements[0]));
+        }
+        auto id = std::get<Token>(poppedElements[1]).getValue();
         parsingStack.emplace(std::make_unique<AssignmentStatement>(Identifier(id), std::move(a)));
 
 //    } else if (rule.first == "WHILE_STATEMENT") {

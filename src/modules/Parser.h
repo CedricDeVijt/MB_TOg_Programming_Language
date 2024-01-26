@@ -16,6 +16,7 @@ using StackElement = std::variant<Token,
         std::unique_ptr<Expression>,
         std::unique_ptr<Float>,
         std::list<std::unique_ptr<Statement>>,
+        std::list<std::unique_ptr<AssignmentStatement>>,
         std::list<std::unique_ptr<Identifier>>,
         int>;
 
