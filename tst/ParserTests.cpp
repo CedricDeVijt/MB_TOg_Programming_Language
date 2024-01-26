@@ -1,5 +1,4 @@
 #include "gtest/gtest.h"
-#include "modules/Parser.h"
 #include "modules/Lexer.h"
 #include "datatypes/CFG.h"
 
