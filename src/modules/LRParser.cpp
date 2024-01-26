@@ -23,6 +23,7 @@ bool LRParser::parse() {
             case ActionType::ACCEPT:
                 return true;
             default:
+                return false;
         }
     }
 }
