@@ -3,7 +3,6 @@
 
 #include "./modules/Lexer.h"
 #include "./modules/Executor.h"
-#include "./modules/Parser.h"
 
 class MyLang {
 public:

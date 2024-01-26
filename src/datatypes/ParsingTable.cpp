@@ -5,7 +5,7 @@
 
 using json = nlohmann::json;
 
-std::map<int, std::pair<std::string, std::vector<std::string>>> ParsingTable::getReductions(const std::string &path) {
+ParsingTable::ParsingTable(const std::string &path) {
     // check if path is a json file
     if (path.substr(path.find_last_of('.') + 1) != "json") {
         throw std::invalid_argument("ParsingTable: path is not a json file");
@@ -21,7 +21,6 @@ std::map<int, std::pair<std::string, std::vector<std::string>>> ParsingTable::ge
     json tableJson;
     tableFile >> tableJson;
 
-    std::map<int, std::pair<std::string, std::vector<std::string>>> reductions;
     // Reduction rules
     for (const auto &rule: tableJson["Reductions"]) {
         auto nr = rule["nr"].get<int>();
@@ -31,27 +30,6 @@ std::map<int, std::pair<std::string, std::vector<std::string>>> ParsingTable::ge
         reductions[nr] = std::make_pair(left, right);
     }
 
-    return reductions;
-}
-
-std::map<std::pair<std::string, int>, std::pair<ActionType, int>> ParsingTable::getTable(const std::string &path) {
-    // check if path is a json file
-    if (path.substr(path.find_last_of('.') + 1) != "json") {
-        throw std::invalid_argument("ParsingTable: path is not a json file");
-    }
-
-    // Open json file
-    // Load parsing table from json file
-    std::ifstream tableFile(path);
-    if (!tableFile.is_open()) {
-        // Handle file not found or other errors
-        throw std::runtime_error("Error: Unable to open parsing table file.");
-    }
-    json tableJson;
-    tableFile >> tableJson;
-
-    std::map<std::pair<std::string, int>, std::pair<ActionType, int>> table;
-    // Table
     for (const auto &entry: tableJson["Table"]) {
         auto col = entry["col"].get<std::string>();
         auto row = entry["row"].get<int>();
@@ -60,7 +38,6 @@ std::map<std::pair<std::string, int>, std::pair<ActionType, int>> ParsingTable::
 
         table[std::make_pair(col, row)] = std::make_pair(getActionType(type), value);
     }
-    return table;
 }
 
 ActionType ParsingTable::getActionType(const std::string &actionType) {
@@ -77,4 +54,12 @@ ActionType ParsingTable::getActionType(const std::string &actionType) {
     } else {
         throw std::runtime_error("Error: Invalid action type.");
     }
+}
+
+const std::map<int, std::pair<std::string, std::vector<std::string>>> &ParsingTable::getReductions() const {
+    return reductions;
+}
+
+const std::map<std::pair<std::string, int>, std::pair<ActionType, int>> &ParsingTable::getTable() const {
+    return table;
 }

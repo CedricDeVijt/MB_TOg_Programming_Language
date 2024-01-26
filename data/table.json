@@ -1,0 +1,6965 @@
+{
+"Reductions": [
+{
+"left": "STATEMENTS",
+"nr": 0,
+"right": []
+},
+{
+"left": "S",
+"nr": 1,
+"right": [
+"PROGRAM"
+]
+},
+{
+"left": "STATEMENT",
+"nr": 2,
+"right": [
+"FUNCTION_DECLARATION"
+]
+},
+{
+"left": "STATEMENT",
+"nr": 3,
+"right": [
+"VAR_ASSIGN_STATEMENT"
+]
+},
+{
+"left": "STATEMENT",
+"nr": 4,
+"right": [
+"FUNCTION_CALL"
+]
+},
+{
+"left": "STATEMENT",
+"nr": 5,
+"right": [
+"IF_STATEMENT"
+]
+},
+{
+"left": "PROGRAM",
+"nr": 6,
+"right": [
+"STATEMENTS",
+"eof"
+]
+},
+{
+"left": "STATEMENT",
+"nr": 7,
+"right": [
+"WHILE_STATEMENT"
+]
+},
+{
+"left": "STATEMENTS",
+"nr": 8,
+"right": [
+"STATEMENTS",
+"STATEMENT"
+]
+},
+{
+"left": "STATEMENT",
+"nr": 9,
+"right": [
+"RET_STATEMENT"
+]
+},
+{
+"left": "FACTOR",
+"nr": 10,
+"right": [
+"string"
+]
+},
+{
+"left": "FACTOR",
+"nr": 11,
+"right": [
+"float"
+]
+},
+{
+"left": "FACTOR",
+"nr": 12,
+"right": [
+"identifier"
+]
+},
+{
+"left": "MUL_DIV_EXPRESSION",
+"nr": 13,
+"right": []
+},
+{
+"left": "FACTOR",
+"nr": 14,
+"right": [
+"FUNCTION_CALL"
+]
+},
+{
+"left": "ADD_SUB_EXPRESSION",
+"nr": 15,
+"right": []
+},
+{
+"left": "EXPRESSION",
+"nr": 16,
+"right": [
+"BINARY_EXPRESSION"
+]
+},
+{
+"left": "FACTOR",
+"nr": 17,
+"right": [
+"bool"
+]
+},
+{
+"left": "RET_STATEMENT",
+"nr": 18,
+"right": [
+"return",
+"EXPRESSION"
+]
+},
+{
+"left": "EXPRESSION_LOOP",
+"nr": 19,
+"right": []
+},
+{
+"left": "TERM",
+"nr": 20,
+"right": [
+"FACTOR",
+"MUL_DIV_EXPRESSION"
+]
+},
+{
+"left": "BINARY_EXPRESSION",
+"nr": 21,
+"right": [
+"TERM",
+"ADD_SUB_EXPRESSION"
+]
+},
+{
+"left": "WHILE_STATEMENT",
+"nr": 22,
+"right": [
+"while",
+"EXPRESSION",
+"BODY"
+]
+},
+{
+"left": "ID_LOOP",
+"nr": 23,
+"right": []
+},
+{
+"left": "IF_STATEMENT",
+"nr": 24,
+"right": [
+"if",
+"EXPRESSION",
+"BODY"
+]
+},
+{
+"left": "EXPRESSION_LOOP",
+"nr": 25,
+"right": [
+"EXPRESSION"
+]
+},
+{
+"left": "VAR_ASSIGN_STATEMENT",
+"nr": 26,
+"right": [
+"identifier",
+"equals",
+"EXPRESSION"
+]
+},
+{
+"left": "ID_LOOP",
+"nr": 27,
+"right": [
+"identifier"
+]
+},
+{
+"left": "FUNCTION_CALL",
+"nr": 28,
+"right": [
+"identifier",
+"openparan",
+"EXPRESSION_LOOP",
+"closeparan"
+]
+},
+{
+"left": "MUL_DIV_EXPRESSION",
+"nr": 29,
+"right": [
+"/",
+"FACTOR",
+"MUL_DIV_EXPRESSION"
+]
+},
+{
+"left": "MUL_DIV_EXPRESSION",
+"nr": 30,
+"right": [
+"*",
+"FACTOR",
+"MUL_DIV_EXPRESSION"
+]
+},
+{
+"left": "ADD_SUB_EXPRESSION",
+"nr": 31,
+"right": [
+"+",
+"TERM",
+"ADD_SUB_EXPRESSION"
+]
+},
+{
+"left": "ADD_SUB_EXPRESSION",
+"nr": 32,
+"right": [
+"-",
+"TERM",
+"ADD_SUB_EXPRESSION"
+]
+},
+{
+"left": "BODY",
+"nr": 33,
+"right": [
+"bodyopen",
+"STATEMENTS",
+"bodyclose"
+]
+},
+{
+"left": "IF_STATEMENT",
+"nr": 34,
+"right": [
+"if",
+"EXPRESSION",
+"BODY",
+"else",
+"BODY"
+]
+},
+{
+"left": "EXPRESSION_LOOP",
+"nr": 35,
+"right": [
+"EXPRESSION",
+"comma",
+"EXPRESSION_LOOP"
+]
+},
+{
+"left": "ID_LOOP",
+"nr": 36,
+"right": [
+"identifier",
+"comma",
+"ID_LOOP"
+]
+},
+{
+"left": "FUNCTION_DECLARATION",
+"nr": 37,
+"right": [
+"function",
+"identifier",
+"openparan",
+"ID_LOOP",
+"closeparan",
+"BODY"
+]
+}
+],
+"Table": [
+{
+"col": "PROGRAM",
+"row": 0,
+"type": "GOTO",
+"value": 2
+},
+{
+"col": "STATEMENTS",
+"row": 0,
+"type": "GOTO",
+"value": 1
+},
+{
+"col": "eof",
+"row": 0,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "function",
+"row": 0,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "identifier",
+"row": 0,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "if",
+"row": 0,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "return",
+"row": 0,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "while",
+"row": 0,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "FUNCTION_CALL",
+"row": 1,
+"type": "GOTO",
+"value": 8
+},
+{
+"col": "FUNCTION_DECLARATION",
+"row": 1,
+"type": "GOTO",
+"value": 4
+},
+{
+"col": "IF_STATEMENT",
+"row": 1,
+"type": "GOTO",
+"value": 9
+},
+{
+"col": "RET_STATEMENT",
+"row": 1,
+"type": "GOTO",
+"value": 14
+},
+{
+"col": "STATEMENT",
+"row": 1,
+"type": "GOTO",
+"value": 13
+},
+{
+"col": "VAR_ASSIGN_STATEMENT",
+"row": 1,
+"type": "GOTO",
+"value": 5
+},
+{
+"col": "WHILE_STATEMENT",
+"row": 1,
+"type": "GOTO",
+"value": 11
+},
+{
+"col": "eof",
+"row": 1,
+"type": "SHIFT",
+"value": 10
+},
+{
+"col": "function",
+"row": 1,
+"type": "SHIFT",
+"value": 7
+},
+{
+"col": "identifier",
+"row": 1,
+"type": "SHIFT",
+"value": 15
+},
+{
+"col": "if",
+"row": 1,
+"type": "SHIFT",
+"value": 12
+},
+{
+"col": "return",
+"row": 1,
+"type": "SHIFT",
+"value": 6
+},
+{
+"col": "while",
+"row": 1,
+"type": "SHIFT",
+"value": 3
+},
+{
+"col": "$",
+"row": 2,
+"type": "ACCEPT",
+"value": 0
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 3,
+"type": "GOTO",
+"value": 22
+},
+{
+"col": "EXPRESSION",
+"row": 3,
+"type": "GOTO",
+"value": 24
+},
+{
+"col": "FACTOR",
+"row": 3,
+"type": "GOTO",
+"value": 19
+},
+{
+"col": "FUNCTION_CALL",
+"row": 3,
+"type": "GOTO",
+"value": 20
+},
+{
+"col": "TERM",
+"row": 3,
+"type": "GOTO",
+"value": 21
+},
+{
+"col": "bool",
+"row": 3,
+"type": "SHIFT",
+"value": 23
+},
+{
+"col": "float",
+"row": 3,
+"type": "SHIFT",
+"value": 17
+},
+{
+"col": "identifier",
+"row": 3,
+"type": "SHIFT",
+"value": 18
+},
+{
+"col": "string",
+"row": 3,
+"type": "SHIFT",
+"value": 16
+},
+{
+"col": "eof",
+"row": 4,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "function",
+"row": 4,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "identifier",
+"row": 4,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "if",
+"row": 4,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "return",
+"row": 4,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "while",
+"row": 4,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "eof",
+"row": 5,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "function",
+"row": 5,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "identifier",
+"row": 5,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "if",
+"row": 5,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "return",
+"row": 5,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "while",
+"row": 5,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 6,
+"type": "GOTO",
+"value": 32
+},
+{
+"col": "EXPRESSION",
+"row": 6,
+"type": "GOTO",
+"value": 33
+},
+{
+"col": "FACTOR",
+"row": 6,
+"type": "GOTO",
+"value": 29
+},
+{
+"col": "FUNCTION_CALL",
+"row": 6,
+"type": "GOTO",
+"value": 26
+},
+{
+"col": "TERM",
+"row": 6,
+"type": "GOTO",
+"value": 30
+},
+{
+"col": "bool",
+"row": 6,
+"type": "SHIFT",
+"value": 25
+},
+{
+"col": "float",
+"row": 6,
+"type": "SHIFT",
+"value": 28
+},
+{
+"col": "identifier",
+"row": 6,
+"type": "SHIFT",
+"value": 31
+},
+{
+"col": "string",
+"row": 6,
+"type": "SHIFT",
+"value": 27
+},
+{
+"col": "identifier",
+"row": 7,
+"type": "SHIFT",
+"value": 34
+},
+{
+"col": "eof",
+"row": 8,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "function",
+"row": 8,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "identifier",
+"row": 8,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "if",
+"row": 8,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "return",
+"row": 8,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "while",
+"row": 8,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "eof",
+"row": 9,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "function",
+"row": 9,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "identifier",
+"row": 9,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "if",
+"row": 9,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "return",
+"row": 9,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "while",
+"row": 9,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "$",
+"row": 10,
+"type": "REDUCE",
+"value": 6
+},
+{
+"col": "eof",
+"row": 11,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "function",
+"row": 11,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "identifier",
+"row": 11,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "if",
+"row": 11,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "return",
+"row": 11,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "while",
+"row": 11,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 12,
+"type": "GOTO",
+"value": 22
+},
+{
+"col": "EXPRESSION",
+"row": 12,
+"type": "GOTO",
+"value": 35
+},
+{
+"col": "FACTOR",
+"row": 12,
+"type": "GOTO",
+"value": 19
+},
+{
+"col": "FUNCTION_CALL",
+"row": 12,
+"type": "GOTO",
+"value": 20
+},
+{
+"col": "TERM",
+"row": 12,
+"type": "GOTO",
+"value": 21
+},
+{
+"col": "bool",
+"row": 12,
+"type": "SHIFT",
+"value": 23
+},
+{
+"col": "float",
+"row": 12,
+"type": "SHIFT",
+"value": 17
+},
+{
+"col": "identifier",
+"row": 12,
+"type": "SHIFT",
+"value": 18
+},
+{
+"col": "string",
+"row": 12,
+"type": "SHIFT",
+"value": 16
+},
+{
+"col": "eof",
+"row": 13,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "function",
+"row": 13,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "identifier",
+"row": 13,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "if",
+"row": 13,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "return",
+"row": 13,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "while",
+"row": 13,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "eof",
+"row": 14,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "function",
+"row": 14,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "identifier",
+"row": 14,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "if",
+"row": 14,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "return",
+"row": 14,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "while",
+"row": 14,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "equals",
+"row": 15,
+"type": "SHIFT",
+"value": 37
+},
+{
+"col": "openparan",
+"row": 15,
+"type": "SHIFT",
+"value": 36
+},
+{
+"col": "*",
+"row": 16,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "+",
+"row": 16,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "-",
+"row": 16,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "/",
+"row": 16,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "bodyopen",
+"row": 16,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "*",
+"row": 17,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "+",
+"row": 17,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "-",
+"row": 17,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "/",
+"row": 17,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "bodyopen",
+"row": 17,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "*",
+"row": 18,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "+",
+"row": 18,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "-",
+"row": 18,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "/",
+"row": 18,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "bodyopen",
+"row": 18,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "openparan",
+"row": 18,
+"type": "SHIFT",
+"value": 38
+},
+{
+"col": "*",
+"row": 19,
+"type": "SHIFT",
+"value": 40
+},
+{
+"col": "+",
+"row": 19,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 19,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 19,
+"type": "SHIFT",
+"value": 39
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 19,
+"type": "GOTO",
+"value": 41
+},
+{
+"col": "bodyopen",
+"row": 19,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "*",
+"row": 20,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "+",
+"row": 20,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "-",
+"row": 20,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "/",
+"row": 20,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "bodyopen",
+"row": 20,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "+",
+"row": 21,
+"type": "SHIFT",
+"value": 42
+},
+{
+"col": "-",
+"row": 21,
+"type": "SHIFT",
+"value": 43
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 21,
+"type": "GOTO",
+"value": 44
+},
+{
+"col": "bodyopen",
+"row": 21,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "bodyopen",
+"row": 22,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "*",
+"row": 23,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "+",
+"row": 23,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "-",
+"row": 23,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "/",
+"row": 23,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "bodyopen",
+"row": 23,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "BODY",
+"row": 24,
+"type": "GOTO",
+"value": 46
+},
+{
+"col": "bodyopen",
+"row": 24,
+"type": "SHIFT",
+"value": 45
+},
+{
+"col": "*",
+"row": 25,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "+",
+"row": 25,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "-",
+"row": 25,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "/",
+"row": 25,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "eof",
+"row": 25,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "function",
+"row": 25,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "identifier",
+"row": 25,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "if",
+"row": 25,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "return",
+"row": 25,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "while",
+"row": 25,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "*",
+"row": 26,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "+",
+"row": 26,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "-",
+"row": 26,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "/",
+"row": 26,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "eof",
+"row": 26,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "function",
+"row": 26,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "identifier",
+"row": 26,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "if",
+"row": 26,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "return",
+"row": 26,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "while",
+"row": 26,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "*",
+"row": 27,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "+",
+"row": 27,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "-",
+"row": 27,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "/",
+"row": 27,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "eof",
+"row": 27,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "function",
+"row": 27,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "identifier",
+"row": 27,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "if",
+"row": 27,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "return",
+"row": 27,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "while",
+"row": 27,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "*",
+"row": 28,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "+",
+"row": 28,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "-",
+"row": 28,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "/",
+"row": 28,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "eof",
+"row": 28,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "function",
+"row": 28,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "identifier",
+"row": 28,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "if",
+"row": 28,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "return",
+"row": 28,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "while",
+"row": 28,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "*",
+"row": 29,
+"type": "SHIFT",
+"value": 48
+},
+{
+"col": "+",
+"row": 29,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 29,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 29,
+"type": "SHIFT",
+"value": 47
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 29,
+"type": "GOTO",
+"value": 49
+},
+{
+"col": "eof",
+"row": 29,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "function",
+"row": 29,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "identifier",
+"row": 29,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "if",
+"row": 29,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "return",
+"row": 29,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "while",
+"row": 29,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "+",
+"row": 30,
+"type": "SHIFT",
+"value": 50
+},
+{
+"col": "-",
+"row": 30,
+"type": "SHIFT",
+"value": 51
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 30,
+"type": "GOTO",
+"value": 52
+},
+{
+"col": "eof",
+"row": 30,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "function",
+"row": 30,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "identifier",
+"row": 30,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "if",
+"row": 30,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "return",
+"row": 30,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "while",
+"row": 30,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "*",
+"row": 31,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "+",
+"row": 31,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "-",
+"row": 31,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "/",
+"row": 31,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "eof",
+"row": 31,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "function",
+"row": 31,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "identifier",
+"row": 31,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "if",
+"row": 31,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "openparan",
+"row": 31,
+"type": "SHIFT",
+"value": 53
+},
+{
+"col": "return",
+"row": 31,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "while",
+"row": 31,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "eof",
+"row": 32,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "function",
+"row": 32,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "identifier",
+"row": 32,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "if",
+"row": 32,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "return",
+"row": 32,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "while",
+"row": 32,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "eof",
+"row": 33,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "function",
+"row": 33,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "identifier",
+"row": 33,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "if",
+"row": 33,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "return",
+"row": 33,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "while",
+"row": 33,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "openparan",
+"row": 34,
+"type": "SHIFT",
+"value": 54
+},
+{
+"col": "BODY",
+"row": 35,
+"type": "GOTO",
+"value": 56
+},
+{
+"col": "bodyopen",
+"row": 35,
+"type": "SHIFT",
+"value": 55
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 36,
+"type": "GOTO",
+"value": 60
+},
+{
+"col": "EXPRESSION",
+"row": 36,
+"type": "GOTO",
+"value": 63
+},
+{
+"col": "EXPRESSION_LOOP",
+"row": 36,
+"type": "GOTO",
+"value": 65
+},
+{
+"col": "FACTOR",
+"row": 36,
+"type": "GOTO",
+"value": 66
+},
+{
+"col": "FUNCTION_CALL",
+"row": 36,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "TERM",
+"row": 36,
+"type": "GOTO",
+"value": 61
+},
+{
+"col": "bool",
+"row": 36,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "closeparan",
+"row": 36,
+"type": "REDUCE",
+"value": 19
+},
+{
+"col": "float",
+"row": 36,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 36,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 36,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 37,
+"type": "GOTO",
+"value": 32
+},
+{
+"col": "EXPRESSION",
+"row": 37,
+"type": "GOTO",
+"value": 67
+},
+{
+"col": "FACTOR",
+"row": 37,
+"type": "GOTO",
+"value": 29
+},
+{
+"col": "FUNCTION_CALL",
+"row": 37,
+"type": "GOTO",
+"value": 26
+},
+{
+"col": "TERM",
+"row": 37,
+"type": "GOTO",
+"value": 30
+},
+{
+"col": "bool",
+"row": 37,
+"type": "SHIFT",
+"value": 25
+},
+{
+"col": "float",
+"row": 37,
+"type": "SHIFT",
+"value": 28
+},
+{
+"col": "identifier",
+"row": 37,
+"type": "SHIFT",
+"value": 31
+},
+{
+"col": "string",
+"row": 37,
+"type": "SHIFT",
+"value": 27
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 38,
+"type": "GOTO",
+"value": 60
+},
+{
+"col": "EXPRESSION",
+"row": 38,
+"type": "GOTO",
+"value": 63
+},
+{
+"col": "EXPRESSION_LOOP",
+"row": 38,
+"type": "GOTO",
+"value": 68
+},
+{
+"col": "FACTOR",
+"row": 38,
+"type": "GOTO",
+"value": 66
+},
+{
+"col": "FUNCTION_CALL",
+"row": 38,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "TERM",
+"row": 38,
+"type": "GOTO",
+"value": 61
+},
+{
+"col": "bool",
+"row": 38,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "closeparan",
+"row": 38,
+"type": "REDUCE",
+"value": 19
+},
+{
+"col": "float",
+"row": 38,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 38,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 38,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "FACTOR",
+"row": 39,
+"type": "GOTO",
+"value": 69
+},
+{
+"col": "FUNCTION_CALL",
+"row": 39,
+"type": "GOTO",
+"value": 20
+},
+{
+"col": "bool",
+"row": 39,
+"type": "SHIFT",
+"value": 23
+},
+{
+"col": "float",
+"row": 39,
+"type": "SHIFT",
+"value": 17
+},
+{
+"col": "identifier",
+"row": 39,
+"type": "SHIFT",
+"value": 18
+},
+{
+"col": "string",
+"row": 39,
+"type": "SHIFT",
+"value": 16
+},
+{
+"col": "FACTOR",
+"row": 40,
+"type": "GOTO",
+"value": 70
+},
+{
+"col": "FUNCTION_CALL",
+"row": 40,
+"type": "GOTO",
+"value": 20
+},
+{
+"col": "bool",
+"row": 40,
+"type": "SHIFT",
+"value": 23
+},
+{
+"col": "float",
+"row": 40,
+"type": "SHIFT",
+"value": 17
+},
+{
+"col": "identifier",
+"row": 40,
+"type": "SHIFT",
+"value": 18
+},
+{
+"col": "string",
+"row": 40,
+"type": "SHIFT",
+"value": 16
+},
+{
+"col": "+",
+"row": 41,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "-",
+"row": 41,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "bodyopen",
+"row": 41,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "FACTOR",
+"row": 42,
+"type": "GOTO",
+"value": 19
+},
+{
+"col": "FUNCTION_CALL",
+"row": 42,
+"type": "GOTO",
+"value": 20
+},
+{
+"col": "TERM",
+"row": 42,
+"type": "GOTO",
+"value": 71
+},
+{
+"col": "bool",
+"row": 42,
+"type": "SHIFT",
+"value": 23
+},
+{
+"col": "float",
+"row": 42,
+"type": "SHIFT",
+"value": 17
+},
+{
+"col": "identifier",
+"row": 42,
+"type": "SHIFT",
+"value": 18
+},
+{
+"col": "string",
+"row": 42,
+"type": "SHIFT",
+"value": 16
+},
+{
+"col": "FACTOR",
+"row": 43,
+"type": "GOTO",
+"value": 19
+},
+{
+"col": "FUNCTION_CALL",
+"row": 43,
+"type": "GOTO",
+"value": 20
+},
+{
+"col": "TERM",
+"row": 43,
+"type": "GOTO",
+"value": 72
+},
+{
+"col": "bool",
+"row": 43,
+"type": "SHIFT",
+"value": 23
+},
+{
+"col": "float",
+"row": 43,
+"type": "SHIFT",
+"value": 17
+},
+{
+"col": "identifier",
+"row": 43,
+"type": "SHIFT",
+"value": 18
+},
+{
+"col": "string",
+"row": 43,
+"type": "SHIFT",
+"value": 16
+},
+{
+"col": "bodyopen",
+"row": 44,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "STATEMENTS",
+"row": 45,
+"type": "GOTO",
+"value": 73
+},
+{
+"col": "bodyclose",
+"row": 45,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "function",
+"row": 45,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "identifier",
+"row": 45,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "if",
+"row": 45,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "return",
+"row": 45,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "while",
+"row": 45,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "eof",
+"row": 46,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "function",
+"row": 46,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "identifier",
+"row": 46,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "if",
+"row": 46,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "return",
+"row": 46,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "while",
+"row": 46,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "FACTOR",
+"row": 47,
+"type": "GOTO",
+"value": 74
+},
+{
+"col": "FUNCTION_CALL",
+"row": 47,
+"type": "GOTO",
+"value": 26
+},
+{
+"col": "bool",
+"row": 47,
+"type": "SHIFT",
+"value": 25
+},
+{
+"col": "float",
+"row": 47,
+"type": "SHIFT",
+"value": 28
+},
+{
+"col": "identifier",
+"row": 47,
+"type": "SHIFT",
+"value": 31
+},
+{
+"col": "string",
+"row": 47,
+"type": "SHIFT",
+"value": 27
+},
+{
+"col": "FACTOR",
+"row": 48,
+"type": "GOTO",
+"value": 75
+},
+{
+"col": "FUNCTION_CALL",
+"row": 48,
+"type": "GOTO",
+"value": 26
+},
+{
+"col": "bool",
+"row": 48,
+"type": "SHIFT",
+"value": 25
+},
+{
+"col": "float",
+"row": 48,
+"type": "SHIFT",
+"value": 28
+},
+{
+"col": "identifier",
+"row": 48,
+"type": "SHIFT",
+"value": 31
+},
+{
+"col": "string",
+"row": 48,
+"type": "SHIFT",
+"value": 27
+},
+{
+"col": "+",
+"row": 49,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "-",
+"row": 49,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "eof",
+"row": 49,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "function",
+"row": 49,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "identifier",
+"row": 49,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "if",
+"row": 49,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "return",
+"row": 49,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "while",
+"row": 49,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "FACTOR",
+"row": 50,
+"type": "GOTO",
+"value": 29
+},
+{
+"col": "FUNCTION_CALL",
+"row": 50,
+"type": "GOTO",
+"value": 26
+},
+{
+"col": "TERM",
+"row": 50,
+"type": "GOTO",
+"value": 76
+},
+{
+"col": "bool",
+"row": 50,
+"type": "SHIFT",
+"value": 25
+},
+{
+"col": "float",
+"row": 50,
+"type": "SHIFT",
+"value": 28
+},
+{
+"col": "identifier",
+"row": 50,
+"type": "SHIFT",
+"value": 31
+},
+{
+"col": "string",
+"row": 50,
+"type": "SHIFT",
+"value": 27
+},
+{
+"col": "FACTOR",
+"row": 51,
+"type": "GOTO",
+"value": 29
+},
+{
+"col": "FUNCTION_CALL",
+"row": 51,
+"type": "GOTO",
+"value": 26
+},
+{
+"col": "TERM",
+"row": 51,
+"type": "GOTO",
+"value": 77
+},
+{
+"col": "bool",
+"row": 51,
+"type": "SHIFT",
+"value": 25
+},
+{
+"col": "float",
+"row": 51,
+"type": "SHIFT",
+"value": 28
+},
+{
+"col": "identifier",
+"row": 51,
+"type": "SHIFT",
+"value": 31
+},
+{
+"col": "string",
+"row": 51,
+"type": "SHIFT",
+"value": 27
+},
+{
+"col": "eof",
+"row": 52,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "function",
+"row": 52,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "identifier",
+"row": 52,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "if",
+"row": 52,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "return",
+"row": 52,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "while",
+"row": 52,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 53,
+"type": "GOTO",
+"value": 60
+},
+{
+"col": "EXPRESSION",
+"row": 53,
+"type": "GOTO",
+"value": 63
+},
+{
+"col": "EXPRESSION_LOOP",
+"row": 53,
+"type": "GOTO",
+"value": 78
+},
+{
+"col": "FACTOR",
+"row": 53,
+"type": "GOTO",
+"value": 66
+},
+{
+"col": "FUNCTION_CALL",
+"row": 53,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "TERM",
+"row": 53,
+"type": "GOTO",
+"value": 61
+},
+{
+"col": "bool",
+"row": 53,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "closeparan",
+"row": 53,
+"type": "REDUCE",
+"value": 19
+},
+{
+"col": "float",
+"row": 53,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 53,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 53,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "ID_LOOP",
+"row": 54,
+"type": "GOTO",
+"value": 80
+},
+{
+"col": "closeparan",
+"row": 54,
+"type": "REDUCE",
+"value": 23
+},
+{
+"col": "identifier",
+"row": 54,
+"type": "SHIFT",
+"value": 79
+},
+{
+"col": "STATEMENTS",
+"row": 55,
+"type": "GOTO",
+"value": 81
+},
+{
+"col": "bodyclose",
+"row": 55,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "function",
+"row": 55,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "identifier",
+"row": 55,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "if",
+"row": 55,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "return",
+"row": 55,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "while",
+"row": 55,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "else",
+"row": 56,
+"type": "SHIFT",
+"value": 82
+},
+{
+"col": "eof",
+"row": 56,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "function",
+"row": 56,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "identifier",
+"row": 56,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "if",
+"row": 56,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "return",
+"row": 56,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "while",
+"row": 56,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "*",
+"row": 57,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "+",
+"row": 57,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "-",
+"row": 57,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "/",
+"row": 57,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "closeparan",
+"row": 57,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "comma",
+"row": 57,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "openparan",
+"row": 57,
+"type": "SHIFT",
+"value": 83
+},
+{
+"col": "*",
+"row": 58,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "+",
+"row": 58,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "-",
+"row": 58,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "/",
+"row": 58,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "closeparan",
+"row": 58,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "comma",
+"row": 58,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "*",
+"row": 59,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "+",
+"row": 59,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "-",
+"row": 59,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "/",
+"row": 59,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "closeparan",
+"row": 59,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "comma",
+"row": 59,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "closeparan",
+"row": 60,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "comma",
+"row": 60,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "+",
+"row": 61,
+"type": "SHIFT",
+"value": 84
+},
+{
+"col": "-",
+"row": 61,
+"type": "SHIFT",
+"value": 85
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 61,
+"type": "GOTO",
+"value": 86
+},
+{
+"col": "closeparan",
+"row": 61,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "comma",
+"row": 61,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "*",
+"row": 62,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "+",
+"row": 62,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "-",
+"row": 62,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "/",
+"row": 62,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "closeparan",
+"row": 62,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "comma",
+"row": 62,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "closeparan",
+"row": 63,
+"type": "REDUCE",
+"value": 25
+},
+{
+"col": "comma",
+"row": 63,
+"type": "SHIFT",
+"value": 87
+},
+{
+"col": "*",
+"row": 64,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "+",
+"row": 64,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "-",
+"row": 64,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "/",
+"row": 64,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "closeparan",
+"row": 64,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "comma",
+"row": 64,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "closeparan",
+"row": 65,
+"type": "SHIFT",
+"value": 88
+},
+{
+"col": "*",
+"row": 66,
+"type": "SHIFT",
+"value": 90
+},
+{
+"col": "+",
+"row": 66,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 66,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 66,
+"type": "SHIFT",
+"value": 89
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 66,
+"type": "GOTO",
+"value": 91
+},
+{
+"col": "closeparan",
+"row": 66,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "comma",
+"row": 66,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "eof",
+"row": 67,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "function",
+"row": 67,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "identifier",
+"row": 67,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "if",
+"row": 67,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "return",
+"row": 67,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "while",
+"row": 67,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "closeparan",
+"row": 68,
+"type": "SHIFT",
+"value": 92
+},
+{
+"col": "*",
+"row": 69,
+"type": "SHIFT",
+"value": 40
+},
+{
+"col": "+",
+"row": 69,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 69,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 69,
+"type": "SHIFT",
+"value": 39
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 69,
+"type": "GOTO",
+"value": 93
+},
+{
+"col": "bodyopen",
+"row": 69,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "*",
+"row": 70,
+"type": "SHIFT",
+"value": 40
+},
+{
+"col": "+",
+"row": 70,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 70,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 70,
+"type": "SHIFT",
+"value": 39
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 70,
+"type": "GOTO",
+"value": 94
+},
+{
+"col": "bodyopen",
+"row": 70,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "+",
+"row": 71,
+"type": "SHIFT",
+"value": 42
+},
+{
+"col": "-",
+"row": 71,
+"type": "SHIFT",
+"value": 43
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 71,
+"type": "GOTO",
+"value": 95
+},
+{
+"col": "bodyopen",
+"row": 71,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "+",
+"row": 72,
+"type": "SHIFT",
+"value": 42
+},
+{
+"col": "-",
+"row": 72,
+"type": "SHIFT",
+"value": 43
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 72,
+"type": "GOTO",
+"value": 96
+},
+{
+"col": "bodyopen",
+"row": 72,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "FUNCTION_CALL",
+"row": 73,
+"type": "GOTO",
+"value": 102
+},
+{
+"col": "FUNCTION_DECLARATION",
+"row": 73,
+"type": "GOTO",
+"value": 107
+},
+{
+"col": "IF_STATEMENT",
+"row": 73,
+"type": "GOTO",
+"value": 101
+},
+{
+"col": "RET_STATEMENT",
+"row": 73,
+"type": "GOTO",
+"value": 103
+},
+{
+"col": "STATEMENT",
+"row": 73,
+"type": "GOTO",
+"value": 104
+},
+{
+"col": "VAR_ASSIGN_STATEMENT",
+"row": 73,
+"type": "GOTO",
+"value": 108
+},
+{
+"col": "WHILE_STATEMENT",
+"row": 73,
+"type": "GOTO",
+"value": 99
+},
+{
+"col": "bodyclose",
+"row": 73,
+"type": "SHIFT",
+"value": 105
+},
+{
+"col": "function",
+"row": 73,
+"type": "SHIFT",
+"value": 100
+},
+{
+"col": "identifier",
+"row": 73,
+"type": "SHIFT",
+"value": 98
+},
+{
+"col": "if",
+"row": 73,
+"type": "SHIFT",
+"value": 106
+},
+{
+"col": "return",
+"row": 73,
+"type": "SHIFT",
+"value": 109
+},
+{
+"col": "while",
+"row": 73,
+"type": "SHIFT",
+"value": 97
+},
+{
+"col": "*",
+"row": 74,
+"type": "SHIFT",
+"value": 48
+},
+{
+"col": "+",
+"row": 74,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 74,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 74,
+"type": "SHIFT",
+"value": 47
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 74,
+"type": "GOTO",
+"value": 110
+},
+{
+"col": "eof",
+"row": 74,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "function",
+"row": 74,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "identifier",
+"row": 74,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "if",
+"row": 74,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "return",
+"row": 74,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "while",
+"row": 74,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "*",
+"row": 75,
+"type": "SHIFT",
+"value": 48
+},
+{
+"col": "+",
+"row": 75,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 75,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 75,
+"type": "SHIFT",
+"value": 47
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 75,
+"type": "GOTO",
+"value": 111
+},
+{
+"col": "eof",
+"row": 75,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "function",
+"row": 75,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "identifier",
+"row": 75,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "if",
+"row": 75,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "return",
+"row": 75,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "while",
+"row": 75,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "+",
+"row": 76,
+"type": "SHIFT",
+"value": 50
+},
+{
+"col": "-",
+"row": 76,
+"type": "SHIFT",
+"value": 51
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 76,
+"type": "GOTO",
+"value": 112
+},
+{
+"col": "eof",
+"row": 76,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "function",
+"row": 76,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "identifier",
+"row": 76,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "if",
+"row": 76,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "return",
+"row": 76,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "while",
+"row": 76,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "+",
+"row": 77,
+"type": "SHIFT",
+"value": 50
+},
+{
+"col": "-",
+"row": 77,
+"type": "SHIFT",
+"value": 51
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 77,
+"type": "GOTO",
+"value": 113
+},
+{
+"col": "eof",
+"row": 77,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "function",
+"row": 77,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "identifier",
+"row": 77,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "if",
+"row": 77,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "return",
+"row": 77,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "while",
+"row": 77,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "closeparan",
+"row": 78,
+"type": "SHIFT",
+"value": 114
+},
+{
+"col": "closeparan",
+"row": 79,
+"type": "REDUCE",
+"value": 27
+},
+{
+"col": "comma",
+"row": 79,
+"type": "SHIFT",
+"value": 115
+},
+{
+"col": "closeparan",
+"row": 80,
+"type": "SHIFT",
+"value": 116
+},
+{
+"col": "FUNCTION_CALL",
+"row": 81,
+"type": "GOTO",
+"value": 102
+},
+{
+"col": "FUNCTION_DECLARATION",
+"row": 81,
+"type": "GOTO",
+"value": 107
+},
+{
+"col": "IF_STATEMENT",
+"row": 81,
+"type": "GOTO",
+"value": 101
+},
+{
+"col": "RET_STATEMENT",
+"row": 81,
+"type": "GOTO",
+"value": 103
+},
+{
+"col": "STATEMENT",
+"row": 81,
+"type": "GOTO",
+"value": 104
+},
+{
+"col": "VAR_ASSIGN_STATEMENT",
+"row": 81,
+"type": "GOTO",
+"value": 108
+},
+{
+"col": "WHILE_STATEMENT",
+"row": 81,
+"type": "GOTO",
+"value": 99
+},
+{
+"col": "bodyclose",
+"row": 81,
+"type": "SHIFT",
+"value": 117
+},
+{
+"col": "function",
+"row": 81,
+"type": "SHIFT",
+"value": 100
+},
+{
+"col": "identifier",
+"row": 81,
+"type": "SHIFT",
+"value": 98
+},
+{
+"col": "if",
+"row": 81,
+"type": "SHIFT",
+"value": 106
+},
+{
+"col": "return",
+"row": 81,
+"type": "SHIFT",
+"value": 109
+},
+{
+"col": "while",
+"row": 81,
+"type": "SHIFT",
+"value": 97
+},
+{
+"col": "BODY",
+"row": 82,
+"type": "GOTO",
+"value": 118
+},
+{
+"col": "bodyopen",
+"row": 82,
+"type": "SHIFT",
+"value": 45
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 83,
+"type": "GOTO",
+"value": 60
+},
+{
+"col": "EXPRESSION",
+"row": 83,
+"type": "GOTO",
+"value": 63
+},
+{
+"col": "EXPRESSION_LOOP",
+"row": 83,
+"type": "GOTO",
+"value": 119
+},
+{
+"col": "FACTOR",
+"row": 83,
+"type": "GOTO",
+"value": 66
+},
+{
+"col": "FUNCTION_CALL",
+"row": 83,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "TERM",
+"row": 83,
+"type": "GOTO",
+"value": 61
+},
+{
+"col": "bool",
+"row": 83,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "closeparan",
+"row": 83,
+"type": "REDUCE",
+"value": 19
+},
+{
+"col": "float",
+"row": 83,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 83,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 83,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "FACTOR",
+"row": 84,
+"type": "GOTO",
+"value": 66
+},
+{
+"col": "FUNCTION_CALL",
+"row": 84,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "TERM",
+"row": 84,
+"type": "GOTO",
+"value": 120
+},
+{
+"col": "bool",
+"row": 84,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "float",
+"row": 84,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 84,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 84,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "FACTOR",
+"row": 85,
+"type": "GOTO",
+"value": 66
+},
+{
+"col": "FUNCTION_CALL",
+"row": 85,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "TERM",
+"row": 85,
+"type": "GOTO",
+"value": 121
+},
+{
+"col": "bool",
+"row": 85,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "float",
+"row": 85,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 85,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 85,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "closeparan",
+"row": 86,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "comma",
+"row": 86,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 87,
+"type": "GOTO",
+"value": 60
+},
+{
+"col": "EXPRESSION",
+"row": 87,
+"type": "GOTO",
+"value": 63
+},
+{
+"col": "EXPRESSION_LOOP",
+"row": 87,
+"type": "GOTO",
+"value": 122
+},
+{
+"col": "FACTOR",
+"row": 87,
+"type": "GOTO",
+"value": 66
+},
+{
+"col": "FUNCTION_CALL",
+"row": 87,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "TERM",
+"row": 87,
+"type": "GOTO",
+"value": 61
+},
+{
+"col": "bool",
+"row": 87,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "closeparan",
+"row": 87,
+"type": "REDUCE",
+"value": 19
+},
+{
+"col": "float",
+"row": 87,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 87,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 87,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "eof",
+"row": 88,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "function",
+"row": 88,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "identifier",
+"row": 88,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "if",
+"row": 88,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "return",
+"row": 88,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "while",
+"row": 88,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "FACTOR",
+"row": 89,
+"type": "GOTO",
+"value": 123
+},
+{
+"col": "FUNCTION_CALL",
+"row": 89,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "bool",
+"row": 89,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "float",
+"row": 89,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 89,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 89,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "FACTOR",
+"row": 90,
+"type": "GOTO",
+"value": 124
+},
+{
+"col": "FUNCTION_CALL",
+"row": 90,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "bool",
+"row": 90,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "float",
+"row": 90,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 90,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 90,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "+",
+"row": 91,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "-",
+"row": 91,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "closeparan",
+"row": 91,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "comma",
+"row": 91,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "*",
+"row": 92,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "+",
+"row": 92,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "-",
+"row": 92,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "/",
+"row": 92,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "bodyopen",
+"row": 92,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "+",
+"row": 93,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "-",
+"row": 93,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "bodyopen",
+"row": 93,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "+",
+"row": 94,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "-",
+"row": 94,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "bodyopen",
+"row": 94,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "bodyopen",
+"row": 95,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "bodyopen",
+"row": 96,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 97,
+"type": "GOTO",
+"value": 22
+},
+{
+"col": "EXPRESSION",
+"row": 97,
+"type": "GOTO",
+"value": 125
+},
+{
+"col": "FACTOR",
+"row": 97,
+"type": "GOTO",
+"value": 19
+},
+{
+"col": "FUNCTION_CALL",
+"row": 97,
+"type": "GOTO",
+"value": 20
+},
+{
+"col": "TERM",
+"row": 97,
+"type": "GOTO",
+"value": 21
+},
+{
+"col": "bool",
+"row": 97,
+"type": "SHIFT",
+"value": 23
+},
+{
+"col": "float",
+"row": 97,
+"type": "SHIFT",
+"value": 17
+},
+{
+"col": "identifier",
+"row": 97,
+"type": "SHIFT",
+"value": 18
+},
+{
+"col": "string",
+"row": 97,
+"type": "SHIFT",
+"value": 16
+},
+{
+"col": "equals",
+"row": 98,
+"type": "SHIFT",
+"value": 127
+},
+{
+"col": "openparan",
+"row": 98,
+"type": "SHIFT",
+"value": 126
+},
+{
+"col": "bodyclose",
+"row": 99,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "function",
+"row": 99,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "identifier",
+"row": 99,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "if",
+"row": 99,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "return",
+"row": 99,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "while",
+"row": 99,
+"type": "REDUCE",
+"value": 7
+},
+{
+"col": "identifier",
+"row": 100,
+"type": "SHIFT",
+"value": 128
+},
+{
+"col": "bodyclose",
+"row": 101,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "function",
+"row": 101,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "identifier",
+"row": 101,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "if",
+"row": 101,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "return",
+"row": 101,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "while",
+"row": 101,
+"type": "REDUCE",
+"value": 5
+},
+{
+"col": "bodyclose",
+"row": 102,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "function",
+"row": 102,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "identifier",
+"row": 102,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "if",
+"row": 102,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "return",
+"row": 102,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "while",
+"row": 102,
+"type": "REDUCE",
+"value": 4
+},
+{
+"col": "bodyclose",
+"row": 103,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "function",
+"row": 103,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "identifier",
+"row": 103,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "if",
+"row": 103,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "return",
+"row": 103,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "while",
+"row": 103,
+"type": "REDUCE",
+"value": 9
+},
+{
+"col": "bodyclose",
+"row": 104,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "function",
+"row": 104,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "identifier",
+"row": 104,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "if",
+"row": 104,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "return",
+"row": 104,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "while",
+"row": 104,
+"type": "REDUCE",
+"value": 8
+},
+{
+"col": "eof",
+"row": 105,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "function",
+"row": 105,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "identifier",
+"row": 105,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "if",
+"row": 105,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "return",
+"row": 105,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "while",
+"row": 105,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 106,
+"type": "GOTO",
+"value": 22
+},
+{
+"col": "EXPRESSION",
+"row": 106,
+"type": "GOTO",
+"value": 129
+},
+{
+"col": "FACTOR",
+"row": 106,
+"type": "GOTO",
+"value": 19
+},
+{
+"col": "FUNCTION_CALL",
+"row": 106,
+"type": "GOTO",
+"value": 20
+},
+{
+"col": "TERM",
+"row": 106,
+"type": "GOTO",
+"value": 21
+},
+{
+"col": "bool",
+"row": 106,
+"type": "SHIFT",
+"value": 23
+},
+{
+"col": "float",
+"row": 106,
+"type": "SHIFT",
+"value": 17
+},
+{
+"col": "identifier",
+"row": 106,
+"type": "SHIFT",
+"value": 18
+},
+{
+"col": "string",
+"row": 106,
+"type": "SHIFT",
+"value": 16
+},
+{
+"col": "bodyclose",
+"row": 107,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "function",
+"row": 107,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "identifier",
+"row": 107,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "if",
+"row": 107,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "return",
+"row": 107,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "while",
+"row": 107,
+"type": "REDUCE",
+"value": 2
+},
+{
+"col": "bodyclose",
+"row": 108,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "function",
+"row": 108,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "identifier",
+"row": 108,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "if",
+"row": 108,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "return",
+"row": 108,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "while",
+"row": 108,
+"type": "REDUCE",
+"value": 3
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 109,
+"type": "GOTO",
+"value": 137
+},
+{
+"col": "EXPRESSION",
+"row": 109,
+"type": "GOTO",
+"value": 138
+},
+{
+"col": "FACTOR",
+"row": 109,
+"type": "GOTO",
+"value": 135
+},
+{
+"col": "FUNCTION_CALL",
+"row": 109,
+"type": "GOTO",
+"value": 134
+},
+{
+"col": "TERM",
+"row": 109,
+"type": "GOTO",
+"value": 136
+},
+{
+"col": "bool",
+"row": 109,
+"type": "SHIFT",
+"value": 130
+},
+{
+"col": "float",
+"row": 109,
+"type": "SHIFT",
+"value": 131
+},
+{
+"col": "identifier",
+"row": 109,
+"type": "SHIFT",
+"value": 132
+},
+{
+"col": "string",
+"row": 109,
+"type": "SHIFT",
+"value": 133
+},
+{
+"col": "+",
+"row": 110,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "-",
+"row": 110,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "eof",
+"row": 110,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "function",
+"row": 110,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "identifier",
+"row": 110,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "if",
+"row": 110,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "return",
+"row": 110,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "while",
+"row": 110,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "+",
+"row": 111,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "-",
+"row": 111,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "eof",
+"row": 111,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "function",
+"row": 111,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "identifier",
+"row": 111,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "if",
+"row": 111,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "return",
+"row": 111,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "while",
+"row": 111,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "eof",
+"row": 112,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "function",
+"row": 112,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "identifier",
+"row": 112,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "if",
+"row": 112,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "return",
+"row": 112,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "while",
+"row": 112,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "eof",
+"row": 113,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "function",
+"row": 113,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "identifier",
+"row": 113,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "if",
+"row": 113,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "return",
+"row": 113,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "while",
+"row": 113,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "*",
+"row": 114,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "+",
+"row": 114,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "-",
+"row": 114,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "/",
+"row": 114,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "eof",
+"row": 114,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "function",
+"row": 114,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "identifier",
+"row": 114,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "if",
+"row": 114,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "return",
+"row": 114,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "while",
+"row": 114,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "ID_LOOP",
+"row": 115,
+"type": "GOTO",
+"value": 139
+},
+{
+"col": "closeparan",
+"row": 115,
+"type": "REDUCE",
+"value": 23
+},
+{
+"col": "identifier",
+"row": 115,
+"type": "SHIFT",
+"value": 79
+},
+{
+"col": "BODY",
+"row": 116,
+"type": "GOTO",
+"value": 140
+},
+{
+"col": "bodyopen",
+"row": 116,
+"type": "SHIFT",
+"value": 45
+},
+{
+"col": "else",
+"row": 117,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "eof",
+"row": 117,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "function",
+"row": 117,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "identifier",
+"row": 117,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "if",
+"row": 117,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "return",
+"row": 117,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "while",
+"row": 117,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "eof",
+"row": 118,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "function",
+"row": 118,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "identifier",
+"row": 118,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "if",
+"row": 118,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "return",
+"row": 118,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "while",
+"row": 118,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "closeparan",
+"row": 119,
+"type": "SHIFT",
+"value": 141
+},
+{
+"col": "+",
+"row": 120,
+"type": "SHIFT",
+"value": 84
+},
+{
+"col": "-",
+"row": 120,
+"type": "SHIFT",
+"value": 85
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 120,
+"type": "GOTO",
+"value": 142
+},
+{
+"col": "closeparan",
+"row": 120,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "comma",
+"row": 120,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "+",
+"row": 121,
+"type": "SHIFT",
+"value": 84
+},
+{
+"col": "-",
+"row": 121,
+"type": "SHIFT",
+"value": 85
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 121,
+"type": "GOTO",
+"value": 143
+},
+{
+"col": "closeparan",
+"row": 121,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "comma",
+"row": 121,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "closeparan",
+"row": 122,
+"type": "REDUCE",
+"value": 35
+},
+{
+"col": "*",
+"row": 123,
+"type": "SHIFT",
+"value": 90
+},
+{
+"col": "+",
+"row": 123,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 123,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 123,
+"type": "SHIFT",
+"value": 89
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 123,
+"type": "GOTO",
+"value": 144
+},
+{
+"col": "closeparan",
+"row": 123,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "comma",
+"row": 123,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "*",
+"row": 124,
+"type": "SHIFT",
+"value": 90
+},
+{
+"col": "+",
+"row": 124,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 124,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 124,
+"type": "SHIFT",
+"value": 89
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 124,
+"type": "GOTO",
+"value": 145
+},
+{
+"col": "closeparan",
+"row": 124,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "comma",
+"row": 124,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "BODY",
+"row": 125,
+"type": "GOTO",
+"value": 147
+},
+{
+"col": "bodyopen",
+"row": 125,
+"type": "SHIFT",
+"value": 146
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 126,
+"type": "GOTO",
+"value": 60
+},
+{
+"col": "EXPRESSION",
+"row": 126,
+"type": "GOTO",
+"value": 63
+},
+{
+"col": "EXPRESSION_LOOP",
+"row": 126,
+"type": "GOTO",
+"value": 148
+},
+{
+"col": "FACTOR",
+"row": 126,
+"type": "GOTO",
+"value": 66
+},
+{
+"col": "FUNCTION_CALL",
+"row": 126,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "TERM",
+"row": 126,
+"type": "GOTO",
+"value": 61
+},
+{
+"col": "bool",
+"row": 126,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "closeparan",
+"row": 126,
+"type": "REDUCE",
+"value": 19
+},
+{
+"col": "float",
+"row": 126,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 126,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 126,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 127,
+"type": "GOTO",
+"value": 137
+},
+{
+"col": "EXPRESSION",
+"row": 127,
+"type": "GOTO",
+"value": 149
+},
+{
+"col": "FACTOR",
+"row": 127,
+"type": "GOTO",
+"value": 135
+},
+{
+"col": "FUNCTION_CALL",
+"row": 127,
+"type": "GOTO",
+"value": 134
+},
+{
+"col": "TERM",
+"row": 127,
+"type": "GOTO",
+"value": 136
+},
+{
+"col": "bool",
+"row": 127,
+"type": "SHIFT",
+"value": 130
+},
+{
+"col": "float",
+"row": 127,
+"type": "SHIFT",
+"value": 131
+},
+{
+"col": "identifier",
+"row": 127,
+"type": "SHIFT",
+"value": 132
+},
+{
+"col": "string",
+"row": 127,
+"type": "SHIFT",
+"value": 133
+},
+{
+"col": "openparan",
+"row": 128,
+"type": "SHIFT",
+"value": 150
+},
+{
+"col": "BODY",
+"row": 129,
+"type": "GOTO",
+"value": 152
+},
+{
+"col": "bodyopen",
+"row": 129,
+"type": "SHIFT",
+"value": 151
+},
+{
+"col": "*",
+"row": 130,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "+",
+"row": 130,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "-",
+"row": 130,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "/",
+"row": 130,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "bodyclose",
+"row": 130,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "function",
+"row": 130,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "identifier",
+"row": 130,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "if",
+"row": 130,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "return",
+"row": 130,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "while",
+"row": 130,
+"type": "REDUCE",
+"value": 17
+},
+{
+"col": "*",
+"row": 131,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "+",
+"row": 131,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "-",
+"row": 131,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "/",
+"row": 131,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "bodyclose",
+"row": 131,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "function",
+"row": 131,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "identifier",
+"row": 131,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "if",
+"row": 131,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "return",
+"row": 131,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "while",
+"row": 131,
+"type": "REDUCE",
+"value": 11
+},
+{
+"col": "*",
+"row": 132,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "+",
+"row": 132,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "-",
+"row": 132,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "/",
+"row": 132,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "bodyclose",
+"row": 132,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "function",
+"row": 132,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "identifier",
+"row": 132,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "if",
+"row": 132,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "openparan",
+"row": 132,
+"type": "SHIFT",
+"value": 153
+},
+{
+"col": "return",
+"row": 132,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "while",
+"row": 132,
+"type": "REDUCE",
+"value": 12
+},
+{
+"col": "*",
+"row": 133,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "+",
+"row": 133,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "-",
+"row": 133,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "/",
+"row": 133,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "bodyclose",
+"row": 133,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "function",
+"row": 133,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "identifier",
+"row": 133,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "if",
+"row": 133,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "return",
+"row": 133,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "while",
+"row": 133,
+"type": "REDUCE",
+"value": 10
+},
+{
+"col": "*",
+"row": 134,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "+",
+"row": 134,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "-",
+"row": 134,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "/",
+"row": 134,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "bodyclose",
+"row": 134,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "function",
+"row": 134,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "identifier",
+"row": 134,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "if",
+"row": 134,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "return",
+"row": 134,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "while",
+"row": 134,
+"type": "REDUCE",
+"value": 14
+},
+{
+"col": "*",
+"row": 135,
+"type": "SHIFT",
+"value": 155
+},
+{
+"col": "+",
+"row": 135,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 135,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 135,
+"type": "SHIFT",
+"value": 154
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 135,
+"type": "GOTO",
+"value": 156
+},
+{
+"col": "bodyclose",
+"row": 135,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "function",
+"row": 135,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "identifier",
+"row": 135,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "if",
+"row": 135,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "return",
+"row": 135,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "while",
+"row": 135,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "+",
+"row": 136,
+"type": "SHIFT",
+"value": 157
+},
+{
+"col": "-",
+"row": 136,
+"type": "SHIFT",
+"value": 158
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 136,
+"type": "GOTO",
+"value": 159
+},
+{
+"col": "bodyclose",
+"row": 136,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "function",
+"row": 136,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "identifier",
+"row": 136,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "if",
+"row": 136,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "return",
+"row": 136,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "while",
+"row": 136,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "bodyclose",
+"row": 137,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "function",
+"row": 137,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "identifier",
+"row": 137,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "if",
+"row": 137,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "return",
+"row": 137,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "while",
+"row": 137,
+"type": "REDUCE",
+"value": 16
+},
+{
+"col": "bodyclose",
+"row": 138,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "function",
+"row": 138,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "identifier",
+"row": 138,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "if",
+"row": 138,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "return",
+"row": 138,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "while",
+"row": 138,
+"type": "REDUCE",
+"value": 18
+},
+{
+"col": "closeparan",
+"row": 139,
+"type": "REDUCE",
+"value": 36
+},
+{
+"col": "eof",
+"row": 140,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "function",
+"row": 140,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "identifier",
+"row": 140,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "if",
+"row": 140,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "return",
+"row": 140,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "while",
+"row": 140,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "*",
+"row": 141,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "+",
+"row": 141,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "-",
+"row": 141,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "/",
+"row": 141,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "closeparan",
+"row": 141,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "comma",
+"row": 141,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "closeparan",
+"row": 142,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "comma",
+"row": 142,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "closeparan",
+"row": 143,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "comma",
+"row": 143,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "+",
+"row": 144,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "-",
+"row": 144,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "closeparan",
+"row": 144,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "comma",
+"row": 144,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "+",
+"row": 145,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "-",
+"row": 145,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "closeparan",
+"row": 145,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "comma",
+"row": 145,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "STATEMENTS",
+"row": 146,
+"type": "GOTO",
+"value": 160
+},
+{
+"col": "bodyclose",
+"row": 146,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "function",
+"row": 146,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "identifier",
+"row": 146,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "if",
+"row": 146,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "return",
+"row": 146,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "while",
+"row": 146,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "bodyclose",
+"row": 147,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "function",
+"row": 147,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "identifier",
+"row": 147,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "if",
+"row": 147,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "return",
+"row": 147,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "while",
+"row": 147,
+"type": "REDUCE",
+"value": 22
+},
+{
+"col": "closeparan",
+"row": 148,
+"type": "SHIFT",
+"value": 161
+},
+{
+"col": "bodyclose",
+"row": 149,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "function",
+"row": 149,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "identifier",
+"row": 149,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "if",
+"row": 149,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "return",
+"row": 149,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "while",
+"row": 149,
+"type": "REDUCE",
+"value": 26
+},
+{
+"col": "ID_LOOP",
+"row": 150,
+"type": "GOTO",
+"value": 162
+},
+{
+"col": "closeparan",
+"row": 150,
+"type": "REDUCE",
+"value": 23
+},
+{
+"col": "identifier",
+"row": 150,
+"type": "SHIFT",
+"value": 79
+},
+{
+"col": "STATEMENTS",
+"row": 151,
+"type": "GOTO",
+"value": 163
+},
+{
+"col": "bodyclose",
+"row": 151,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "function",
+"row": 151,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "identifier",
+"row": 151,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "if",
+"row": 151,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "return",
+"row": 151,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "while",
+"row": 151,
+"type": "REDUCE",
+"value": 0
+},
+{
+"col": "bodyclose",
+"row": 152,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "else",
+"row": 152,
+"type": "SHIFT",
+"value": 164
+},
+{
+"col": "function",
+"row": 152,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "identifier",
+"row": 152,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "if",
+"row": 152,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "return",
+"row": 152,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "while",
+"row": 152,
+"type": "REDUCE",
+"value": 24
+},
+{
+"col": "BINARY_EXPRESSION",
+"row": 153,
+"type": "GOTO",
+"value": 60
+},
+{
+"col": "EXPRESSION",
+"row": 153,
+"type": "GOTO",
+"value": 63
+},
+{
+"col": "EXPRESSION_LOOP",
+"row": 153,
+"type": "GOTO",
+"value": 165
+},
+{
+"col": "FACTOR",
+"row": 153,
+"type": "GOTO",
+"value": 66
+},
+{
+"col": "FUNCTION_CALL",
+"row": 153,
+"type": "GOTO",
+"value": 58
+},
+{
+"col": "TERM",
+"row": 153,
+"type": "GOTO",
+"value": 61
+},
+{
+"col": "bool",
+"row": 153,
+"type": "SHIFT",
+"value": 62
+},
+{
+"col": "closeparan",
+"row": 153,
+"type": "REDUCE",
+"value": 19
+},
+{
+"col": "float",
+"row": 153,
+"type": "SHIFT",
+"value": 59
+},
+{
+"col": "identifier",
+"row": 153,
+"type": "SHIFT",
+"value": 57
+},
+{
+"col": "string",
+"row": 153,
+"type": "SHIFT",
+"value": 64
+},
+{
+"col": "FACTOR",
+"row": 154,
+"type": "GOTO",
+"value": 166
+},
+{
+"col": "FUNCTION_CALL",
+"row": 154,
+"type": "GOTO",
+"value": 134
+},
+{
+"col": "bool",
+"row": 154,
+"type": "SHIFT",
+"value": 130
+},
+{
+"col": "float",
+"row": 154,
+"type": "SHIFT",
+"value": 131
+},
+{
+"col": "identifier",
+"row": 154,
+"type": "SHIFT",
+"value": 132
+},
+{
+"col": "string",
+"row": 154,
+"type": "SHIFT",
+"value": 133
+},
+{
+"col": "FACTOR",
+"row": 155,
+"type": "GOTO",
+"value": 167
+},
+{
+"col": "FUNCTION_CALL",
+"row": 155,
+"type": "GOTO",
+"value": 134
+},
+{
+"col": "bool",
+"row": 155,
+"type": "SHIFT",
+"value": 130
+},
+{
+"col": "float",
+"row": 155,
+"type": "SHIFT",
+"value": 131
+},
+{
+"col": "identifier",
+"row": 155,
+"type": "SHIFT",
+"value": 132
+},
+{
+"col": "string",
+"row": 155,
+"type": "SHIFT",
+"value": 133
+},
+{
+"col": "+",
+"row": 156,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "-",
+"row": 156,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "bodyclose",
+"row": 156,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "function",
+"row": 156,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "identifier",
+"row": 156,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "if",
+"row": 156,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "return",
+"row": 156,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "while",
+"row": 156,
+"type": "REDUCE",
+"value": 20
+},
+{
+"col": "FACTOR",
+"row": 157,
+"type": "GOTO",
+"value": 135
+},
+{
+"col": "FUNCTION_CALL",
+"row": 157,
+"type": "GOTO",
+"value": 134
+},
+{
+"col": "TERM",
+"row": 157,
+"type": "GOTO",
+"value": 168
+},
+{
+"col": "bool",
+"row": 157,
+"type": "SHIFT",
+"value": 130
+},
+{
+"col": "float",
+"row": 157,
+"type": "SHIFT",
+"value": 131
+},
+{
+"col": "identifier",
+"row": 157,
+"type": "SHIFT",
+"value": 132
+},
+{
+"col": "string",
+"row": 157,
+"type": "SHIFT",
+"value": 133
+},
+{
+"col": "FACTOR",
+"row": 158,
+"type": "GOTO",
+"value": 135
+},
+{
+"col": "FUNCTION_CALL",
+"row": 158,
+"type": "GOTO",
+"value": 134
+},
+{
+"col": "TERM",
+"row": 158,
+"type": "GOTO",
+"value": 169
+},
+{
+"col": "bool",
+"row": 158,
+"type": "SHIFT",
+"value": 130
+},
+{
+"col": "float",
+"row": 158,
+"type": "SHIFT",
+"value": 131
+},
+{
+"col": "identifier",
+"row": 158,
+"type": "SHIFT",
+"value": 132
+},
+{
+"col": "string",
+"row": 158,
+"type": "SHIFT",
+"value": 133
+},
+{
+"col": "bodyclose",
+"row": 159,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "function",
+"row": 159,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "identifier",
+"row": 159,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "if",
+"row": 159,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "return",
+"row": 159,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "while",
+"row": 159,
+"type": "REDUCE",
+"value": 21
+},
+{
+"col": "FUNCTION_CALL",
+"row": 160,
+"type": "GOTO",
+"value": 102
+},
+{
+"col": "FUNCTION_DECLARATION",
+"row": 160,
+"type": "GOTO",
+"value": 107
+},
+{
+"col": "IF_STATEMENT",
+"row": 160,
+"type": "GOTO",
+"value": 101
+},
+{
+"col": "RET_STATEMENT",
+"row": 160,
+"type": "GOTO",
+"value": 103
+},
+{
+"col": "STATEMENT",
+"row": 160,
+"type": "GOTO",
+"value": 104
+},
+{
+"col": "VAR_ASSIGN_STATEMENT",
+"row": 160,
+"type": "GOTO",
+"value": 108
+},
+{
+"col": "WHILE_STATEMENT",
+"row": 160,
+"type": "GOTO",
+"value": 99
+},
+{
+"col": "bodyclose",
+"row": 160,
+"type": "SHIFT",
+"value": 170
+},
+{
+"col": "function",
+"row": 160,
+"type": "SHIFT",
+"value": 100
+},
+{
+"col": "identifier",
+"row": 160,
+"type": "SHIFT",
+"value": 98
+},
+{
+"col": "if",
+"row": 160,
+"type": "SHIFT",
+"value": 106
+},
+{
+"col": "return",
+"row": 160,
+"type": "SHIFT",
+"value": 109
+},
+{
+"col": "while",
+"row": 160,
+"type": "SHIFT",
+"value": 97
+},
+{
+"col": "bodyclose",
+"row": 161,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "function",
+"row": 161,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "identifier",
+"row": 161,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "if",
+"row": 161,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "return",
+"row": 161,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "while",
+"row": 161,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "closeparan",
+"row": 162,
+"type": "SHIFT",
+"value": 171
+},
+{
+"col": "FUNCTION_CALL",
+"row": 163,
+"type": "GOTO",
+"value": 102
+},
+{
+"col": "FUNCTION_DECLARATION",
+"row": 163,
+"type": "GOTO",
+"value": 107
+},
+{
+"col": "IF_STATEMENT",
+"row": 163,
+"type": "GOTO",
+"value": 101
+},
+{
+"col": "RET_STATEMENT",
+"row": 163,
+"type": "GOTO",
+"value": 103
+},
+{
+"col": "STATEMENT",
+"row": 163,
+"type": "GOTO",
+"value": 104
+},
+{
+"col": "VAR_ASSIGN_STATEMENT",
+"row": 163,
+"type": "GOTO",
+"value": 108
+},
+{
+"col": "WHILE_STATEMENT",
+"row": 163,
+"type": "GOTO",
+"value": 99
+},
+{
+"col": "bodyclose",
+"row": 163,
+"type": "SHIFT",
+"value": 172
+},
+{
+"col": "function",
+"row": 163,
+"type": "SHIFT",
+"value": 100
+},
+{
+"col": "identifier",
+"row": 163,
+"type": "SHIFT",
+"value": 98
+},
+{
+"col": "if",
+"row": 163,
+"type": "SHIFT",
+"value": 106
+},
+{
+"col": "return",
+"row": 163,
+"type": "SHIFT",
+"value": 109
+},
+{
+"col": "while",
+"row": 163,
+"type": "SHIFT",
+"value": 97
+},
+{
+"col": "BODY",
+"row": 164,
+"type": "GOTO",
+"value": 173
+},
+{
+"col": "bodyopen",
+"row": 164,
+"type": "SHIFT",
+"value": 146
+},
+{
+"col": "closeparan",
+"row": 165,
+"type": "SHIFT",
+"value": 174
+},
+{
+"col": "*",
+"row": 166,
+"type": "SHIFT",
+"value": 155
+},
+{
+"col": "+",
+"row": 166,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 166,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 166,
+"type": "SHIFT",
+"value": 154
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 166,
+"type": "GOTO",
+"value": 175
+},
+{
+"col": "bodyclose",
+"row": 166,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "function",
+"row": 166,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "identifier",
+"row": 166,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "if",
+"row": 166,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "return",
+"row": 166,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "while",
+"row": 166,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "*",
+"row": 167,
+"type": "SHIFT",
+"value": 155
+},
+{
+"col": "+",
+"row": 167,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "-",
+"row": 167,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "/",
+"row": 167,
+"type": "SHIFT",
+"value": 154
+},
+{
+"col": "MUL_DIV_EXPRESSION",
+"row": 167,
+"type": "GOTO",
+"value": 176
+},
+{
+"col": "bodyclose",
+"row": 167,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "function",
+"row": 167,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "identifier",
+"row": 167,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "if",
+"row": 167,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "return",
+"row": 167,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "while",
+"row": 167,
+"type": "REDUCE",
+"value": 13
+},
+{
+"col": "+",
+"row": 168,
+"type": "SHIFT",
+"value": 157
+},
+{
+"col": "-",
+"row": 168,
+"type": "SHIFT",
+"value": 158
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 168,
+"type": "GOTO",
+"value": 177
+},
+{
+"col": "bodyclose",
+"row": 168,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "function",
+"row": 168,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "identifier",
+"row": 168,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "if",
+"row": 168,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "return",
+"row": 168,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "while",
+"row": 168,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "+",
+"row": 169,
+"type": "SHIFT",
+"value": 157
+},
+{
+"col": "-",
+"row": 169,
+"type": "SHIFT",
+"value": 158
+},
+{
+"col": "ADD_SUB_EXPRESSION",
+"row": 169,
+"type": "GOTO",
+"value": 178
+},
+{
+"col": "bodyclose",
+"row": 169,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "function",
+"row": 169,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "identifier",
+"row": 169,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "if",
+"row": 169,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "return",
+"row": 169,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "while",
+"row": 169,
+"type": "REDUCE",
+"value": 15
+},
+{
+"col": "bodyclose",
+"row": 170,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "function",
+"row": 170,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "identifier",
+"row": 170,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "if",
+"row": 170,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "return",
+"row": 170,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "while",
+"row": 170,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "BODY",
+"row": 171,
+"type": "GOTO",
+"value": 179
+},
+{
+"col": "bodyopen",
+"row": 171,
+"type": "SHIFT",
+"value": 146
+},
+{
+"col": "bodyclose",
+"row": 172,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "else",
+"row": 172,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "function",
+"row": 172,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "identifier",
+"row": 172,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "if",
+"row": 172,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "return",
+"row": 172,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "while",
+"row": 172,
+"type": "REDUCE",
+"value": 33
+},
+{
+"col": "bodyclose",
+"row": 173,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "function",
+"row": 173,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "identifier",
+"row": 173,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "if",
+"row": 173,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "return",
+"row": 173,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "while",
+"row": 173,
+"type": "REDUCE",
+"value": 34
+},
+{
+"col": "*",
+"row": 174,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "+",
+"row": 174,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "-",
+"row": 174,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "/",
+"row": 174,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "bodyclose",
+"row": 174,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "function",
+"row": 174,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "identifier",
+"row": 174,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "if",
+"row": 174,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "return",
+"row": 174,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "while",
+"row": 174,
+"type": "REDUCE",
+"value": 28
+},
+{
+"col": "+",
+"row": 175,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "-",
+"row": 175,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "bodyclose",
+"row": 175,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "function",
+"row": 175,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "identifier",
+"row": 175,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "if",
+"row": 175,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "return",
+"row": 175,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "while",
+"row": 175,
+"type": "REDUCE",
+"value": 29
+},
+{
+"col": "+",
+"row": 176,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "-",
+"row": 176,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "bodyclose",
+"row": 176,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "function",
+"row": 176,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "identifier",
+"row": 176,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "if",
+"row": 176,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "return",
+"row": 176,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "while",
+"row": 176,
+"type": "REDUCE",
+"value": 30
+},
+{
+"col": "bodyclose",
+"row": 177,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "function",
+"row": 177,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "identifier",
+"row": 177,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "if",
+"row": 177,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "return",
+"row": 177,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "while",
+"row": 177,
+"type": "REDUCE",
+"value": 31
+},
+{
+"col": "bodyclose",
+"row": 178,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "function",
+"row": 178,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "identifier",
+"row": 178,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "if",
+"row": 178,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "return",
+"row": 178,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "while",
+"row": 178,
+"type": "REDUCE",
+"value": 32
+},
+{
+"col": "bodyclose",
+"row": 179,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "function",
+"row": 179,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "identifier",
+"row": 179,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "if",
+"row": 179,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "return",
+"row": 179,
+"type": "REDUCE",
+"value": 37
+},
+{
+"col": "while",
+"row": 179,
+"type": "REDUCE",
+"value": 37
+}
+],
+"Terminals": [
+"*",
+"+",
+"-",
+"/",
+"bodyclose",
+"bodyopen",
+"bool",
+"closeparan",
+"comma",
+"else",
+"eof",
+"equals",
+"float",
+"function",
+"identifier",
+"if",
+"openparan",
+"return",
+"string",
+"while"
+],
+"Variables": [
+"ADD_SUB_EXPRESSION",
+"BINARY_EXPRESSION",
+"BODY",
+"EXPRESSION",
+"EXPRESSION_LOOP",
+"FACTOR",
+"FUNCTION_CALL",
+"FUNCTION_DECLARATION",
+"ID_LOOP",
+"IF_STATEMENT",
+"MUL_DIV_EXPRESSION",
+"PROGRAM",
+"RET_STATEMENT",
+"STATEMENT",
+"STATEMENTS",
+"TERM",
+"VAR_ASSIGN_STATEMENT",
+"WHILE_STATEMENT"
+]
+}

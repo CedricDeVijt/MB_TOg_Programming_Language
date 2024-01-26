@@ -1,39 +1,13 @@
-#include "MyLang.h"
-#include "exceptions/FileNotFoundError.h"
-#include "exceptions/ArgsError.h"
-#include <fstream>
-#include <sstream>
-
+#include "./modules/ASTGenerator.h"
+#include "./modules/Lexer.h"
+#include "./modules/Executor.h"
 
 int main(int argc, char *argv[]) {
-
-    std::string filename = "../../data/input/Eenvoudige Rekenkunde en Variabelen.txt";
-    /*if (argc!=2) {
-        std::cout << "Didn't get correct run arguments...\n Input a filename to interpret: ";
-        std::cin >> filename; // example: "../../data/input/Rekenmachine.txt"
-    } else {
-        filename = argv[1];
-    }*/
-
-    std::fstream file(filename);
-    if (!file.is_open()) {
-        throw FileNotFoundError(filename);
-    }
-
-    std::stringstream buffer;
-    buffer << file.rdbuf();
-
-    MyLang::interpret(buffer.str(), "../../data/LRParserTable.json");
-
-    /*
-    /*std::string input = "var x = (5 + 2)";
-    Tokens tokens = Lexer::lex(input);
-    for(const Token& t: tokens){
-        std::cout << t << std::endl;
-
-    }*/
-
-    file.close();
-
+    ASTGenerator generator(ParsingTable("./data/table.json"));
+    Tokens tokens = Lexer::lex("print(5)");
+    Program p = generator.generate(tokens);
+    Env env(nullptr, std::cin, std::cout, std::cerr);
+    Executor executor(env);
+    executor.execute(p);
     return 0;
 }
